@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Penca Mundial 2026 | Agroventas</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="header">
+  <nav class="navbar">
+    <img src="assets/logo-agroventas.png.jpeg" alt="Logo Agroventas" class="nav-logo">
+
+    <ul>
+      <li><a href="#registro">Registro</a></li>
+      <li><a href="#puntos">Puntos</a></li>
+      <li><a href="#fixture">Fixture</a></li>
+      <li><a href="#ranking">Ranking</a></li>
+    </ul>
+
+    <a href="#registro" class="btn-nav">¡Participá!</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-texto">
+
+      <h1>Viví la pasión del Mundial 2026</h1>
+
+      <p>
+        Una penca exclusiva para clientes de Agroventas.
+        Registrate, pronosticá y competí por un premio especial.
+      </p>
+
+      <div class="hero-botones">
+        <a href="#registro" class="btn-principal">Participar ahora</a>
+        <a href="#fixture" class="btn-whatsapp">Ver fixture</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="mockup-card">
+        <h3>Próximos partidos</h3>
+
+        <div class="mini-partido">
+          <span>🇺🇾 Uruguay</span>
+          <strong>2 - 1</strong>
+          <span>🇲🇽 México</span>
+        </div>
+
+        <div class="mini-partido">
+          <span>🇧🇷 Brasil</span>
+          <strong>1 - 1</strong>
+          <span>🇪🇸 España</span>
+        </div>
+
+        <div class="mini-ranking">
+          <h4>Ranking</h4>
+          <p>1. Juan Pérez — 12 pts</p>
+          <p>2. María Silva — 9 pts</p>
+          <p>3. Carlos Díaz — 6 pts</p>
+        </div>
+      </div>
+
+      <div class="vaca-futbol">
+        <img src="assets/vaca.png.jpeg" alt="Vaca Agroventas" class="vaca-img">
+        <div class="pelota">⚽</div>
+      </div>
+    </div>
+  </section>
+</header>
+
+  <main>
+
+    <section class="info-grid" id="como-funciona">
+      <article>
+        <h3>1. Registrate</h3>
+        <p>Ingresá tus datos como cliente de Agroventas.</p>
+      </article>
+      <article>
+        <h3>2. Pronosticá</h3>
+        <p>Elegí los resultados de cada partido del fixture.</p>
+      </article>
+      <article>
+        <h3>3. Sumá puntos</h3>
+        <p>Cuanto más acertás, más arriba quedás en la tabla.</p>
+      </article>
+    </section>
+
+    <section class="card" id="registro">
+      <h2>Registro de cliente</h2>
+
+      <form id="formRegistro" class="formulario">
+        <input type="text" id="nombre" placeholder="Nombre completo" required />
+        <input type="text" value="Cliente de Agroventas" readonly class="cliente-fijo" />
+        <input type="text" id="empresa" placeholder="Empresa / Local / Razón social" required />
+        <input type="tel" id="celular" placeholder="Celular" required />
+
+        <button type="submit">Registrarme</button>
+      </form>
+    </section>
+
+    <section class="card reglas" id="puntos">
+      <h2>¿Cómo sumar puntos?</h2>
+
+      <div class="puntos-grid">
+        <div>
+          <strong>3 puntos</strong>
+          <p>Resultado exacto.</p>
+        </div>
+        <div>
+          <strong>1 punto</strong>
+          <p>Acertar ganador o empate.</p>
+        </div>
+        <div>
+          <strong>0 puntos</strong>
+          <p>Resultado incorrecto.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="card" id="fixture">
+      <h2>Fixture y pronósticos</h2>
+      <p class="aviso">Seleccioná un cliente y cargá sus resultados.</p>
+
+      <select id="participanteActivo">
+        <option value="">Seleccionar cliente</option>
+      </select>
+
+      <div id="listaFixture" class="fixture"></div>
+
+      <button id="guardarPronosticos" class="btn-secundario">
+        Guardar pronósticos
+      </button>
+    </section>
+
+    <section class="card" id="ranking">
+      <h2>Tabla de posiciones</h2>
+
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Cliente</th>
+            <th>Empresa / Local</th>
+            <th>Puntos</th>
+          </tr>
+        </thead>
+        <tbody id="tablaPosiciones"></tbody>
+      </table>
+    </section>
+
+    <section class="premio">
+      <h2>Premio especial Agroventas</h2>
+      <p>El cliente que termine primero en la tabla de posiciones se lleva un premio especial.</p>
+    </section>
+
+  </main>
+
+  <footer>
+    <img src="assets/logo-agroventas.png.jpeg" alt="Logo Agroventas" class="logo-footer">
+    <p>Penca Mundial 2026 | Agroventas</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
