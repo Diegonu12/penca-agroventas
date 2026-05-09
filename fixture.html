@@ -6,6 +6,7 @@
   <title>Fixture | Penca Agroventas</title>
   <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
 
   <header class="app-header">
@@ -19,18 +20,54 @@
   </header>
 
   <main class="app-main">
-    <section class="card">
-      <h1>Fixture y pronósticos</h1>
-      <p>Acá vas a cargar tus resultados del Mundial 2026.</p>
+
+    <section class="card fixture-card">
+
+      <div class="fixture-top">
+        <div>
+          <h1>Fixture y pronósticos</h1>
+          <p>Filtrá los partidos y cargá tus resultados.</p>
+        </div>
+
+        <button id="guardarPronosticos" class="btn-secundario">
+          Guardar pronósticos
+        </button>
+      </div>
+
+      <div class="filtros-fixture">
+
+        <button class="filtro-btn activo" data-filtro="todos">
+          Todos
+        </button>
+
+        <button class="filtro-btn" data-filtro="uruguay">
+          Uruguay
+        </button>
+
+        <button class="filtro-btn" data-filtro="A">Grupo A</button>
+        <button class="filtro-btn" data-filtro="B">Grupo B</button>
+        <button class="filtro-btn" data-filtro="C">Grupo C</button>
+        <button class="filtro-btn" data-filtro="D">Grupo D</button>
+        <button class="filtro-btn" data-filtro="E">Grupo E</button>
+        <button class="filtro-btn" data-filtro="F">Grupo F</button>
+        <button class="filtro-btn" data-filtro="G">Grupo G</button>
+        <button class="filtro-btn" data-filtro="H">Grupo H</button>
+        <button class="filtro-btn" data-filtro="I">Grupo I</button>
+        <button class="filtro-btn" data-filtro="J">Grupo J</button>
+        <button class="filtro-btn" data-filtro="K">Grupo K</button>
+        <button class="filtro-btn" data-filtro="L">Grupo L</button>
+
+      </div>
+
+      <p id="contadorPartidos" class="contador-partidos"></p>
 
       <div id="listaFixture" class="fixture"></div>
 
-      <button id="guardarPronosticos" class="btn-secundario">
-        Guardar pronósticos
-      </button>
     </section>
+
   </main>
 
   <script type="module" src="app.js"></script>
+
 </body>
 </html>
