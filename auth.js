@@ -71,3 +71,41 @@ if (registroForm) {
   });
 
 }
+const loginForm =
+  document.getElementById("login-form");
+
+if (loginForm) {
+
+  loginForm.addEventListener("submit",
+  async (e) => {
+
+    e.preventDefault();
+
+    const email =
+      document.getElementById("login-email").value;
+
+    const password =
+      document.getElementById("login-password").value;
+
+    try {
+
+      await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      alert("Ingreso correcto 😎");
+
+      window.location.href =
+        "fixture.html";
+
+    } catch (error) {
+
+      alert("Correo o contraseña incorrectos");
+
+    }
+
+  });
+
+}
