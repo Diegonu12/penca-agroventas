@@ -923,3 +923,122 @@ select:focus {
     font-size: 0.8rem;
   }
 }
+/* AJUSTE PORTADA DESKTOP */
+.header {
+  min-height: 100vh;
+}
+
+.navbar {
+  padding: 18px 0;
+}
+
+.nav-logo {
+  width: 210px;
+}
+
+.hero {
+  min-height: calc(100vh - 120px);
+  align-items: center;
+  padding-top: 0;
+  padding-bottom: 40px;
+}
+
+.hero-texto h1 {
+  font-size: 3.5rem;
+  margin: 18px 0;
+}
+
+.hero-texto p {
+  font-size: 1.2rem;
+  margin-bottom: 25px;
+}
+
+.mockup-card {
+  transform: scale(0.95);
+}
+
+/* AJUSTE MOBILE */
+@media (max-width: 850px) {
+  .header {
+    min-height: auto;
+  }
+
+  .navbar {
+    padding: 14px 0;
+    gap: 12px;
+  }
+
+  .nav-logo {
+    width: 170px;
+  }
+
+  .navbar ul {
+    gap: 14px;
+    font-size: 0.9rem;
+  }
+
+  .hero {
+    min-height: auto;
+    padding: 20px 14px 55px;
+    gap: 25px;
+  }
+
+  .hero-texto h1 {
+    font-size: 2.2rem;
+    line-height: 1.1;
+    margin: 12px 0;
+  }
+
+  .hero-texto p {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 18px;
+  }
+
+  .hero-botones {
+    margin-top: 20px;
+    gap: 12px;
+  }
+
+  .btn-principal,
+  .btn-whatsapp {
+    padding: 12px 22px;
+    font-size: 0.9rem;
+  }
+
+  .mockup-card {
+    width: 100%;
+    transform: scale(1);
+    padding: 20px;
+  }
+
+  .mockup-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .mini-partido {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+
+  .mini-fecha {
+    font-size: 0.8rem;
+  }
+
+  .vaca-futbol {
+    margin-top: 15px;
+  }
+
+  .vaca-img {
+    width: 130px;
+    height: 130px;
+  }
+
+  .pelota {
+    font-size: 2.3rem;
+  }
+
+  .info-grid {
+    margin-top: -25px;
+  }
+}
