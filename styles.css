@@ -1202,3 +1202,409 @@ select:focus {
     padding: 20px !important;
   }
 }
+/* ========================================= */
+/* PORTADA FINAL AGROVENTAS - HERO PREMIUM */
+/* ========================================= */
+
+.header {
+  min-height: 100vh !important;
+  background:
+    linear-gradient(
+      rgba(0, 35, 10, 0.72),
+      rgba(0, 35, 10, 0.72)
+    ),
+    url("assets/copaypelota.webp") !important;
+  background-size: cover !important;
+  background-position: center !important;
+  overflow: hidden !important;
+}
+
+/* NAV GENERAL */
+.header .navbar {
+  width: 100% !important;
+  max-width: none !important;
+
+  display: grid !important;
+  grid-template-columns: 1fr auto auto !important;
+  align-items: center !important;
+
+  padding: 35px 80px 0 !important;
+  margin: 0 !important;
+
+  transform: translateY(-140px) !important;
+
+  position: relative !important;
+  z-index: 20 !important;
+}
+
+/* LOGO */
+.header .nav-logo {
+  width: 420px !important;
+  max-width: 100% !important;
+
+  background: transparent !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  margin: 0 !important;
+
+  transform: translateY(-10px) !important;
+
+  filter:
+    drop-shadow(0 0 8px rgba(255,255,255,0.95))
+    drop-shadow(0 0 20px rgba(255,255,255,0.75)) !important;
+}
+
+/* MENU */
+.header .navbar ul {
+  display: flex !important;
+  gap: 45px !important;
+  list-style: none !important;
+
+  margin: 0 70px 0 0 !important;
+  padding: 0 !important;
+
+  transform: translateY(-10px) !important;
+}
+
+.header .navbar ul li a,
+.header .navbar a {
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.45) !important;
+}
+
+.header .navbar ul li a:hover {
+  color: #f6c542 !important;
+}
+
+/* BOTÓN PARTICIPÁ */
+.header .btn-nav {
+  background: #ff5b35 !important;
+  color: #ffffff !important;
+
+  padding: 18px 38px !important;
+  border-radius: 999px !important;
+
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+
+  transform: translateY(-10px) !important;
+
+  box-shadow: 0 12px 28px rgba(0,0,0,0.28) !important;
+}
+
+/* BOTÓN PARTICIPÁ */
+.header .btn-nav {
+  background: #ff5b35 !important;
+  color: #ffffff !important;
+
+  padding: 18px 38px !important;
+  border-radius: 999px !important;
+
+  font-size: 1.15rem !important;
+  font-weight: 800 !important;
+  text-decoration: none !important;
+
+  box-shadow: 0 12px 28px rgba(0,0,0,0.28) !important;
+}
+
+/* HERO */
+.header .hero {
+  width: 100% !important;
+  max-width: none !important;
+
+  min-height: calc(100vh - 120px) !important;
+
+  display: grid !important;
+  grid-template-columns: 1fr 1fr !important;
+  align-items: center !important;
+
+  padding: 0 90px 25px !important;
+  margin: -75px 0 0 0 !important;
+
+  gap: 70px !important;
+  position: relative !important;
+  z-index: 2 !important;
+}
+
+/* TEXTO IZQUIERDA */
+.header .hero-texto {
+  max-width: 720px !important;
+  text-align: center !important;
+  margin: 0 0 0 40px !important;
+  transform: translateY(-45px) !important;
+}
+
+.header .hero-texto h1 {
+  font-size: 4.25rem !important;
+  line-height: 1.08 !important;
+  letter-spacing: 1px !important;
+  margin: 0 0 24px !important;
+
+  color: #ffffff !important;
+  text-transform: uppercase !important;
+  text-shadow: 0 4px 18px rgba(0,0,0,0.45) !important;
+}
+
+.header .hero-texto p {
+  font-size: 1.25rem !important;
+  line-height: 1.45 !important;
+  max-width: 690px !important;
+
+  color: #ffffff !important;
+  margin: 0 auto 30px !important;
+  text-shadow: 0 3px 12px rgba(0,0,0,0.45) !important;
+}
+
+.header .hero-botones {
+  display: flex !important;
+  justify-content: center !important;
+  gap: 28px !important;
+  margin-top: 22px !important;
+}
+
+.header .btn-principal,
+.header .btn-whatsapp {
+  min-width: 210px !important;
+  padding: 16px 28px !important;
+  border-radius: 999px !important;
+
+  font-size: 1rem !important;
+  font-weight: 800 !important;
+  text-align: center !important;
+}
+
+/* MOCKUP DERECHA */
+.header .hero-visual {
+  position: relative !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+
+  margin-top: 0 !important;
+  transform: translateY(-165px) !important;
+}
+
+.header .mockup-card {
+  width: 620px !important;
+  max-width: 100% !important;
+
+  background: rgba(5, 18, 12, 0.90) !important;
+  border: 2px solid rgba(255,255,255,0.18) !important;
+  border-radius: 32px !important;
+
+  padding: 34px !important;
+
+  box-shadow: 0 25px 70px rgba(0,0,0,0.45) !important;
+
+  animation: flotar 4s ease-in-out infinite !important;
+}
+
+.header .mockup-card h3 {
+  font-size: 1.35rem !important;
+  color: #f6c542 !important;
+  margin-bottom: 26px !important;
+  text-align: center !important;
+}
+
+.header .mini-partido {
+  min-height: 58px !important;
+
+  background: #ffffff !important;
+  color: #12351f !important;
+
+  padding: 14px 18px !important;
+  border-radius: 18px !important;
+  margin-bottom: 12px !important;
+
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+
+  font-size: 1rem !important;
+}
+
+.header .mini-partido strong {
+  color: #f3b51d !important;
+  font-size: 1.15rem !important;
+}
+
+.header .mini-fecha {
+  color: rgba(255,255,255,0.70) !important;
+  font-size: 0.95rem !important;
+  margin: 8px 0 18px !important;
+  text-align: center !important;
+}
+
+.header .mini-ranking {
+  margin-top: 18px !important;
+  background: rgba(255,255,255,0.07) !important;
+  padding: 22px 32px !important;
+  border-radius: 22px !important;
+}
+
+.header .mini-ranking h4 {
+  color: #f6c542 !important;
+  text-align: center !important;
+  margin-bottom: 16px !important;
+  font-size: 1.15rem !important;
+}
+
+.header .mini-ranking p {
+  color: white !important;
+  font-size: 1rem !important;
+  margin: 10px 0 !important;
+}
+
+/* VACA + PELOTA */
+.header .vaca-futbol {
+  position: absolute !important;
+  right: -28px !important;
+  bottom: -28px !important;
+
+  display: flex !important;
+  align-items: flex-end !important;
+  gap: 12px !important;
+
+  z-index: 6 !important;
+  animation: vacaMovimiento 5s ease-in-out infinite !important;
+}
+
+.header .vaca-img {
+  width: 155px !important;
+  height: 155px !important;
+
+  object-fit: cover !important;
+  border-radius: 50% !important;
+  border: 5px solid white !important;
+
+  box-shadow: 0 18px 38px rgba(0,0,0,0.45) !important;
+}
+
+.header .pelota {
+  font-size: 2.8rem !important;
+}
+
+/* ===================== */
+/* MOBILE PREMIUM */
+/* ===================== */
+
+@media (max-width: 850px) {
+  .header {
+    min-height: auto !important;
+  }
+
+  .header .navbar {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+
+    padding: 22px 16px 0 !important;
+    gap: 16px !important;
+  }
+
+  .header .nav-logo {
+    width: 250px !important;
+  }
+
+  .header .navbar ul {
+    order: 2 !important;
+
+    width: 100% !important;
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+
+    gap: 16px !important;
+    margin: 0 !important;
+  }
+
+  .header .navbar ul li a,
+  .header .navbar a {
+    font-size: 0.95rem !important;
+  }
+
+  .header .btn-nav {
+    order: 3 !important;
+    padding: 13px 28px !important;
+    font-size: 0.95rem !important;
+  }
+
+  .header .hero {
+    display: flex !important;
+    flex-direction: column !important;
+
+    min-height: auto !important;
+
+    padding: 30px 18px 60px !important;
+    gap: 32px !important;
+  }
+
+  .header .hero-texto {
+    order: 1 !important;
+    margin: 0 !important;
+    text-align: center !important;
+  }
+
+  .header .hero-texto h1 {
+    font-size: 2.55rem !important;
+    line-height: 1.08 !important;
+    margin-bottom: 18px !important;
+  }
+
+  .header .hero-texto p {
+    font-size: 1rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 22px !important;
+  }
+
+  .header .hero-botones {
+    flex-direction: column !important;
+    gap: 14px !important;
+    align-items: center !important;
+  }
+
+  .header .btn-principal,
+  .header .btn-whatsapp {
+    width: 100% !important;
+    max-width: 310px !important;
+  }
+
+  .header .hero-visual {
+    order: 2 !important;
+    width: 100% !important;
+    margin-top: 0 !important;
+  }
+
+  .header .mockup-card {
+    width: 100% !important;
+    padding: 22px !important;
+    border-radius: 24px !important;
+  }
+
+  .header .mini-partido {
+    font-size: 0.9rem !important;
+    padding: 12px !important;
+  }
+
+  .header .mini-bandera {
+    width: 24px !important;
+    height: 18px !important;
+  }
+
+  .header .vaca-futbol {
+    right: -4px !important;
+    bottom: -35px !important;
+  }
+
+  .header .vaca-img {
+    width: 105px !important;
+    height: 105px !important;
+  }
+
+  .header .pelota {
+    font-size: 2rem !important;
+  }
+}
