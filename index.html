@@ -10,18 +10,23 @@
 
   <header class="header">
   <nav class="navbar">
-    <img src="assets/logoNuevo.png" alt="Logo Agroventas" class="nav-logo">
+  <img src="assets/logoNuevo.png" alt="Logo Agroventas" class="nav-logo">
 
-    <ul>
-      <li><a href="#registro">Registro</a></li>
-      <li><a href="#puntos">Puntos</a></li>
-      <li><a href="#fixture">Fixture</a></li>
-      <li><a href="#ranking">Ranking</a></li>
-    </ul>
+  <button class="menu-icono" id="menuBtn" aria-label="Abrir menú">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
 
-    <a href="#registro" class="btn-nav">¡Participá!</a>
-  </nav>
+  <ul class="nav-list" id="navList">
+    <li><a href="#registro">Registro</a></li>
+    <li><a href="#puntos">Puntos</a></li>
+    <li><a href="#fixture">Fixture</a></li>
+    <li><a href="#ranking">Ranking</a></li>
+  </ul>
 
+  <a href="#registro" class="btn-nav">¡Participá!</a>
+</nav>
   <section class="hero">
     <div class="hero-texto">
 
@@ -234,5 +239,22 @@
   </footer>
 
   <script src="app.js"></script>
+  <script>
+  const menuBtn = document.getElementById("menuBtn");
+  const navList = document.getElementById("navList");
+
+  if (menuBtn && navList) {
+    menuBtn.addEventListener("click", () => {
+      navList.classList.toggle("activo");
+    });
+
+    navList.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navList.classList.remove("activo");
+      });
+    });
+  }
+</script>
+
 </body>
 </html>
