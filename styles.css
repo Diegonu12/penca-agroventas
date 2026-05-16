@@ -1608,3 +1608,305 @@ select:focus {
     font-size: 2rem !important;
   }
 }
+
+/* =============================== */
+/* DESKTOP HERO COMPACTO FINAL */
+/* =============================== */
+
+@media (min-width: 851px) {
+  .header {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    overflow: hidden !important;
+  }
+
+  .header .navbar {
+    padding: 18px 70px 0 !important;
+    transform: none !important;
+  }
+
+  .header .nav-logo {
+    width: 320px !important;
+    transform: translateY(-8px) !important;
+  }
+
+  .header .navbar ul {
+    gap: 38px !important;
+    margin: 0 55px 0 0 !important;
+    transform: translateY(-8px) !important;
+  }
+
+  .header .navbar ul li a,
+  .header .navbar a {
+    font-size: 1rem !important;
+  }
+
+  .header .btn-nav {
+    padding: 14px 30px !important;
+    font-size: 1rem !important;
+    transform: translateY(-8px) !important;
+  }
+
+  .header .hero {
+    min-height: calc(100vh - 95px) !important;
+    margin: -65px 0 0 0 !important;
+    padding: 0 75px 10px !important;
+    gap: 48px !important;
+    align-items: center !important;
+  }
+
+  .header .hero-texto {
+    margin: 0 0 0 15px !important;
+    transform: translateY(-5px) !important;
+  }
+
+  .header .hero-texto h1 {
+    font-size: 3.25rem !important;
+    line-height: 1.05 !important;
+    margin-bottom: 14px !important;
+  }
+
+  .header .hero-texto p {
+    font-size: 1.05rem !important;
+    line-height: 1.35 !important;
+    margin-bottom: 18px !important;
+  }
+
+  .header .hero-botones {
+    margin-top: 16px !important;
+    gap: 22px !important;
+  }
+
+  .header .btn-principal,
+  .header .btn-whatsapp {
+    min-width: 180px !important;
+    padding: 13px 22px !important;
+    font-size: 0.95rem !important;
+  }
+
+  .header .hero-visual {
+    transform: translateY(-8px) !important;
+  }
+
+  .header .mockup-card {
+    width: 520px !important;
+    padding: 24px !important;
+    border-radius: 26px !important;
+  }
+
+  .header .mockup-card h3 {
+    font-size: 1.15rem !important;
+    margin-bottom: 18px !important;
+  }
+
+  .header .mini-partido {
+    min-height: 46px !important;
+    padding: 10px 14px !important;
+    margin-bottom: 8px !important;
+    font-size: 0.9rem !important;
+    border-radius: 15px !important;
+  }
+
+  .header .mini-fecha {
+    font-size: 0.78rem !important;
+    margin: 5px 0 10px !important;
+  }
+
+  .header .mini-ranking {
+    margin-top: 10px !important;
+    padding: 14px 24px !important;
+    border-radius: 18px !important;
+  }
+
+  .header .mini-ranking h4 {
+    font-size: 1rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .header .mini-ranking p {
+    font-size: 0.86rem !important;
+    margin: 6px 0 !important;
+  }
+
+  .header .vaca-futbol {
+    right: -10px !important;
+    bottom: -6px !important;
+  }
+
+  .header .vaca-img {
+    width: 110px !important;
+    height: 110px !important;
+    border: 4px solid white !important;
+  }
+
+  .header .pelota {
+    font-size: 2.1rem !important;
+  }
+
+  .info-grid {
+    margin-top: 0 !important;
+  }
+}
+/* AJUSTE DESKTOP: SUBIR TODO EL HERO */
+
+@media (min-width: 851px) {
+  .header .navbar {
+    transform: translateY(-55px) !important;
+  }
+
+  .header .nav-logo {
+    transform: translateY(-10px) !important;
+  }
+
+  .header .navbar ul,
+  .header .btn-nav {
+    transform: translateY(-5px) !important;
+  }
+
+  .header .hero {
+    margin-top: -125px !important;
+    padding-bottom: 0 !important;
+  }
+
+  .header .hero-texto {
+    transform: translateY(-55px) !important;
+  }
+
+  .header .hero-visual {
+    transform: translateY(-75px) !important;
+  }
+
+  .header .vaca-futbol {
+    bottom: 18px !important;
+  }
+}
+/* =============================== */
+/* AJUSTE MOBILE FINAL HOME */
+/* =============================== */
+
+@media (max-width: 850px) {
+  .header {
+    min-height: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .header .navbar {
+    padding: 16px 14px 0 !important;
+    transform: none !important;
+    gap: 14px !important;
+  }
+
+  .header .nav-logo {
+    width: 220px !important;
+    transform: none !important;
+    margin-bottom: 10px !important;
+  }
+
+  .header .navbar ul {
+    transform: none !important;
+    gap: 14px !important;
+    margin: 0 !important;
+  }
+
+  .header .btn-nav {
+    display: none !important;
+  }
+
+  .header .hero {
+    padding: 28px 16px 55px !important;
+    margin: 0 !important;
+    gap: 28px !important;
+    min-height: auto !important;
+    transform: none !important;
+  }
+
+  .header .hero-texto {
+    margin: 0 !important;
+    transform: none !important;
+    text-align: center !important;
+  }
+
+  .header .hero-texto h1 {
+    font-size: 2.15rem !important;
+    line-height: 1.12 !important;
+    margin-bottom: 18px !important;
+  }
+
+  .header .hero-texto p {
+    font-size: 0.95rem !important;
+    line-height: 1.45 !important;
+    margin-bottom: 22px !important;
+  }
+
+  .header .hero-botones {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 12px !important;
+    align-items: center !important;
+    margin-bottom: 8px !important;
+  }
+
+  .header .btn-principal,
+  .header .btn-whatsapp {
+    width: 100% !important;
+    max-width: 280px !important;
+    padding: 13px 20px !important;
+    font-size: 0.95rem !important;
+  }
+
+  .header .hero-visual {
+    width: 100% !important;
+    transform: none !important;
+    margin-top: 8px !important;
+  }
+
+  .header .mockup-card {
+    width: 100% !important;
+    max-width: 360px !important;
+    padding: 18px 14px !important;
+    border-radius: 22px !important;
+  }
+
+  .header .mockup-card h3 {
+    font-size: 1.05rem !important;
+    margin-bottom: 14px !important;
+  }
+
+  .header .mini-partido {
+    min-height: 46px !important;
+    padding: 10px 12px !important;
+    font-size: 0.82rem !important;
+  }
+
+  .header .mini-fecha {
+    font-size: 0.75rem !important;
+    margin: 6px 0 10px !important;
+  }
+
+  .header .mini-ranking {
+    padding: 14px !important;
+  }
+
+  .header .mini-ranking p {
+    font-size: 0.8rem !important;
+  }
+
+  .header .vaca-futbol {
+    right: 5px !important;
+    bottom: -24px !important;
+  }
+
+  .header .vaca-img {
+    width: 90px !important;
+    height: 90px !important;
+  }
+
+  .header .pelota {
+    font-size: 1.8rem !important;
+  }
+
+  .info-grid {
+    margin-top: 30px !important;
+  }
+}
