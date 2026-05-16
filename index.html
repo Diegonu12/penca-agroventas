@@ -168,9 +168,15 @@
 
       <form id="formRegistro" class="formulario">
         <input type="text" id="nombre" placeholder="Nombre completo" required />
-        <input type="text" value="Cliente de Agroventas" readonly class="cliente-fijo" />
-        <input type="text" id="empresa" placeholder="Empresa / Local / Razón social" required />
-        <input type="tel" id="celular" placeholder="Celular" required />
+        <input type="text" id="direccion" placeholder="Dirección" required>
+       <input
+  type="text"
+  id="cumple"
+  placeholder="Fecha de Cumpleaños (dia/mes)"
+  maxlength="5"
+  required
+/>
+        <input type="tel" id="telefono" placeholder="Teléfono" required>
 
         <button type="submit">Registrarme</button>
       </form>
@@ -254,6 +260,28 @@
       });
     });
   }
+</script>
+<script>
+const cumpleInput = document.getElementById("cumple");
+
+if (cumpleInput) {
+
+  cumpleInput.addEventListener("input", (e) => {
+
+    let valor = e.target.value.replace(/\D/g, "");
+
+    if (valor.length >= 3) {
+      valor =
+        valor.substring(0, 2) +
+        "/" +
+        valor.substring(2, 4);
+    }
+
+    e.target.value = valor;
+
+  });
+
+}
 </script>
 
 </body>

@@ -20,11 +20,14 @@ if (registroForm) {
     const nombre =
       document.getElementById("nombre").value;
 
-    const empresa =
-      document.getElementById("empresa").value;
+    const direccion =
+      document.getElementById("direccion").value;
 
-    const celular =
-      document.getElementById("celular").value;
+    const cumple =
+      document.getElementById("cumple").value;
+
+    const telefono =
+      document.getElementById("telefono").value;
 
     const email =
       document.getElementById("email").value;
@@ -46,8 +49,9 @@ if (registroForm) {
       await setDoc(doc(db, "usuarios", usuario.uid), {
 
         nombre,
-        empresa,
-        celular,
+        direccion,
+        cumple,
+        telefono,
         email,
 
         puntos: 0,
@@ -71,6 +75,7 @@ if (registroForm) {
   });
 
 }
+
 const loginForm =
   document.getElementById("login-form");
 
