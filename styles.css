@@ -2134,3 +2134,9 @@ body.body-login .login-logo {
   width: 230px !important;
   margin-bottom: 0 !important;
 }
+/* MOBILE: mover fondo para que se vea más la copa */
+@media (max-width: 850px) {
+  .header {
+    background-position: 35% center !important;
+  }
+}
