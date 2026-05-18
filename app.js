@@ -19,15 +19,19 @@ let pronosticosActuales = {};
 let filtroActual = "todos";
 
 onAuthStateChanged(auth, async (user) => {
-  if (!user) {
+  const usuarioConfirmado = user || auth.currentUser;
+
+  if (!usuarioConfirmado) {
     setTimeout(() => {
-      window.location.href = "login.html";
-    }, 800);
+      if (!auth.currentUser) {
+        window.location.href = "login.html";
+      }
+    }, 1200);
 
     return;
   }
 
-  usuarioActual = user;
+  usuarioActual = usuarioConfirmado;
 
   await cargarPronosticosGuardados();
   mostrarFixture();
