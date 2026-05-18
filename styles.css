@@ -2137,6 +2137,61 @@ body.body-login .login-logo {
 /* MOBILE: mover fondo para que se vea más la copa */
 @media (max-width: 850px) {
   .header {
-    background-position: 35% center !important;
+    background-position: 15% center !important;
+  }
+}
+/* FIXTURE MOBILE EN FORMATO HORIZONTAL */
+@media (max-width: 850px) {
+  .partido {
+    display: grid !important;
+    grid-template-columns: 1fr 70px 28px 70px 1fr !important;
+    align-items: center !important;
+    gap: 8px !important;
+    padding: 18px 12px !important;
+  }
+
+  .partido .fecha {
+    grid-column: 1 / -1 !important;
+    text-align: center !important;
+    font-size: 0.85rem !important;
+    margin-bottom: 8px !important;
+  }
+
+  .equipo {
+    text-align: center !important;
+  }
+
+  .equipo strong {
+    font-size: 0.8rem !important;
+    display: block !important;
+    margin-top: 5px !important;
+  }
+
+  .bandera-img {
+    width: 42px !important;
+    height: 28px !important;
+    object-fit: cover !important;
+  }
+
+  .partido input {
+    width: 62px !important;
+    height: 46px !important;
+    text-align: center !important;
+    font-size: 1rem !important;
+    padding: 0 !important;
+  }
+
+  .vs {
+    font-size: 0.85rem !important;
+    font-weight: 800 !important;
+    color: #e5a900 !important;
+    text-align: center !important;
+  }
+
+  .grupo-partido {
+    grid-column: 1 / -1 !important;
+    text-align: right !important;
+    font-size: 0.75rem !important;
+    margin-top: 8px !important;
   }
 }
