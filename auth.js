@@ -1,11 +1,12 @@
 import {
-  auth,
-  db,
+  getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  doc,
-  setDoc
-} from "./firebase.js";
+  signOut,
+  onAuthStateChanged,
+  setPersistence,
+  browserLocalPersistence
+} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 const registroForm =
   document.getElementById("registro-form");
