@@ -22,11 +22,15 @@ onAuthStateChanged(auth, async (user) => {
   const usuarioConfirmado = user || auth.currentUser;
 
   if (!usuarioConfirmado) {
-    setTimeout(() => {
-      if (!auth.currentUser) {
-        window.location.href = "login.html";
-      }
-    }, 1200);
+    if (listaFixture) {
+      listaFixture.innerHTML = `
+        <div class="card">
+          <h2>Necesitás iniciar sesión</h2>
+          <p>Para cargar tus pronósticos, primero ingresá con tu cuenta.</p>
+          <a href="login.html" class="btn-secundario">Ir a login</a>
+        </div>
+      `;
+    }
 
     return;
   }
