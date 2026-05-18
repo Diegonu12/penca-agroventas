@@ -20,7 +20,10 @@ let filtroActual = "todos";
 
 onAuthStateChanged(auth, async (user) => {
   if (!user) {
-    window.location.href = "login.html";
+    setTimeout(() => {
+      window.location.href = "login.html";
+    }, 800);
+
     return;
   }
 
