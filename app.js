@@ -1,7 +1,7 @@
 import {
-  auth,
   db,
-  onAuthStateChanged,
+  collection,
+  getDocs,
   doc,
   setDoc,
   getDoc
@@ -13,36 +13,138 @@ const listaFixture = document.getElementById("listaFixture");
 const guardarPronosticos = document.getElementById("guardarPronosticos");
 const botonesFiltro = document.querySelectorAll(".filtro-btn");
 const contadorPartidos = document.getElementById("contadorPartidos");
+const buscadorCliente = document.getElementById("buscadorCliente");
+const listaClientes = document.getElementById("listaClientes");
+const clienteSeleccionadoTexto = document.getElementById("clienteSeleccionadoTexto");
 
-let usuarioActual = null;
+let clienteActivo = null;
+let clientesRegistrados = [];
 let pronosticosActuales = {};
 let filtroActual = "todos";
 
-onAuthStateChanged(auth, async (user) => {
-  const usuarioConfirmado = user || auth.currentUser;
+iniciarFixtureVendedor();
 
-  if (!usuarioConfirmado) {
-    if (listaFixture) {
-      listaFixture.innerHTML = `
-        <div class="card">
-          <h2>Necesitás iniciar sesión</h2>
-          <p>Para cargar tus pronósticos, primero ingresá con tu cuenta.</p>
-          <a href="login.html" class="btn-secundario">Ir a login</a>
-        </div>
-      `;
+async function iniciarFixtureVendedor() {
+  await cargarClientesEnSelect();
+  mostrarFixture();
+}
+
+async function cargarClientesEnSelect() {
+
+  clientesRegistrados = [];
+
+  const resultado =
+    await getDocs(collection(db, "usuarios"));
+
+  resultado.forEach((docCliente) => {
+
+    const cliente = docCliente.data();
+
+    clientesRegistrados.push({
+      id: docCliente.id,
+      nombre: cliente.nombre || "",
+      telefono: cliente.telefono || "",
+      email: cliente.email || ""
+    });
+
+  });
+
+}
+
+if (buscadorCliente && listaClientes) {
+
+  buscadorCliente.addEventListener("input", () => {
+
+    const texto =
+      buscadorCliente.value.toLowerCase().trim();
+
+    listaClientes.innerHTML = "";
+
+    if (texto.length < 2) {
+      listaClientes.style.display = "none";
+      return;
     }
 
-    return;
-  }
+    const filtrados =
+      clientesRegistrados.filter((cliente) => {
 
-  usuarioActual = usuarioConfirmado;
+      return (
+        cliente.nombre.toLowerCase().includes(texto) ||
+        cliente.telefono.toLowerCase().includes(texto) ||
+        cliente.email.toLowerCase().includes(texto)
+      );
 
-  await cargarPronosticosGuardados();
-  mostrarFixture();
-});
+    });
 
+    if (filtrados.length === 0) {
+
+      listaClientes.innerHTML =
+        `<div class="resultado-cliente-item">
+          No se encontraron clientes
+        </div>`;
+
+      listaClientes.style.display = "block";
+
+      return;
+    }
+
+    filtrados.forEach((cliente) => {
+
+      const item =
+        document.createElement("div");
+
+      item.classList.add("resultado-cliente-item");
+
+     item.innerHTML = `
+  <div class="cliente-item-nombre">
+    ${cliente.nombre}
+  </div>
+
+  <div class="cliente-item-info">
+    📞 ${cliente.telefono || "Sin teléfono"} 
+    ${cliente.email ? " · ✉️ " + cliente.email : ""}
+  </div>
+`;
+
+      item.addEventListener("click", async () => {
+
+        clienteActivo = cliente.id;
+
+        pronosticosActuales = {};
+
+        buscadorCliente.value =
+          cliente.nombre;
+
+        listaClientes.innerHTML = "";
+
+        listaClientes.style.display = "none";
+
+        if (clienteSeleccionadoTexto) {
+
+          clienteSeleccionadoTexto.textContent =
+            `Cliente seleccionado: ${cliente.nombre}`;
+
+        }
+
+        await cargarPronosticosGuardados();
+
+        mostrarFixture();
+
+      });
+
+      listaClientes.appendChild(item);
+
+    });
+
+    listaClientes.style.display = "block";
+
+  });
+
+}
 async function cargarPronosticosGuardados() {
-  const ref = doc(db, "pronosticos", usuarioActual.uid);
+  if (!clienteActivo) return;
+
+  const ref = doc(db, "pronosticos", clienteActivo);
   const snap = await getDoc(ref);
 
   if (snap.exists()) {
@@ -51,22 +153,18 @@ async function cargarPronosticosGuardados() {
 }
 
 function obtenerPartidosFiltrados() {
-  if (filtroActual === "todos") {
-    return partidos;
-  }
+  if (filtroActual === "todos") return partidos;
 
   if (filtroActual === "uruguay") {
-    return partidos.filter((partido) => {
-      return (
-        partido.local.toLowerCase() === "uruguay" ||
-        partido.visitante.toLowerCase() === "uruguay"
-      );
-    });
+    return partidos.filter((partido) =>
+      partido.local.toLowerCase() === "uruguay" ||
+      partido.visitante.toLowerCase() === "uruguay"
+    );
   }
 
-  return partidos.filter((partido) => {
-    return partido.grupo.includes(`GRUPO ${filtroActual}`);
-  });
+  return partidos.filter((partido) =>
+    partido.grupo.includes(`GRUPO ${filtroActual}`)
+  );
 }
 
 function mostrarFixture() {
@@ -82,16 +180,12 @@ function mostrarFixture() {
   }
 
   partidosFiltrados.forEach((partido) => {
-
-    const pronostico =
-      pronosticosActuales[partido.id] || {};
+    const pronostico = pronosticosActuales[partido.id] || {};
 
     const div = document.createElement("div");
-
     div.classList.add("partido");
 
     div.innerHTML = `
-
       <div class="app-card-fecha">
         ${partido.fecha}
       </div>
@@ -99,16 +193,11 @@ function mostrarFixture() {
       <div class="app-card-equipos">
 
         <div class="app-equipo">
-          <img
-            src="${partido.banderaLocal}"
-            alt="${partido.local}"
-          >
-
+          <img src="${partido.banderaLocal}" alt="${partido.local}">
           <span>${partido.local}</span>
         </div>
 
         <div class="app-pronostico">
-
           <input
             type="number"
             min="0"
@@ -126,15 +215,10 @@ function mostrarFixture() {
             value="${pronostico.visitante ?? ""}"
             placeholder="-"
           >
-
         </div>
 
         <div class="app-equipo">
-          <img
-            src="${partido.banderaVisitante}"
-            alt="${partido.visitante}"
-          >
-
+          <img src="${partido.banderaVisitante}" alt="${partido.visitante}">
           <span>${partido.visitante}</span>
         </div>
 
@@ -143,25 +227,21 @@ function mostrarFixture() {
       <div class="app-card-footer">
         ${partido.grupo}
       </div>
-
     `;
 
     listaFixture.appendChild(div);
-
   });
-
 }
+
 botonesFiltro.forEach((boton) => {
   boton.addEventListener("click", () => {
-    botonesFiltro.forEach((btn) => {
-      btn.classList.remove("activo");
-    });
+    guardarValoresTemporales();
 
+    botonesFiltro.forEach((btn) => btn.classList.remove("activo"));
     boton.classList.add("activo");
 
     filtroActual = boton.dataset.filtro;
 
-    guardarValoresTemporales();
     mostrarFixture();
   });
 });
@@ -186,42 +266,69 @@ function guardarValoresTemporales() {
 
 if (guardarPronosticos) {
   guardarPronosticos.addEventListener("click", async () => {
-    if (!usuarioActual) return;
 
-    guardarValoresTemporales();
+  console.log("Cliente activo:", clienteActivo);
 
-    const pronosticos = {};
+  if (!clienteActivo) {
+    alert("Primero seleccioná un cliente.");
+    return;
+  }
 
-    Object.entries(pronosticosActuales).forEach(([idPartido, datos]) => {
-      if (
-        datos.local !== undefined &&
-        datos.visitante !== undefined
-      ) {
-        const partido = partidos.find(
-          (p) => String(p.id) === String(idPartido)
-        );
+  guardarValoresTemporales();
 
-        if (partido) {
-          pronosticos[idPartido] = {
-            local: Number(datos.local),
-            visitante: Number(datos.visitante),
-            partido: `${partido.local} vs ${partido.visitante}`,
-            grupo: partido.grupo,
-            fecha: partido.fecha
-          };
-        }
+  const pronosticos = {};
+
+  Object.entries(pronosticosActuales).forEach(([idPartido, datos]) => {
+
+    if (
+      datos.local !== undefined &&
+      datos.visitante !== undefined
+    ) {
+
+      const partido = partidos.find(
+        (p) => String(p.id) === String(idPartido)
+      );
+
+      if (partido) {
+
+        pronosticos[idPartido] = {
+          local: Number(datos.local),
+          visitante: Number(datos.visitante),
+          partido: `${partido.local} vs ${partido.visitante}`,
+          grupo: partido.grupo,
+          fecha: partido.fecha
+        };
+
       }
-    });
 
-    await setDoc(doc(db, "pronosticos", usuarioActual.uid), {
-      usuarioId: usuarioActual.uid,
-      email: usuarioActual.email,
-      partidos: pronosticos,
-      actualizado: new Date().toISOString()
-    });
+    }
 
-    pronosticosActuales = pronosticos;
-
-    alert("Pronósticos guardados correctamente 😎");
   });
+
+  console.log("Pronósticos:", pronosticos);
+
+  try {
+
+    alert("Estoy por guardar en Firebase");
+
+await setDoc(
+  doc(db, "pronosticos", clienteActivo),
+  {
+    clienteId: clienteActivo,
+    partidos: pronosticos,
+    actualizado: new Date().toISOString()
+  }
+);
+
+alert("Pronósticos guardados correctamente ✅");
+
+} catch (error) {
+
+  console.error("ERROR FIREBASE:", error);
+
+  alert("Error Firebase: " + error.message);
+
+}  
+
+});
 }

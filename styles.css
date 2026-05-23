@@ -2536,3 +2536,73 @@ html,
   backdrop-filter: none !important;
   opacity: 1 !important;
 }
+/* BUSCADOR DE CLIENTES - FIXTURE */
+
+.selector-cliente-box {
+  margin-top: 18px;
+  max-width: 460px;
+  position: relative;
+}
+
+.selector-cliente-box label {
+  display: block;
+  font-weight: 800;
+  color: #0f4b29;
+  margin-bottom: 8px;
+}
+
+.selector-cliente-box input {
+  width: 100%;
+  padding: 15px 18px;
+  border-radius: 16px;
+  border: 1px solid #c8d8c0;
+  font-size: 1rem;
+  background: #fff;
+}
+
+.lista-clientes {
+  display: none;
+  position: absolute;
+  top: 88px;
+  left: 0;
+  right: 0;
+  z-index: 200;
+  background: white;
+  border-radius: 18px;
+  border: 1px solid #d9e6d2;
+  box-shadow: 0 14px 35px rgba(0,0,0,0.16);
+  overflow: hidden;
+}
+
+.resultado-cliente-item {
+  padding: 14px 16px;
+  cursor: pointer;
+  border-bottom: 1px solid #edf1ea;
+  transition: 0.2s ease;
+}
+
+.resultado-cliente-item:hover {
+  background: #eef6e8;
+}
+
+.cliente-item-nombre {
+  font-weight: 900;
+  color: #0f4b29;
+  font-size: 1rem;
+}
+
+.cliente-item-info {
+  margin-top: 4px;
+  font-size: 0.85rem;
+  color: #5c6f59;
+}
+
+.cliente-seleccionado {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: #eef6e8;
+  color: #0f4b29;
+  font-weight: 800;
+  font-size: 0.9rem;
+}

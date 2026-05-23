@@ -24,15 +24,39 @@
     <section class="card fixture-card">
 
       <div class="fixture-top">
-        <div>
-          <h1>Fixture y pronósticos</h1>
-          <p>Filtrá los partidos y cargá tus resultados.</p>
-        </div>
 
-        <button id="guardarPronosticos" class="btn-secundario">
-          Guardar pronósticos
-        </button>
-      </div>
+  <div>
+    <h1>Fixture y pronósticos</h1>
+    <p>Filtrá los partidos y cargá tus resultados.</p>
+
+    <div class="selector-cliente-box">
+
+  <label for="buscadorCliente">
+    Buscar cliente
+  </label>
+
+  <input
+    type="text"
+    id="buscadorCliente"
+    placeholder="Escribí el nombre del cliente..."
+    autocomplete="off"
+  >
+
+  <div id="listaClientes" class="lista-clientes"></div>
+
+  <p id="clienteSeleccionadoTexto" class="cliente-seleccionado">
+    Ningún cliente seleccionado
+  </p>
+
+</div>
+
+  </div>
+
+  <button id="guardarPronosticos" class="btn-secundario">
+    Guardar pronósticos
+  </button>
+
+</div>
 
       <div class="filtros-fixture">
 

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin | Penca Agroventas</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <header class="app-header">
+    <img src="assets/logoNuevo.png" alt="Agroventas" class="app-logo">
+
+    <nav>
+      <a href="index.html">Inicio</a>
+      <a href="fixture.html">Fixture</a>
+    </nav>
+  </header>
+
+  <main class="app-main">
+    <section class="card fixture-card">
+      <h1>Panel administrador</h1>
+      <p>Cargá los resultados oficiales y actualizá los puntos.</p>
+
+      <div id="listaResultadosAdmin"></div>
+    </section>
+  </main>
+<script>
+  const claveAdmin = prompt("Ingresá la clave de administrador");
+
+  if (claveAdmin !== "AgroventasMundial2026") {
+    alert("Acceso denegado");
+    window.location.href = "index.html";
+  }
+</script>
+  <script type="module" src="admin.js"></script>
+
+</body>
+</html>

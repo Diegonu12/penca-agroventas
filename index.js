@@ -1,4 +1,4 @@
-alert("index.js está cargando");
+
 import {
   db,
   collection,

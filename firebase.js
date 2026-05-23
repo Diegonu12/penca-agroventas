@@ -19,7 +19,8 @@ import {
   setDoc,
   getDoc,
   query,
-  orderBy
+  orderBy,
+  updateDoc
 } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 const firebaseConfig = {
@@ -51,5 +52,6 @@ export {
   setDoc,
   getDoc,
   query,
-  orderBy
+  orderBy,
+  updateDoc
 };
