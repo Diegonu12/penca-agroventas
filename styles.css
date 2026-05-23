@@ -2854,3 +2854,23 @@ html,
     font-size: 1.4rem !important;
   }
 }
+/* TABLA MOBILE PRO */
+
+.ranking-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.ranking-scroll table {
+  min-width: 560px;
+}
+
+.ranking-scroll::-webkit-scrollbar {
+  height: 6px;
+}
+
+.ranking-scroll::-webkit-scrollbar-thumb {
+  background: #0f5c2f;
+  border-radius: 10px;
+}
