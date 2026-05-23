@@ -2218,7 +2218,6 @@ body.body-login .login-logo {
   margin-bottom: 18px !important;
   border: 1px solid #d7e2d2 !important;
   border-bottom: 5px solid #e5a900 !important;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.08) !important;
 }
 
 .app-card-fecha {
@@ -2289,6 +2288,8 @@ body.body-login .login-logo {
 @media (max-width: 850px) {
   .fixture-card {
     padding: 18px 14px !important;
+    background: #fff;
+    overflow: hidden;
   }
 
   .fixture-top {
@@ -2472,4 +2473,66 @@ body.body-login .login-logo {
     text-align: center !important;
     font-size: 0.75rem !important;
   }
+}
+.app-header::before {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background:
+    linear-gradient(
+      to right,
+      rgba(0,0,0,0.45),
+      rgba(0,0,0,0.05)
+    );
+
+  pointer-events: none;
+}
+
+/* QUITAR SOMBREADO/TRANSPARENCIA DEL FIXTURE */
+.fixture-card,
+.card.fixture-card,
+.app-main,
+.partido {
+  background: #ffffff !important;
+  opacity: 1 !important;
+  filter: none !important;
+  backdrop-filter: none !important;
+  box-shadow: none !important;
+}
+
+.fixture-card::before,
+.fixture-card::after,
+.app-main::before,
+.app-main::after,
+.partido::before,
+.partido::after {
+  display: none !important;
+  content: none !important;
+}
+/* ELIMINAR OVERLAY GRIS GENERAL */
+body::before,
+body::after,
+html::before,
+html::after,
+.app-header::before,
+.app-header::after,
+.app-main::before,
+.app-main::after,
+.fixture-card::before,
+.fixture-card::after {
+  display: none !important;
+  content: none !important;
+  background: transparent !important;
+  opacity: 0 !important;
+}
+
+body,
+html,
+.app-main,
+.fixture-card {
+  filter: none !important;
+  backdrop-filter: none !important;
+  opacity: 1 !important;
 }
