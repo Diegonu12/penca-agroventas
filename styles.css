@@ -2606,3 +2606,17 @@ html,
   font-weight: 800;
   font-size: 0.9rem;
 }
+
+/* FONDO PRINCIPAL DEL INDEX */
+.header {
+  background-image:
+    linear-gradient(
+      rgba(0,0,0,0.45),
+      rgba(0,0,0,0.45)
+    ),
+    url("assets/pelotaycopa26.jpg") !important;
+
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+}
