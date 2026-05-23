@@ -13,8 +13,8 @@ const listaFixture = document.getElementById("listaFixture");
 const guardarPronosticos = document.getElementById("guardarPronosticos");
 const botonesFiltro = document.querySelectorAll(".filtro-btn");
 const contadorPartidos = document.getElementById("contadorPartidos");
-const buscadorCliente = document.getElementById("buscadorCliente");
-const listaClientes = document.getElementById("listaClientes");
+const codigoCliente = document.getElementById("codigoCliente");
+const buscarPorCodigo = document.getElementById("buscarPorCodigo");
 const clienteSeleccionadoTexto = document.getElementById("clienteSeleccionadoTexto");
 
 let clienteActivo = null;
@@ -49,6 +49,47 @@ async function cargarClientesEnSelect() {
 
   });
 
+}
+if (buscarPorCodigo) {
+  buscarPorCodigo.addEventListener("click", async () => {
+    const codigo = codigoCliente.value.trim();
+
+    if (!codigo) {
+      alert("Ingresá tu código de acceso.");
+      return;
+    }
+
+    const resultado = await getDocs(collection(db, "usuarios"));
+
+    let clienteEncontrado = null;
+
+    resultado.forEach((docCliente) => {
+      const cliente = docCliente.data();
+
+      if (cliente.codigoAcceso === codigo) {
+        clienteEncontrado = {
+          id: docCliente.id,
+          ...cliente
+        };
+      }
+    });
+
+    if (!clienteEncontrado) {
+      alert("Código incorrecto o cliente no encontrado.");
+      return;
+    }
+
+    clienteActivo = clienteEncontrado.id;
+    pronosticosActuales = {};
+
+    if (clienteSeleccionadoTexto) {
+      clienteSeleccionadoTexto.textContent =
+        `Cliente: ${clienteEncontrado.nombre}`;
+    }
+
+    await cargarPronosticosGuardados();
+    mostrarFixture();
+  });
 }
 
 if (buscadorCliente && listaClientes) {
@@ -142,14 +183,82 @@ if (buscadorCliente && listaClientes) {
 
 }
 async function cargarPronosticosGuardados() {
+
   if (!clienteActivo) return;
 
-  const ref = doc(db, "pronosticos", clienteActivo);
-  const snap = await getDoc(ref);
+  const ref =
+    doc(db, "pronosticos", clienteActivo);
+
+  const snap =
+    await getDoc(ref);
 
   if (snap.exists()) {
-    pronosticosActuales = snap.data().partidos || {};
+
+    const datos = snap.data();
+
+    pronosticosActuales =
+      datos.partidos || {};
+
+    if (datos.bloqueado === true) {
+
+      const confirmar =
+        confirm(
+          "Tus pronósticos ya fueron guardados.\n\n¿Deseás solicitar modificación al vendedor?"
+        );
+
+      if (confirmar) {
+
+        const clave =
+          prompt("Ingresá la clave del vendedor");
+
+        if (clave !== "Agro2026") {
+
+          alert(
+            "Clave incorrecta. Pronósticos bloqueados."
+          );
+
+          bloquearInputsPronosticos();
+
+          return;
+        }
+
+        alert("Edición habilitada por vendedor ✅");
+
+      } else {
+
+        bloquearInputsPronosticos();
+
+      }
+
+    }
+
   }
+
+}
+function bloquearInputsPronosticos() {
+
+  document
+    .querySelectorAll(".input-pronostico")
+    .forEach((input) => {
+
+      input.disabled = true;
+
+    });
+
+  const botonGuardar =
+    document.getElementById("guardarPronosticos");
+
+  if (botonGuardar) {
+
+    botonGuardar.disabled = true;
+
+    botonGuardar.style.opacity = "0.5";
+
+    botonGuardar.style.cursor =
+      "not-allowed";
+
+  }
+
 }
 
 function obtenerPartidosFiltrados() {
@@ -198,25 +307,28 @@ function mostrarFixture() {
         </div>
 
         <div class="app-pronostico">
-          <input
-            type="number"
-            min="0"
-            id="local-${partido.id}"
-            value="${pronostico.local ?? ""}"
-            placeholder="-"
-          >
 
-          <strong>VS</strong>
+  <input
+    type="number"
+    class="input-pronostico"
+    min="0"
+    id="local-${partido.id}"
+    value="${pronostico.local ?? ""}"
+    placeholder="-"
+  >
 
-          <input
-            type="number"
-            min="0"
-            id="visitante-${partido.id}"
-            value="${pronostico.visitante ?? ""}"
-            placeholder="-"
-          >
-        </div>
+  <strong>VS</strong>
 
+  <input
+    type="number"
+    class="input-pronostico"
+    min="0"
+    id="visitante-${partido.id}"
+    value="${pronostico.visitante ?? ""}"
+    placeholder="-"
+  >
+
+</div>
         <div class="app-equipo">
           <img src="${partido.banderaVisitante}" alt="${partido.visitante}">
           <span>${partido.visitante}</span>
@@ -316,6 +428,7 @@ await setDoc(
   {
     clienteId: clienteActivo,
     partidos: pronosticos,
+    bloqueado: true,
     actualizado: new Date().toISOString()
   }
 );

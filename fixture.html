@@ -30,24 +30,22 @@
     <p>Filtrá los partidos y cargá tus resultados.</p>
 
     <div class="selector-cliente-box">
-
-  <label for="buscadorCliente">
-    Buscar cliente
-  </label>
+  <label for="codigoCliente">Código de acceso</label>
 
   <input
     type="text"
-    id="buscadorCliente"
-    placeholder="Escribí el nombre del cliente..."
-    autocomplete="off"
+    id="codigoCliente"
+    placeholder="Ingresá tu código"
+    maxlength="6"
   >
 
-  <div id="listaClientes" class="lista-clientes"></div>
+  <button id="buscarPorCodigo" class="btn-secundario">
+    Entrar a mis pronósticos
+  </button>
 
   <p id="clienteSeleccionadoTexto" class="cliente-seleccionado">
-    Ningún cliente seleccionado
+    Ingresá tu código para cargar tus pronósticos.
   </p>
-
 </div>
 
   </div>

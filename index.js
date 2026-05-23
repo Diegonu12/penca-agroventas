@@ -44,15 +44,22 @@ if (formIndex) {
     try {
       const idCliente = Date.now().toString();
 
-      await setDoc(doc(db, "usuarios", idCliente), {
-        nombre,
-        direccion,
-        cumple,
-        telefono,
-        email,
-        puntos: 0,
-        creado: new Date().toISOString()
-      });
+    const codigoAcceso = Math.floor(100000 + Math.random() * 900000).toString();
+
+await setDoc(doc(db, "usuarios", idCliente), {
+  nombre,
+  direccion,
+  cumple,
+  telefono,
+  email,
+  codigoAcceso,
+  puntos: 0,
+  creado: new Date().toISOString()
+});
+
+alert(
+  `Cliente registrado correctamente ✅\n\nCódigo de acceso: ${codigoAcceso}\n\nGuardá este código para cargar sus pronósticos.`
+);
 
       alert("Cliente registrado correctamente ✅");
 
