@@ -76,53 +76,81 @@ function mostrarFixture() {
 
   const partidosFiltrados = obtenerPartidosFiltrados();
 
-  contadorPartidos.textContent =
-    `Mostrando ${partidosFiltrados.length} partido(s)`;
+  if (contadorPartidos) {
+    contadorPartidos.textContent =
+      `Mostrando ${partidosFiltrados.length} partido(s)`;
+  }
 
   partidosFiltrados.forEach((partido) => {
-    const pronostico = pronosticosActuales[partido.id] || {};
+
+    const pronostico =
+      pronosticosActuales[partido.id] || {};
 
     const div = document.createElement("div");
+
     div.classList.add("partido");
 
     div.innerHTML = `
-      <div class="fecha">${partido.fecha}</div>
 
-      <div class="equipo equipo-local">
-        <img src="${partido.banderaLocal}" alt="${partido.local}" class="bandera-img">
-        <strong>${partido.local}</strong>
+      <div class="app-card-fecha">
+        ${partido.fecha}
       </div>
 
-      <input
-        type="number"
-        min="0"
-        id="local-${partido.id}"
-        placeholder="0"
-        value="${pronostico.local ?? ""}"
-      />
+      <div class="app-card-equipos">
 
-      <div class="vs">VS</div>
+        <div class="app-equipo">
+          <img
+            src="${partido.banderaLocal}"
+            alt="${partido.local}"
+          >
 
-      <input
-        type="number"
-        min="0"
-        id="visitante-${partido.id}"
-        placeholder="0"
-        value="${pronostico.visitante ?? ""}"
-      />
+          <span>${partido.local}</span>
+        </div>
 
-      <div class="equipo equipo-visitante">
-        <img src="${partido.banderaVisitante}" alt="${partido.visitante}" class="bandera-img">
-        <strong>${partido.visitante}</strong>
+        <div class="app-pronostico">
+
+          <input
+            type="number"
+            min="0"
+            id="local-${partido.id}"
+            value="${pronostico.local ?? ""}"
+            placeholder="-"
+          >
+
+          <strong>VS</strong>
+
+          <input
+            type="number"
+            min="0"
+            id="visitante-${partido.id}"
+            value="${pronostico.visitante ?? ""}"
+            placeholder="-"
+          >
+
+        </div>
+
+        <div class="app-equipo">
+          <img
+            src="${partido.banderaVisitante}"
+            alt="${partido.visitante}"
+          >
+
+          <span>${partido.visitante}</span>
+        </div>
+
       </div>
 
-      <div class="grupo-partido">${partido.grupo}</div>
+      <div class="app-card-footer">
+        ${partido.grupo}
+      </div>
+
     `;
 
     listaFixture.appendChild(div);
-  });
-}
 
+  });
+
+}
 botonesFiltro.forEach((boton) => {
   boton.addEventListener("click", () => {
     botonesFiltro.forEach((btn) => {
