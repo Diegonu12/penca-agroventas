@@ -49,5 +49,7 @@ export {
   getDocs,
   doc,
   setDoc,
-  getDoc
+  getDoc,
+  query,
+  orderBy
 };
