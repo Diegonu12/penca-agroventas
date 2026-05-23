@@ -12,6 +12,7 @@ import {
 const formIndex = document.getElementById("registro-cliente-index");
 const tablaPosiciones = document.getElementById("tablaPosiciones");
 const cumpleInput = document.getElementById("cumpleIndex");
+const rankingHero = document.getElementById("rankingHero");
 
 if (cumpleInput) {
   cumpleInput.addEventListener("input", (e) => {
@@ -73,6 +74,10 @@ async function cargarClientesRegistrados() {
 
   tablaPosiciones.innerHTML = "";
 
+  if (rankingHero) {
+    rankingHero.innerHTML = "";
+  }
+
   try {
     const consulta = query(
       collection(db, "usuarios"),
@@ -97,8 +102,22 @@ async function cargarClientesRegistrados() {
       `;
 
       tablaPosiciones.appendChild(fila);
+
+      if (rankingHero && posicion <= 3) {
+        const item = document.createElement("p");
+
+        item.textContent =
+          `${posicion}. ${usuario.nombre || "-"} — ${usuario.puntos || 0} pts`;
+
+        rankingHero.appendChild(item);
+      }
+
       posicion++;
     });
+
+    if (rankingHero && posicion === 1) {
+      rankingHero.innerHTML = "<p>Sin participantes aún</p>";
+    }
 
   } catch (error) {
     console.error("Error al cargar clientes:", error);
