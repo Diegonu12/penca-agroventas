@@ -1,0 +1,49 @@
+import {
+  db,
+  collection,
+  getDocs,
+  query,
+  orderBy
+} from "./firebase.js";
+
+const tablaPosiciones =
+  document.getElementById("tablaPosiciones");
+
+async function cargarClientesRegistrados() {
+
+  if (!tablaPosiciones) return;
+
+  tablaPosiciones.innerHTML = "";
+
+  const consulta = query(
+    collection(db, "usuarios"),
+    orderBy("puntos", "desc")
+  );
+
+  const resultado = await getDocs(consulta);
+
+  let posicion = 1;
+
+  resultado.forEach((docUsuario) => {
+
+    const usuario = docUsuario.data();
+
+    const fila = document.createElement("tr");
+
+    fila.innerHTML = `
+      <td>${posicion}</td>
+      <td>${usuario.nombre || "-"}</td>
+      <td>${usuario.telefono || "-"}</td>
+      <td>${usuario.cumple || "-"}</td>
+      <td><strong>${usuario.puntos || 0}</strong></td>
+    `;
+
+    tablaPosiciones.appendChild(fila);
+
+    posicion++;
+
+  });
+
+}
+
+cargarClientesRegistrados();
