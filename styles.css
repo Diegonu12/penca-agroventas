@@ -816,7 +816,6 @@ select:focus {
 
 .app-logo {
   width: 180px;
-  filter: drop-shadow(0 0 8px rgba(255,255,255,0.8));
 }
 
 .app-header nav {
@@ -2873,4 +2872,34 @@ html,
 .ranking-scroll::-webkit-scrollbar-thumb {
   background: #0f5c2f;
   border-radius: 10px;
+}
+/* ================================= */
+/* LOGOS AGROVENTAS - LIMPIOS FINAL */
+/* ================================= */
+
+.nav-logo,
+.logo-footer,
+.login-logo,
+.app-logo,
+.header .nav-logo {
+  background: transparent !important;
+
+  filter: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+
+  opacity: 1 !important;
+}
+
+/* elimina pseudo sombras */
+.nav-logo::before,
+.nav-logo::after,
+.logo-footer::before,
+.logo-footer::after,
+.login-logo::before,
+.login-logo::after,
+.app-logo::before,
+.app-logo::after {
+  display: none !important;
+  content: none !important;
 }
