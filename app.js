@@ -186,6 +186,8 @@ async function cargarPronosticosGuardados() {
 
   if (!clienteActivo) return;
 
+  desbloquearInputsPronosticos(); 
+
   const ref =
     doc(db, "pronosticos", clienteActivo);
 
@@ -213,9 +215,7 @@ async function cargarPronosticosGuardados() {
 
         if (clave !== "Agro2026") {
 
-          alert(
-            "Clave incorrecta. Pronósticos bloqueados."
-          );
+          alert("Clave incorrecta. Pronósticos bloqueados.");
 
           bloquearInputsPronosticos();
 
@@ -223,6 +223,8 @@ async function cargarPronosticosGuardados() {
         }
 
         alert("Edición habilitada por vendedor ✅");
+
+        desbloquearInputsPronosticos();
 
       } else {
 
@@ -260,7 +262,24 @@ function bloquearInputsPronosticos() {
   }
 
 }
+function desbloquearInputsPronosticos() {
 
+  document
+    .querySelectorAll(".input-pronostico")
+    .forEach((input) => {
+      input.disabled = false;
+    });
+
+  const botonGuardar =
+    document.getElementById("guardarPronosticos");
+
+  if (botonGuardar) {
+    botonGuardar.disabled = false;
+    botonGuardar.style.opacity = "1";
+    botonGuardar.style.cursor = "pointer";
+  }
+
+}
 function obtenerPartidosFiltrados() {
   if (filtroActual === "todos") return partidos;
 
