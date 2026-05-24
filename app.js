@@ -92,194 +92,30 @@ if (buscarPorCodigo) {
   });
 }
 
-if (buscadorCliente && listaClientes) {
-
-  buscadorCliente.addEventListener("input", () => {
-
-    const texto =
-      buscadorCliente.value.toLowerCase().trim();
-
-    listaClientes.innerHTML = "";
-
-    if (texto.length < 2) {
-      listaClientes.style.display = "none";
-      return;
-    }
-
-    const filtrados =
-      clientesRegistrados.filter((cliente) => {
-
-      return (
-        cliente.nombre.toLowerCase().includes(texto) ||
-        cliente.telefono.toLowerCase().includes(texto) ||
-        cliente.email.toLowerCase().includes(texto)
-      );
-
-    });
-
-    if (filtrados.length === 0) {
-
-      listaClientes.innerHTML =
-        `<div class="resultado-cliente-item">
-          No se encontraron clientes
-        </div>`;
-
-      listaClientes.style.display = "block";
-
-      return;
-    }
-
-    filtrados.forEach((cliente) => {
-
-      const item =
-        document.createElement("div");
-
-      item.classList.add("resultado-cliente-item");
-
-     item.innerHTML = `
-  <div class="cliente-item-nombre">
-    ${cliente.nombre}
-  </div>
-
-  <div class="cliente-item-info">
-    📞 ${cliente.telefono || "Sin teléfono"} 
-    ${cliente.email ? " · ✉️ " + cliente.email : ""}
-  </div>
-`;
-
-      item.addEventListener("click", async () => {
-
-        clienteActivo = cliente.id;
-
-        pronosticosActuales = {};
-
-        buscadorCliente.value =
-          cliente.nombre;
-
-        listaClientes.innerHTML = "";
-
-        listaClientes.style.display = "none";
-
-        if (clienteSeleccionadoTexto) {
-
-          clienteSeleccionadoTexto.textContent =
-            `Cliente seleccionado: ${cliente.nombre}`;
-
-        }
-
-        await cargarPronosticosGuardados();
-
-        mostrarFixture();
-
-      });
-
-      listaClientes.appendChild(item);
-
-    });
-
-    listaClientes.style.display = "block";
-
-  });
-
-}
 async function cargarPronosticosGuardados() {
 
   if (!clienteActivo) return;
 
-  desbloquearInputsPronosticos(); 
+  
 
   const ref =
-    doc(db, "pronosticos", clienteActivo);
+    doc(db, "pronosticos", clienteActivo);  
 
   const snap =
     await getDoc(ref);
 
   if (snap.exists()) {
 
-    const datos = snap.data();
+    const datos =
+      snap.data();
 
     pronosticosActuales =
       datos.partidos || {};
 
-    if (datos.bloqueado === true) {
-
-      const confirmar =
-        confirm(
-          "Tus pronósticos ya fueron guardados.\n\n¿Deseás solicitar modificación al vendedor?"
-        );
-
-      if (confirmar) {
-
-        const clave =
-          prompt("Ingresá la clave del vendedor");
-
-        if (clave !== "Agro2026") {
-
-          alert("Clave incorrecta. Pronósticos bloqueados.");
-
-          bloquearInputsPronosticos();
-
-          return;
-        }
-
-        alert("Edición habilitada por vendedor ✅");
-
-        desbloquearInputsPronosticos();
-
-      } else {
-
-        bloquearInputsPronosticos();
-
-      }
-
-    }
-
   }
 
 }
-function bloquearInputsPronosticos() {
 
-  document
-    .querySelectorAll(".input-pronostico")
-    .forEach((input) => {
-
-      input.disabled = true;
-
-    });
-
-  const botonGuardar =
-    document.getElementById("guardarPronosticos");
-
-  if (botonGuardar) {
-
-    botonGuardar.disabled = true;
-
-    botonGuardar.style.opacity = "0.5";
-
-    botonGuardar.style.cursor =
-      "not-allowed";
-
-  }
-
-}
-function desbloquearInputsPronosticos() {
-
-  document
-    .querySelectorAll(".input-pronostico")
-    .forEach((input) => {
-      input.disabled = false;
-    });
-
-  const botonGuardar =
-    document.getElementById("guardarPronosticos");
-
-  if (botonGuardar) {
-    botonGuardar.disabled = false;
-    botonGuardar.style.opacity = "1";
-    botonGuardar.style.cursor = "pointer";
-  }
-
-}
 function obtenerPartidosFiltrados() {
   if (filtroActual === "todos") return partidos;
 
@@ -294,7 +130,23 @@ function obtenerPartidosFiltrados() {
     partido.grupo.includes(`GRUPO ${filtroActual}`)
   );
 }
+function partidoYaComenzo(partido) {
 
+  const partes = partido.fecha.split(" - ");
+
+  if (partes.length < 2) return false;
+
+  const fecha = partes[0];
+  const hora = partes[1];
+
+  const [dia, mes, anio] = fecha.split("/");
+
+  const fechaPartido =
+    new Date(`${anio}-${mes}-${dia}T${hora}:00`);
+
+  return new Date() >= fechaPartido;
+
+}
 function mostrarFixture() {
   if (!listaFixture) return;
 
@@ -334,6 +186,7 @@ function mostrarFixture() {
     id="local-${partido.id}"
     value="${pronostico.local ?? ""}"
     placeholder="-"
+    ${partidoYaComenzo(partido) ? "disabled" : ""}
   >
 
   <strong>VS</strong>
@@ -345,6 +198,7 @@ function mostrarFixture() {
     id="visitante-${partido.id}"
     value="${pronostico.visitante ?? ""}"
     placeholder="-"
+    ${partidoYaComenzo(partido) ? "disabled" : ""}
   >
 
 </div>
@@ -447,7 +301,6 @@ await setDoc(
   {
     clienteId: clienteActivo,
     partidos: pronosticos,
-    bloqueado: true,
     actualizado: new Date().toISOString()
   }
 );
