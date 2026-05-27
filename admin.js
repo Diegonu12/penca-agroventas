@@ -11,7 +11,8 @@ import { partidos } from "./data.js";
 
 const listaResultadosAdmin =
   document.getElementById("listaResultadosAdmin");
-
+const tablaClientesAdmin =
+  document.getElementById("tablaClientesAdmin");
 mostrarPanelAdmin();
 
 function mostrarPanelAdmin() {
@@ -166,3 +167,29 @@ function calcularPuntos(pronostico, real) {
 
   return 0;
 }
+async function cargarClientesAdmin() {
+  if (!tablaClientesAdmin) return;
+
+  tablaClientesAdmin.innerHTML = "";
+
+  const resultado =
+    await getDocs(collection(db, "usuarios"));
+
+  resultado.forEach((docCliente) => {
+    const cliente = docCliente.data();
+
+    const fila = document.createElement("tr");
+
+    fila.innerHTML = `
+      <td>${cliente.nombre || "-"}</td>
+      <td>${cliente.telefono || "-"}</td>
+      <td>${cliente.cumple || "-"}</td>
+      <td>${cliente.email || "-"}</td>
+      <td><strong>${cliente.puntos || 0}</strong></td>
+    `;
+
+    tablaClientesAdmin.appendChild(fila);
+  });
+}
+
+cargarClientesAdmin();

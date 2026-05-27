@@ -25,6 +25,28 @@
 
       <div id="listaResultadosAdmin"></div>
     </section>
+    <section class="card admin-clientes-card">
+
+  <h2>Clientes registrados</h2>
+  <p>Información privada visible solo para vendedores.</p>
+
+  <div class="tabla-admin-scroll">
+    <table>
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Teléfono</th>
+          <th>Cumpleaños</th>
+          <th>Email</th>
+          <th>Puntos</th>
+        </tr>
+      </thead>
+
+      <tbody id="tablaClientesAdmin"></tbody>
+    </table>
+  </div>
+
+</section>
   </main>
 <script>
   const claveAdmin = prompt("Ingresá la clave de administrador");

@@ -44,7 +44,7 @@ if (formIndex) {
     try {
       const idCliente = Date.now().toString();
 
-    const codigoAcceso = Math.floor(100000 + Math.random() * 900000).toString();
+   
 
 await setDoc(doc(db, "usuarios", idCliente), {
   nombre,
@@ -52,16 +52,13 @@ await setDoc(doc(db, "usuarios", idCliente), {
   cumple,
   telefono,
   email,
-  codigoAcceso,
   puntos: 0,
   creado: new Date().toISOString()
 });
 
-alert(
-  `Cliente registrado correctamente ✅\n\nCódigo de acceso: ${codigoAcceso}\n\nGuardá este código para cargar sus pronósticos.`
-);
+alert("Cliente registrado correctamente ✅");
 
-      alert("Cliente registrado correctamente ✅");
+      
 
       formIndex.reset();
 
@@ -100,13 +97,11 @@ async function cargarClientesRegistrados() {
 
       const fila = document.createElement("tr");
 
-      fila.innerHTML = `
-        <td>${posicion}</td>
-        <td>${usuario.nombre || "-"}</td>
-        <td>${usuario.telefono || "-"}</td>
-        <td>${usuario.cumple || "-"}</td>
-        <td><strong>${usuario.puntos || 0}</strong></td>
-      `;
+    fila.innerHTML = `
+  <td>${posicion}</td>
+  <td>${usuario.nombre || "-"}</td>
+  <td><strong>${usuario.puntos || 0}</strong></td>
+`;
 
       tablaPosiciones.appendChild(fila);
 

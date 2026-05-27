@@ -55,7 +55,7 @@ if (buscarPorCodigo) {
     const codigo = codigoCliente.value.trim();
 
     if (!codigo) {
-      alert("Ingresá tu código de acceso.");
+      alert("Ingresá tu número de teléfono.");
       return;
     }
 
@@ -66,7 +66,7 @@ if (buscarPorCodigo) {
     resultado.forEach((docCliente) => {
       const cliente = docCliente.data();
 
-      if (cliente.codigoAcceso === codigo) {
+      if (cliente.telefono === codigo) {
         clienteEncontrado = {
           id: docCliente.id,
           ...cliente
@@ -75,7 +75,7 @@ if (buscarPorCodigo) {
     });
 
     if (!clienteEncontrado) {
-      alert("Código incorrecto o cliente no encontrado.");
+      alert("Número no encontrado.");
       return;
     }
 

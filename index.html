@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Penca Mundial 2026 | Agroventas</title>
   <link rel="stylesheet" href="styles.css" />
+  <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+/>
 </head>
 <body>
 
@@ -223,23 +227,23 @@
 
   <h2>Tabla de posiciones</h2>
 
-  <div class="ranking-scroll">
 
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Cliente</th>
-          <th>Teléfono</th>
-          <th>Cumpleaños</th>
-          <th>Puntos</th>
-        </tr>
-      </thead>
+    <div class="tabla-scroll">
 
-      <tbody id="tablaPosiciones"></tbody>
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Cliente</th>
+        <th>Puntos</th>
+      </tr>
+    </thead>
 
-    </table>
+    <tbody id="tablaPosiciones"></tbody>
 
+  </table>
+
+</div>
   </div>
 
 </section>
@@ -252,9 +256,50 @@
   </main>
 
   <footer>
-    <img src="assets/logo.png" alt="Logo Agroventas" class="logo-footer">
-    <p>Penca Mundial 2026 | Agroventas | dinubo.</p>
-  </footer>
+
+  <img
+    src="assets/logo.png"
+    alt="Logo Agroventas"
+    class="logo-footer"
+  >
+
+  <div class="sponsors-footer">
+
+
+  <div class="swiper sponsorsSwiper">
+
+    <div class="swiper-wrapper">
+
+      <div class="swiper-slide">
+        <img src="assets/calier.png" alt="Calier">
+      </div>
+
+      <div class="swiper-slide">
+        <img src="assets/nuevo.cibeles.png" alt="Cibeles">
+      </div>
+
+      <div class="swiper-slide">
+        <img src="assets/fatro.png" alt="Fatro">
+      </div>
+
+      <div class="swiper-slide">
+        <img src="assets/virbac.png" alt="Virbac">
+      </div>
+<div class="swiper-slide">
+        <img src="assets/doralben.logo.png" alt="Virbac">
+      </div>
+    </div>
+
+    <div class="swiper-pagination"></div>
+
+  </div>
+
+</div>
+  <p>
+    Penca Mundial 2026 | Agroventas | dinubo.
+  </p>
+
+</footer>
 
   
  <script>
@@ -275,5 +320,51 @@
 </script>
 
 <script type="module" src="./index.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<script>
+
+  new Swiper(".sponsorsSwiper", {
+
+    loop: true,
+
+    autoplay: {
+
+      delay: 2500,
+
+      disableOnInteraction: false,
+
+    },
+
+    pagination: {
+
+      el: ".swiper-pagination",
+
+      clickable: true,
+
+    },
+
+    breakpoints: {
+
+      0: {
+
+        slidesPerView: 1,
+
+      },
+
+      768: {
+
+        slidesPerView: 3,
+
+      }
+
+    }
+
+  });
+
+</script>
+
+
+
 </body>
 </html>

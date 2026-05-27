@@ -887,9 +887,24 @@ select:focus {
     gap: 14px;
   }
 
+ .app-logo {
+  width: 160px;
+}
+
+@media (max-width: 768px) {
+
   .app-logo {
-    width: 160px;
+    width: 170px;
+
+    max-width: 85%;
+
+    margin-top: 12px;
+
+    filter:
+      drop-shadow(0 4px 12px rgba(0,0,0,0.45));
   }
+
+}
 
   .app-header nav {
     width: 100%;
@@ -2902,4 +2917,295 @@ html,
 .app-logo::after {
   display: none !important;
   content: none !important;
+}
+/* ================================= */
+/* TABLAS CON SCROLL PROFESIONAL */
+/* ================================= */
+
+.tabla-scroll,
+.tabla-admin-scroll {
+  max-height: 420px;
+
+  overflow-y: auto;
+  overflow-x: auto;
+
+  border-radius: 18px;
+
+  background: rgba(255,255,255,0.96);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,0.08);
+
+  margin-top: 18px;
+}
+
+/* tablas */
+
+.tabla-scroll table,
+.tabla-admin-scroll table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 650px;
+}
+
+/* encabezados */
+
+.tabla-scroll thead,
+.tabla-admin-scroll thead {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+
+  background: #0f4b29;
+}
+
+.tabla-scroll th,
+.tabla-admin-scroll th {
+  color: white;
+  padding: 14px;
+  font-size: 0.95rem;
+}
+
+/* filas */
+
+.tabla-scroll td,
+.tabla-admin-scroll td {
+  padding: 13px 14px;
+
+  border-bottom:
+    1px solid rgba(0,0,0,0.06);
+
+  font-size: 0.95rem;
+}
+
+/* hover */
+
+.tabla-scroll tbody tr:hover,
+.tabla-admin-scroll tbody tr:hover {
+  background: rgba(15,75,41,0.05);
+}
+
+/* scroll lindo */
+
+.tabla-scroll::-webkit-scrollbar,
+.tabla-admin-scroll::-webkit-scrollbar {
+  width: 10px;
+}
+
+.tabla-scroll::-webkit-scrollbar-thumb,
+.tabla-admin-scroll::-webkit-scrollbar-thumb {
+  background: #0f4b29;
+  border-radius: 999px;
+}
+.sponsors-footer {
+
+  margin: 26px auto 20px;
+
+  padding: 20px 10px;
+
+  max-width: 860px;
+
+  background: #eef8f0;
+
+  border-radius: 26px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,0.14);
+
+}
+
+.sponsors-footer h4 {
+  color: #0f4b29;
+  font-size: 1.1rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+}
+
+.sponsors-slider {
+  width: 100%;
+  overflow: hidden;
+}
+
+.sponsors-track {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 70px;
+
+  padding: 6px 18px;
+
+  width: max-content;
+
+  animation: sponsorsMove 22s linear infinite;
+
+}
+
+.sponsors-track img {
+
+  height: 105px;
+
+  width: 230px;
+
+  object-fit: contain;
+
+  flex-shrink: 0;
+
+}
+
+@keyframes sponsorsMove {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.sponsors-slider:hover .sponsors-track {
+  animation-play-state: paused;
+}
+
+@media (max-width: 768px) {
+
+  .sponsors-footer {
+
+    margin: 20px auto;
+
+    padding: 16px 6px;
+
+    border-radius: 22px;
+
+  }
+
+  .sponsors-track {
+
+    gap: 36px;
+
+    animation-duration: 18s;
+
+  }
+
+  .sponsors-track img {
+
+    height: 78px;
+
+    width: 150px;
+
+  }
+
+}
+.sponsors-footer {
+
+  margin: 28px auto 22px;
+
+  padding: 22px 14px;
+
+  max-width: 900px;
+
+  background: #eef8f0;
+
+  border-radius: 26px;
+
+  box-shadow:
+    0 10px 35px rgba(0,0,0,0.14);
+
+}
+
+.sponsors-footer h4 {
+
+  text-align: center;
+
+  color: #0f4b29;
+
+  margin-bottom: 20px;
+
+  font-size: 1.1rem;
+
+  font-weight: 800;
+
+}
+
+.sponsorsSwiper {
+
+  width: 100%;
+
+  padding-bottom: 36px;
+
+}
+
+.swiper-slide {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+}
+
+.swiper-slide img {
+
+  width: 210px;
+
+  height: 95px;
+
+  object-fit: contain;
+
+}
+
+.swiper-pagination-bullet {
+
+  background: #0f4b29 !important;
+
+  opacity: 0.3;
+
+}
+
+.swiper-pagination-bullet-active {
+
+  opacity: 1;
+
+}
+/* Ajuste final carrusel sponsors */
+
+footer {
+  padding-top: 70px;
+}
+
+.sponsors-footer {
+  margin: -40px auto 28px;
+  max-width: 1080px;
+  padding: 30px 20px 24px;
+}
+
+.sponsorsSwiper {
+  padding-bottom: 42px;
+}
+
+.swiper-slide img {
+  width: 260px;
+  height: 125px;
+  object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  footer {
+    padding-top: 45px;
+  }
+
+  .sponsors-footer {
+    margin: -20px auto 24px;
+    max-width: 92%;
+    padding: 24px 12px 20px;
+  }
+
+  .swiper-slide img {
+    width: 190px;
+    height: 95px;
+  }
 }
