@@ -56,7 +56,13 @@ await setDoc(doc(db, "usuarios", idCliente), {
   creado: new Date().toISOString()
 });
 
-alert("Cliente registrado correctamente ✅");
+alert(
+  `Cliente registrado correctamente ✅
+
+Para ingresar al fixture y cargar tus pronósticos, usá tu número de celular:
+
+${telefono}`
+);
 
       
 
