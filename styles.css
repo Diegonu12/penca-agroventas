@@ -3238,3 +3238,523 @@ footer {
   }
 
 }
+/* ========================= */
+/* PREMIOS OFICIALES */
+/* ========================= */
+
+.premios-section {
+
+  max-width: 1200px;
+
+  margin: 40px auto;
+
+  padding: 0 20px;
+
+}
+
+.premios-header {
+
+  text-align: center;
+
+  margin-bottom: 30px;
+
+}
+
+.premios-header span {
+
+  color: #d4a017;
+
+  font-weight: 700;
+
+  letter-spacing: 1px;
+
+}
+
+.premios-header h2 {
+
+  font-size: 2rem;
+
+  color: #0f4b29;
+
+  margin: 10px 0;
+
+}
+
+.premios-header p {
+
+  max-width: 700px;
+
+  margin: auto;
+
+  color: #444;
+
+}
+
+.premio-principal {
+
+  background: linear-gradient(
+    135deg,
+    #0f4b29,
+    #176436
+  );
+
+  color: white;
+
+  padding: 35px;
+
+  border-radius: 24px;
+
+  margin-bottom: 25px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.18);
+
+}
+
+.premio-principal h3 {
+
+  font-size: 1.8rem;
+
+  margin-bottom: 15px;
+
+}
+
+.premio-principal ul {
+
+  margin-top: 15px;
+
+  padding-left: 20px;
+
+}
+
+.premio-principal li {
+
+  margin-bottom: 10px;
+
+}
+
+.premios-grid {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(3, 1fr);
+
+  gap: 20px;
+
+}
+
+.premio-card {
+
+  background: white;
+
+  padding: 25px;
+
+  border-radius: 20px;
+
+  text-align: center;
+
+  box-shadow:
+    0 6px 18px rgba(0,0,0,.12);
+
+  transition: .25s;
+
+}
+
+.premio-card:hover {
+
+  transform: translateY(-4px);
+
+}
+
+.premio-card h4 {
+
+  color: #0f4b29;
+
+  margin-bottom: 10px;
+
+}
+
+.premio-card p {
+
+  font-weight: 600;
+
+}
+
+@media (max-width: 768px) {
+
+  .premios-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+  .premio-principal {
+
+    padding: 25px;
+
+  }
+
+  .premios-header h2 {
+
+    font-size: 1.6rem;
+
+  }
+
+}
+/* ========================= */
+/* PREMIOS OFICIALES PRO */
+/* ========================= */
+
+.premios-section {
+  max-width: 1200px;
+  margin: 45px auto;
+  padding: 36px 24px;
+  border-radius: 32px;
+  background:
+  radial-gradient(
+    circle at top left,
+    rgba(255,255,255,0.08),
+    transparent 30%
+  ),
+
+  radial-gradient(
+    circle at top right,
+    rgba(246,197,66,0.12),
+    transparent 25%
+  ),
+
+  linear-gradient(
+    135deg,
+    #06351b,
+    #0a4a27,
+    #06351b
+  );}
+
+
+.premios-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.premios-header span {
+
+  display: block;
+
+  font-size: 2.8rem;
+
+  color: #f6c542;
+
+  font-weight: 900;
+
+  letter-spacing: 2px;
+
+  margin-bottom: 16px;
+
+  text-transform: uppercase;
+
+}
+
+.premios-header h2 {
+  font-size: 2.2rem;
+  margin: 12px 0;
+}
+
+.premios-header p {
+  max-width: 760px;
+  margin: auto;
+  color: rgba(255,255,255,0.86);
+}
+
+.premio-principal {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(246,197,66,0.45);
+  border-radius: 26px;
+  padding: 34px;
+  margin-bottom: 26px;
+  backdrop-filter: blur(6px);
+}
+
+.premio-principal h3 {
+  color: #f6c542;
+  font-size: 1.9rem;
+  margin-bottom: 16px;
+}
+
+.premio-principal li {
+  margin-bottom: 10px;
+  line-height: 1.45;
+}
+
+.premios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.premio-card {
+  background: rgba(255,255,255,0.96);
+  color: #0f4b29;
+  border-radius: 22px;
+  padding: 26px 22px;
+  text-align: center;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.16);
+  transition: 0.25s ease;
+}
+
+.premio-card:hover {
+  transform: translateY(-5px);
+}
+
+.premio-card h4 {
+  font-size: 1.15rem;
+  margin-bottom: 12px;
+}
+
+.premio-card p {
+  font-weight: 800;
+}
+
+/* efecto aparecer */
+.premios-section,
+.premio-principal,
+.premio-card {
+  animation: aparecerSuave 0.8s ease both;
+}
+
+@keyframes aparecerSuave {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .premios-section {
+    margin: 30px 12px;
+    padding: 28px 18px;
+  }
+
+  .premios-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .premios-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .premio-principal {
+    padding: 24px;
+  }
+}
+/* ========================= */
+/* ANIMACIÓN PRO PREMIOS */
+/* ========================= */
+
+.premios-section {
+  opacity: 0;
+  transform: translateX(-80px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.premios-section.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.premio-principal,
+.premio-card {
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.premio-principal:hover {
+  transform: translateY(-6px) scale(1.01);
+  box-shadow: 0 18px 45px rgba(0,0,0,0.28);
+  border-color: rgba(246,197,66,0.85);
+}
+
+.premio-card:hover {
+  transform: translateY(-8px) scale(1.03);
+  box-shadow: 0 18px 38px rgba(0,0,0,0.22);
+}
+/* ========================= */
+/* PREMIOS OFICIALES - FINAL PRO */
+/* ========================= */
+
+.premios-section {
+  max-width: 1250px;
+  margin: 55px auto;
+  padding: 55px 34px;
+  border-radius: 34px;
+  color: white;
+  overflow: hidden;
+
+  background:
+    radial-gradient(circle at top left, rgba(255,255,255,0.08), transparent 30%),
+    radial-gradient(circle at top right, rgba(246,197,66,0.16), transparent 28%),
+    linear-gradient(135deg, #06351b, #0a4a27, #06351b);
+
+  box-shadow:
+    0 22px 55px rgba(0,0,0,0.22);
+}
+
+.premios-header {
+  text-align: center;
+  margin-bottom: 42px;
+}
+
+.premios-header span {
+  display: block;
+  font-size: 3rem;
+  font-weight: 900;
+  color: #f6c542;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.premios-header h2 {
+  display: none;
+}
+
+.premios-header p {
+  max-width: 780px;
+  margin: auto;
+  color: rgba(255,255,255,0.9);
+  font-size: 1.1rem;
+  line-height: 1.5;
+}
+
+.premio-principal {
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 28px;
+  padding: 38px;
+  margin-bottom: 32px;
+  backdrop-filter: blur(8px);
+
+  box-shadow:
+    0 12px 32px rgba(0,0,0,0.20);
+
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.premio-principal:hover {
+  transform: translateY(-6px) scale(1.01);
+  border-color: rgba(246,197,66,0.55);
+
+  box-shadow:
+    0 20px 48px rgba(0,0,0,0.30);
+}
+
+.premio-principal h3 {
+  color: #f6c542;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.premio-principal ul {
+  padding-left: 24px;
+}
+
+.premio-principal li {
+  margin-bottom: 12px;
+  line-height: 1.5;
+  font-size: 1.05rem;
+}
+
+.premios-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+
+.premio-card {
+  background: rgba(255,255,255,0.96);
+  color: #0f4b29;
+  border-radius: 24px;
+  padding: 30px 24px;
+  text-align: center;
+
+  box-shadow:
+    0 15px 35px rgba(0,0,0,0.14);
+
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease;
+}
+
+.premio-card:hover {
+  transform: translateY(-8px) scale(1.03);
+
+  box-shadow:
+    0 20px 42px rgba(0,0,0,0.22);
+}
+
+.premio-card h4 {
+  font-size: 1.2rem;
+  margin-bottom: 14px;
+  color: #0f4b29;
+}
+
+.premio-card p {
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+/* aparición suave desde izquierda */
+
+.premios-section {
+  opacity: 0;
+  transform: translateX(-80px);
+  transition:
+    opacity 0.8s ease,
+    transform 0.8s ease;
+}
+
+.premios-section.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (max-width: 768px) {
+  .premios-section {
+    margin: 35px 12px;
+    padding: 36px 20px;
+    border-radius: 28px;
+  }
+
+  .premios-header span {
+    font-size: 2rem;
+    letter-spacing: 1.5px;
+  }
+
+  .premios-header p {
+    font-size: 0.98rem;
+  }
+
+  .premio-principal {
+    padding: 26px 22px;
+  }
+
+  .premio-principal h3 {
+    font-size: 1.5rem;
+  }
+
+  .premios-grid {
+    grid-template-columns: 1fr;
+  }
+}
