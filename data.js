@@ -75,53 +75,130 @@ const grupos = {
   L: ["inglaterra", "croacia", "ghana", "panama"]
 };
 
-const fechasPorGrupo = {
-  A: ["11/06/2026", "18/06/2026", "24/06/2026"],
-  B: ["12/06/2026", "18/06/2026", "24/06/2026"],
-  C: ["13/06/2026", "19/06/2026", "24/06/2026"],
-  D: ["12/06/2026", "19/06/2026", "25/06/2026"],
-  E: ["14/06/2026", "20/06/2026", "25/06/2026"],
-  F: ["14/06/2026", "20/06/2026", "25/06/2026"],
-  G: ["15/06/2026", "21/06/2026", "26/06/2026"],
-  H: ["15/06/2026", "21/06/2026", "26/06/2026"],
-  I: ["16/06/2026", "22/06/2026", "26/06/2026"],
-  J: ["16/06/2026", "22/06/2026", "27/06/2026"],
-  K: ["17/06/2026", "23/06/2026", "27/06/2026"],
-  L: ["17/06/2026", "23/06/2026", "27/06/2026"]
-};
+const fixtureBase = [
+  // 11/06/2026
+  { fecha: "11/06/2026 - 16:00", grupo: "A", jornada: "FECHA 1", local: "mexico", visitante: "sudafrica" },
+  { fecha: "11/06/2026 - 23:00", grupo: "A", jornada: "FECHA 1", local: "corea", visitante: "chequia" },
+
+  // 12/06/2026
+  { fecha: "12/06/2026 - 16:00", grupo: "B", jornada: "FECHA 1", local: "canada", visitante: "bosnia" },
+  { fecha: "12/06/2026 - 22:00", grupo: "D", jornada: "FECHA 1", local: "usa", visitante: "paraguay" },
+
+  // 13/06/2026
+  { fecha: "13/06/2026 - 16:00", grupo: "B", jornada: "FECHA 1", local: "qatar", visitante: "suiza" },
+  { fecha: "13/06/2026 - 19:00", grupo: "C", jornada: "FECHA 1", local: "brasil", visitante: "marruecos" },
+  { fecha: "13/06/2026 - 22:00", grupo: "C", jornada: "FECHA 1", local: "haiti", visitante: "escocia" },
+
+  // 14/06/2026
+  { fecha: "14/06/2026 - 01:00", grupo: "D", jornada: "FECHA 1", local: "australia", visitante: "turquia" },
+  { fecha: "14/06/2026 - 14:00", grupo: "E", jornada: "FECHA 1", local: "alemania", visitante: "curacao" },
+  { fecha: "14/06/2026 - 17:00", grupo: "F", jornada: "FECHA 1", local: "paisesBajos", visitante: "japon" },
+  { fecha: "14/06/2026 - 20:00", grupo: "E", jornada: "FECHA 1", local: "costaMarfil", visitante: "ecuador" },
+  { fecha: "14/06/2026 - 23:00", grupo: "F", jornada: "FECHA 1", local: "suecia", visitante: "tunez" },
+
+  // 15/06/2026
+  { fecha: "15/06/2026 - 13:00", grupo: "H", jornada: "FECHA 1", local: "espana", visitante: "caboVerde" },
+  { fecha: "15/06/2026 - 16:00", grupo: "G", jornada: "FECHA 1", local: "belgica", visitante: "egipto" },
+  { fecha: "15/06/2026 - 19:00", grupo: "H", jornada: "FECHA 1", local: "arabia", visitante: "uruguay" },
+  { fecha: "15/06/2026 - 22:00", grupo: "G", jornada: "FECHA 1", local: "iran", visitante: "nuevaZelanda" },
+
+  // 16/06/2026
+  { fecha: "16/06/2026 - 16:00", grupo: "I", jornada: "FECHA 1", local: "francia", visitante: "senegal" },
+  { fecha: "16/06/2026 - 19:00", grupo: "I", jornada: "FECHA 1", local: "iraq", visitante: "noruega" },
+  { fecha: "16/06/2026 - 22:00", grupo: "J", jornada: "FECHA 1", local: "argentina", visitante: "argelia" },
+
+  // 17/06/2026
+  { fecha: "17/06/2026 - 01:00", grupo: "J", jornada: "FECHA 1", local: "austria", visitante: "jordania" },
+  { fecha: "17/06/2026 - 14:00", grupo: "K", jornada: "FECHA 1", local: "portugal", visitante: "congo" },
+  { fecha: "17/06/2026 - 17:00", grupo: "L", jornada: "FECHA 1", local: "inglaterra", visitante: "croacia" },
+  { fecha: "17/06/2026 - 20:00", grupo: "L", jornada: "FECHA 1", local: "ghana", visitante: "panama" },
+  { fecha: "17/06/2026 - 23:00", grupo: "K", jornada: "FECHA 1", local: "uzbekistan", visitante: "colombia" },
+
+  // 18/06/2026
+  { fecha: "18/06/2026 - 13:00", grupo: "A", jornada: "FECHA 2", local: "chequia", visitante: "sudafrica" },
+  { fecha: "18/06/2026 - 16:00", grupo: "B", jornada: "FECHA 2", local: "suiza", visitante: "bosnia" },
+  { fecha: "18/06/2026 - 19:00", grupo: "B", jornada: "FECHA 2", local: "canada", visitante: "qatar" },
+  { fecha: "18/06/2026 - 22:00", grupo: "A", jornada: "FECHA 2", local: "mexico", visitante: "corea" },
+
+  // 19/06/2026
+  { fecha: "19/06/2026 - 16:00", grupo: "D", jornada: "FECHA 2", local: "usa", visitante: "australia" },
+  { fecha: "19/06/2026 - 19:00", grupo: "C", jornada: "FECHA 2", local: "escocia", visitante: "marruecos" },
+  { fecha: "19/06/2026 - 21:30", grupo: "C", jornada: "FECHA 2", local: "brasil", visitante: "haiti" },
+
+  // 20/06/2026
+  { fecha: "20/06/2026 - 00:00", grupo: "D", jornada: "FECHA 2", local: "turquia", visitante: "paraguay" },
+  { fecha: "20/06/2026 - 14:00", grupo: "F", jornada: "FECHA 2", local: "paisesBajos", visitante: "suecia" },
+  { fecha: "20/06/2026 - 17:00", grupo: "E", jornada: "FECHA 2", local: "alemania", visitante: "costaMarfil" },
+  { fecha: "20/06/2026 - 21:00", grupo: "E", jornada: "FECHA 2", local: "ecuador", visitante: "curacao" },
+
+  // 21/06/2026
+  { fecha: "21/06/2026 - 01:00", grupo: "F", jornada: "FECHA 2", local: "tunez", visitante: "japon" },
+  { fecha: "21/06/2026 - 13:00", grupo: "H", jornada: "FECHA 2", local: "espana", visitante: "arabia" },
+  { fecha: "21/06/2026 - 16:00", grupo: "G", jornada: "FECHA 2", local: "belgica", visitante: "iran" },
+  { fecha: "21/06/2026 - 19:00", grupo: "H", jornada: "FECHA 2", local: "uruguay", visitante: "caboVerde" },
+  { fecha: "21/06/2026 - 22:00", grupo: "G", jornada: "FECHA 2", local: "nuevaZelanda", visitante: "egipto" },
+
+  // 22/06/2026
+  { fecha: "22/06/2026 - 14:00", grupo: "J", jornada: "FECHA 2", local: "argentina", visitante: "austria" },
+  { fecha: "22/06/2026 - 18:00", grupo: "I", jornada: "FECHA 2", local: "francia", visitante: "iraq" },
+  { fecha: "22/06/2026 - 21:00", grupo: "I", jornada: "FECHA 2", local: "noruega", visitante: "senegal" },
+
+  // 23/06/2026
+  { fecha: "23/06/2026 - 00:00", grupo: "J", jornada: "FECHA 2", local: "jordania", visitante: "argelia" },
+  { fecha: "23/06/2026 - 14:00", grupo: "K", jornada: "FECHA 2", local: "portugal", visitante: "uzbekistan" },
+  { fecha: "23/06/2026 - 17:00", grupo: "L", jornada: "FECHA 2", local: "inglaterra", visitante: "ghana" },
+  { fecha: "23/06/2026 - 20:00", grupo: "L", jornada: "FECHA 2", local: "panama", visitante: "croacia" },
+  { fecha: "23/06/2026 - 23:00", grupo: "K", jornada: "FECHA 2", local: "colombia", visitante: "congo" },
+
+  // 24/06/2026
+  { fecha: "24/06/2026 - 16:00", grupo: "B", jornada: "FECHA 3", local: "suiza", visitante: "canada" },
+  { fecha: "24/06/2026 - 16:00", grupo: "B", jornada: "FECHA 3", local: "bosnia", visitante: "qatar" },
+  { fecha: "24/06/2026 - 19:00", grupo: "C", jornada: "FECHA 3", local: "marruecos", visitante: "haiti" },
+  { fecha: "24/06/2026 - 19:00", grupo: "C", jornada: "FECHA 3", local: "escocia", visitante: "brasil" },
+  { fecha: "24/06/2026 - 22:00", grupo: "A", jornada: "FECHA 3", local: "sudafrica", visitante: "corea" },
+  { fecha: "24/06/2026 - 22:00", grupo: "A", jornada: "FECHA 3", local: "chequia", visitante: "mexico" },
+
+  // 25/06/2026
+  { fecha: "25/06/2026 - 17:00", grupo: "E", jornada: "FECHA 3", local: "curacao", visitante: "costaMarfil" },
+  { fecha: "25/06/2026 - 17:00", grupo: "E", jornada: "FECHA 3", local: "ecuador", visitante: "alemania" },
+  { fecha: "25/06/2026 - 20:00", grupo: "F", jornada: "FECHA 3", local: "tunez", visitante: "paisesBajos" },
+  { fecha: "25/06/2026 - 20:00", grupo: "F", jornada: "FECHA 3", local: "japon", visitante: "suecia" },
+  { fecha: "25/06/2026 - 23:00", grupo: "D", jornada: "FECHA 3", local: "turquia", visitante: "usa" },
+  { fecha: "25/06/2026 - 23:00", grupo: "D", jornada: "FECHA 3", local: "paraguay", visitante: "australia" },
+
+  // 26/06/2026
+  { fecha: "26/06/2026 - 16:00", grupo: "I", jornada: "FECHA 3", local: "noruega", visitante: "francia" },
+  { fecha: "26/06/2026 - 16:00", grupo: "I", jornada: "FECHA 3", local: "senegal", visitante: "iraq" },
+  { fecha: "26/06/2026 - 21:00", grupo: "H", jornada: "FECHA 3", local: "caboVerde", visitante: "arabia" },
+  { fecha: "26/06/2026 - 21:00", grupo: "H", jornada: "FECHA 3", local: "uruguay", visitante: "espana" },
+
+  // 27/06/2026
+  { fecha: "27/06/2026 - 00:00", grupo: "G", jornada: "FECHA 3", local: "nuevaZelanda", visitante: "belgica" },
+  { fecha: "27/06/2026 - 00:00", grupo: "G", jornada: "FECHA 3", local: "egipto", visitante: "iran" },
+  { fecha: "27/06/2026 - 18:00", grupo: "L", jornada: "FECHA 3", local: "panama", visitante: "inglaterra" },
+  { fecha: "27/06/2026 - 18:00", grupo: "L", jornada: "FECHA 3", local: "croacia", visitante: "ghana" },
+  { fecha: "27/06/2026 - 20:30", grupo: "K", jornada: "FECHA 3", local: "colombia", visitante: "portugal" },
+  { fecha: "27/06/2026 - 20:30", grupo: "K", jornada: "FECHA 3", local: "congo", visitante: "uzbekistan" },
+  { fecha: "27/06/2026 - 23:00", grupo: "J", jornada: "FECHA 3", local: "argelia", visitante: "austria" },
+  { fecha: "27/06/2026 - 23:00", grupo: "J", jornada: "FECHA 3", local: "jordania", visitante: "argentina" }
+];
 
 function crearPartidos() {
-  let id = 1;
-  const partidosGenerados = [];
+  return fixtureBase.map((partido, index) => {
+    const equipoLocal = equipos[partido.local];
+    const equipoVisitante = equipos[partido.visitante];
 
-  Object.entries(grupos).forEach(([grupo, lista]) => {
-    const [t1, t2, t3, t4] = lista;
-    const fechas = fechasPorGrupo[grupo];
-
-    const cruces = [
-      [t1, t2, fechas[0], "FECHA 1"],
-      [t3, t4, fechas[0], "FECHA 1"],
-      [t1, t3, fechas[1], "FECHA 2"],
-      [t4, t2, fechas[1], "FECHA 2"],
-      [t4, t1, fechas[2], "FECHA 3"],
-      [t2, t3, fechas[2], "FECHA 3"]
-    ];
-
-    cruces.forEach(([localKey, visitanteKey, fecha, jornada], index) => {
-      partidosGenerados.push({
-        id: id++,
-        fecha: `${fecha} - ${index % 2 === 0 ? "16:00" : "19:00"}`,
-        grupo: `GRUPO ${grupo} - ${jornada}`,
-        local: equipos[localKey].nombre,
-        visitante: equipos[visitanteKey].nombre,
-        banderaLocal: equipos[localKey].bandera,
-        banderaVisitante: equipos[visitanteKey].bandera,
-        resultadoReal: null
-      });
-    });
+    return {
+      id: index + 1,
+      fecha: partido.fecha,
+      grupo: `GRUPO ${partido.grupo} - ${partido.jornada}`,
+      local: equipoLocal.nombre,
+      visitante: equipoVisitante.nombre,
+      banderaLocal: equipoLocal.bandera,
+      banderaVisitante: equipoVisitante.bandera,
+      resultadoReal: null
+    };
   });
-
-  return partidosGenerados;
 }
 
 export const partidos = crearPartidos();
