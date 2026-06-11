@@ -3758,3 +3758,39 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+.resultado-oficial {
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: #e8f7ee;
+  border: 1px solid #2ecc71;
+  color: #145c32;
+  font-weight: 600;
+  text-align: center;
+}
+
+.estado-pronostico {
+  margin-top: 8px;
+  padding: 9px 12px;
+  border-radius: 10px;
+  font-weight: 700;
+  text-align: center;
+}
+
+.acierto-exacto {
+  background: #d1f7d6;
+  color: #0f6b20;
+  border: 1px solid #27ae60;
+}
+
+.acierto-ganador {
+  background: #fff4cc;
+  color: #8a6500;
+  border: 1px solid #f1c40f;
+}
+
+.sin-puntos {
+  background: #ffe1e1;
+  color: #9b1c1c;
+  border: 1px solid #e74c3c;
+}

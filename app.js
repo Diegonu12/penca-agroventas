@@ -21,11 +21,13 @@ let clienteActivo = null;
 let clientesRegistrados = [];
 let pronosticosActuales = {};
 let filtroActual = "todos";
+let resultadosOficiales = {};
 
 iniciarFixtureVendedor();
 
 async function iniciarFixtureVendedor() {
   await cargarClientesEnSelect();
+  await cargarResultadosOficiales();
   mostrarFixture();
 }
 
@@ -147,6 +149,48 @@ function partidoYaComenzo(partido) {
   return new Date() >= fechaPartido;
 
 }
+async function cargarResultadosOficiales() {
+  resultadosOficiales = {};
+
+  const resultado = await getDocs(collection(db, "resultadosOficiales"));
+
+  resultado.forEach((docResultado) => {
+    resultadosOficiales[docResultado.id] = docResultado.data();
+  });
+}
+
+function calcularEstadoPronostico(pronostico, real) {
+  if (!pronostico || !real) return null;
+
+  if (
+    Number(pronostico.local) === Number(real.local) &&
+    Number(pronostico.visitante) === Number(real.visitante)
+  ) {
+    return {
+      texto: "🎯 Acierto exacto +3 puntos",
+      clase: "acierto-exacto"
+    };
+  }
+
+  const signoPronostico =
+    Math.sign(Number(pronostico.local) - Number(pronostico.visitante));
+
+  const signoReal =
+    Math.sign(Number(real.local) - Number(real.visitante));
+
+  if (signoPronostico === signoReal) {
+    return {
+      texto: "✅ Acertaste ganador/empate +1 punto",
+      clase: "acierto-ganador"
+    };
+  }
+
+  return {
+    texto: "❌ Sin puntos",
+    clase: "sin-puntos"
+  };
+}
+
 function mostrarFixture() {
   if (!listaFixture) return;
 
@@ -161,6 +205,11 @@ function mostrarFixture() {
 
   partidosFiltrados.forEach((partido) => {
     const pronostico = pronosticosActuales[partido.id] || {};
+    const resultadoOficial = resultadosOficiales[String(partido.id)];
+    const estadoPronostico = calcularEstadoPronostico(
+          pronostico,
+          resultadoOficial
+);
 
     const div = document.createElement("div");
     div.classList.add("partido");
@@ -210,8 +259,21 @@ function mostrarFixture() {
       </div>
 
       <div class="app-card-footer">
-        ${partido.grupo}
-      </div>
+  ${partido.grupo}
+</div>
+
+${resultadoOficial ? `
+  <div class="resultado-oficial">
+    <strong>Resultado oficial:</strong>
+    ${partido.local} ${resultadoOficial.local} - ${resultadoOficial.visitante} ${partido.visitante}
+  </div>
+
+  ${estadoPronostico ? `
+    <div class="estado-pronostico ${estadoPronostico.clase}">
+      ${estadoPronostico.texto}
+    </div>
+  ` : ""}
+` : ""}
     `;
 
     listaFixture.appendChild(div);
