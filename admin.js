@@ -3,17 +3,16 @@ import {
   collection,
   getDocs,
   doc,
-  setDoc,
-  updateDoc
+  setDoc
 } from "./firebase.js";
 
 import { partidos } from "./data.js";
 
-const listaResultadosAdmin =
-  document.getElementById("listaResultadosAdmin");
-const tablaClientesAdmin =
-  document.getElementById("tablaClientesAdmin");
+const listaResultadosAdmin = document.getElementById("listaResultadosAdmin");
+const tablaClientesAdmin = document.getElementById("tablaClientesAdmin");
+
 mostrarPanelAdmin();
+cargarClientesAdmin();
 
 function mostrarPanelAdmin() {
   if (!listaResultadosAdmin) return;
@@ -46,19 +45,15 @@ function mostrarPanelAdmin() {
       </div>
 
       <div class="app-card-footer">
+        <span>${partido.grupo}</span>
 
-  <span>
-    ${partido.grupo}
-  </span>
-
-  <button
-    class="btn-secundario btn-admin"
-    data-id="${partido.id}"
-  >
-    Guardar resultado oficial
-  </button>
-
-</div>
+        <button
+          class="btn-secundario btn-admin"
+          data-id="${partido.id}"
+        >
+          Guardar resultado oficial
+        </button>
+      </div>
     `;
 
     listaResultadosAdmin.appendChild(div);
@@ -73,47 +68,48 @@ function mostrarPanelAdmin() {
 }
 
 async function guardarResultadoOficial(partidoId) {
-  const localInput =
-    document.getElementById(`real-local-${partidoId}`);
-
-  const visitanteInput =
-    document.getElementById(`real-visitante-${partidoId}`);
-
-  if (localInput.value === "" || visitanteInput.value === "") {
-    alert("Cargá ambos resultados.");
-    return;
-  }
-
-  const partido =
-    partidos.find((p) => String(p.id) === String(partidoId));
-
-  const resultadoReal = {
-    partidoId,
-    local: Number(localInput.value),
-    visitante: Number(visitanteInput.value),
-    partido: `${partido.local} vs ${partido.visitante}`,
-    fecha: partido.fecha,
-    grupo: partido.grupo,
-    actualizado: new Date().toISOString()
-  };
-
-  await setDoc(
-    doc(db, "resultadosOficiales", String(partidoId)),
-    resultadoReal
-  );
-
   try {
-  await recalcularPuntos();
-  alert("Resultado oficial guardado y puntos actualizados ✅");
-} catch (error) {
-  console.error("Error recalculando puntos:", error);
-  alert("El resultado oficial se guardó, pero hubo un error al actualizar puntos.");
-}
+    const localInput = document.getElementById(`real-local-${partidoId}`);
+    const visitanteInput = document.getElementById(`real-visitante-${partidoId}`);
+
+    if (localInput.value === "" || visitanteInput.value === "") {
+      alert("Cargá ambos resultados.");
+      return;
+    }
+
+    const partido = partidos.find((p) => String(p.id) === String(partidoId));
+
+    if (!partido) {
+      alert("No se encontró el partido.");
+      return;
+    }
+
+    const resultadoReal = {
+      partidoId: String(partidoId),
+      local: Number(localInput.value),
+      visitante: Number(visitanteInput.value),
+      partido: `${partido.local} vs ${partido.visitante}`,
+      fecha: partido.fecha,
+      grupo: partido.grupo,
+      actualizado: new Date().toISOString()
+    };
+
+    await setDoc(
+      doc(db, "resultadosOficiales", String(partidoId)),
+      resultadoReal
+    );
+
+    await recalcularPuntos();
+
+    alert("Resultado oficial guardado y puntos actualizados ✅");
+  } catch (error) {
+    console.error("Error guardando resultado oficial:", error);
+    alert("Error al guardar. Revisá la consola con F12.");
+  }
 }
 
 async function recalcularPuntos() {
-  const resultadosSnap =
-    await getDocs(collection(db, "resultadosOficiales"));
+  const resultadosSnap = await getDocs(collection(db, "resultadosOficiales"));
 
   const resultados = {};
 
@@ -121,8 +117,7 @@ async function recalcularPuntos() {
     resultados[docResultado.id] = docResultado.data();
   });
 
-  const pronosticosSnap =
-    await getDocs(collection(db, "pronosticos"));
+  const pronosticosSnap = await getDocs(collection(db, "pronosticos"));
 
   const puntosPorCliente = {};
 
@@ -145,25 +140,27 @@ async function recalcularPuntos() {
   });
 
   for (const [clienteId, puntos] of Object.entries(puntosPorCliente)) {
-    await updateDoc(doc(db, "usuarios", clienteId), {
-      puntos
-    });
+    await setDoc(
+      doc(db, "usuarios", clienteId),
+      { puntos },
+      { merge: true }
+    );
   }
 }
 
 function calcularPuntos(pronostico, real) {
   if (
-    pronostico.local === real.local &&
-    pronostico.visitante === real.visitante
+    Number(pronostico.local) === Number(real.local) &&
+    Number(pronostico.visitante) === Number(real.visitante)
   ) {
     return 3;
   }
 
   const signoPronostico =
-    Math.sign(pronostico.local - pronostico.visitante);
+    Math.sign(Number(pronostico.local) - Number(pronostico.visitante));
 
   const signoReal =
-    Math.sign(real.local - real.visitante);
+    Math.sign(Number(real.local) - Number(real.visitante));
 
   if (signoPronostico === signoReal) {
     return 1;
@@ -171,13 +168,13 @@ function calcularPuntos(pronostico, real) {
 
   return 0;
 }
+
 async function cargarClientesAdmin() {
   if (!tablaClientesAdmin) return;
 
   tablaClientesAdmin.innerHTML = "";
 
-  const resultado =
-    await getDocs(collection(db, "usuarios"));
+  const resultado = await getDocs(collection(db, "usuarios"));
 
   resultado.forEach((docCliente) => {
     const cliente = docCliente.data();
@@ -195,5 +192,3 @@ async function cargarClientesAdmin() {
     tablaClientesAdmin.appendChild(fila);
   });
 }
-
-cargarClientesAdmin();
