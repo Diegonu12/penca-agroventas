@@ -102,9 +102,13 @@ async function guardarResultadoOficial(partidoId) {
     resultadoReal
   );
 
+  try {
   await recalcularPuntos();
-
   alert("Resultado oficial guardado y puntos actualizados ✅");
+} catch (error) {
+  console.error("Error recalculando puntos:", error);
+  alert("El resultado oficial se guardó, pero hubo un error al actualizar puntos.");
+}
 }
 
 async function recalcularPuntos() {
