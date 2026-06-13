@@ -11,8 +11,25 @@ import { partidos } from "./data.js";
 const listaResultadosAdmin = document.getElementById("listaResultadosAdmin");
 const tablaClientesAdmin = document.getElementById("tablaClientesAdmin");
 
-mostrarPanelAdmin();
-cargarClientesAdmin();
+let resultadosOficialesAdmin = {};
+
+iniciarAdmin();
+
+async function iniciarAdmin() {
+  await cargarResultadosOficialesAdmin();
+  mostrarPanelAdmin();
+  await cargarClientesAdmin();
+}
+
+async function cargarResultadosOficialesAdmin() {
+  resultadosOficialesAdmin = {};
+
+  const snap = await getDocs(collection(db, "resultadosOficiales"));
+
+  snap.forEach((docResultado) => {
+    resultadosOficialesAdmin[docResultado.id] = docResultado.data();
+  });
+}
 
 function mostrarPanelAdmin() {
   if (!listaResultadosAdmin) return;
@@ -20,6 +37,10 @@ function mostrarPanelAdmin() {
   listaResultadosAdmin.innerHTML = "";
 
   partidos.forEach((partido) => {
+
+    const resultadoGuardado =
+      resultadosOficialesAdmin[String(partido.id)] || {};
+
     const div = document.createElement("div");
     div.classList.add("partido");
 
@@ -33,9 +54,23 @@ function mostrarPanelAdmin() {
         </div>
 
         <div class="app-pronostico">
-          <input type="number" min="0" id="real-local-${partido.id}" placeholder="-">
+          <input
+            type="number"
+            min="0"
+            id="real-local-${partido.id}"
+            placeholder="-"
+            value="${resultadoGuardado.local ?? ""}"
+          >
+
           <strong>VS</strong>
-          <input type="number" min="0" id="real-visitante-${partido.id}" placeholder="-">
+
+          <input
+            type="number"
+            min="0"
+            id="real-visitante-${partido.id}"
+            placeholder="-"
+            value="${resultadoGuardado.visitante ?? ""}"
+          >
         </div>
 
         <div class="app-equipo">
@@ -69,15 +104,24 @@ function mostrarPanelAdmin() {
 
 async function guardarResultadoOficial(partidoId) {
   try {
-    const localInput = document.getElementById(`real-local-${partidoId}`);
-    const visitanteInput = document.getElementById(`real-visitante-${partidoId}`);
+    const localInput =
+      document.getElementById(`real-local-${partidoId}`);
 
-    if (localInput.value === "" || visitanteInput.value === "") {
+    const visitanteInput =
+      document.getElementById(`real-visitante-${partidoId}`);
+
+    if (
+      localInput.value === "" ||
+      visitanteInput.value === ""
+    ) {
       alert("Cargá ambos resultados.");
       return;
     }
 
-    const partido = partidos.find((p) => String(p.id) === String(partidoId));
+    const partido =
+      partidos.find(
+        (p) => String(p.id) === String(partidoId)
+      );
 
     if (!partido) {
       alert("No se encontró el partido.");
@@ -95,51 +139,88 @@ async function guardarResultadoOficial(partidoId) {
     };
 
     await setDoc(
-      doc(db, "resultadosOficiales", String(partidoId)),
+      doc(
+        db,
+        "resultadosOficiales",
+        String(partidoId)
+      ),
       resultadoReal
     );
 
     await recalcularPuntos();
 
-    alert("Resultado oficial guardado y puntos actualizados ✅");
+    alert(
+      "Resultado oficial guardado y puntos actualizados ✅"
+    );
+
   } catch (error) {
-    console.error("Error guardando resultado oficial:", error);
-    alert("Error al guardar. Revisá la consola con F12.");
+    console.error(
+      "Error guardando resultado oficial:",
+      error
+    );
+
+    alert(
+      "Error al guardar. Revisá la consola con F12."
+    );
   }
 }
 
 async function recalcularPuntos() {
-  const resultadosSnap = await getDocs(collection(db, "resultadosOficiales"));
+
+  const resultadosSnap =
+    await getDocs(
+      collection(db, "resultadosOficiales")
+    );
 
   const resultados = {};
 
   resultadosSnap.forEach((docResultado) => {
-    resultados[docResultado.id] = docResultado.data();
+    resultados[docResultado.id] =
+      docResultado.data();
   });
 
-  const pronosticosSnap = await getDocs(collection(db, "pronosticos"));
+  const pronosticosSnap =
+    await getDocs(
+      collection(db, "pronosticos")
+    );
 
   const puntosPorCliente = {};
 
   pronosticosSnap.forEach((docPronostico) => {
+
     const clienteId = docPronostico.id;
+
     const data = docPronostico.data();
-    const pronosticos = data.partidos || {};
+
+    const pronosticos =
+      data.partidos || {};
 
     let puntos = 0;
 
-    Object.entries(pronosticos).forEach(([partidoId, pronostico]) => {
-      const real = resultados[partidoId];
+    Object.entries(pronosticos)
+      .forEach(([partidoId, pronostico]) => {
 
-      if (!real) return;
+        const real =
+          resultados[partidoId];
 
-      puntos += calcularPuntos(pronostico, real);
-    });
+        if (!real) return;
 
-    puntosPorCliente[clienteId] = puntos;
+        puntos +=
+          calcularPuntos(
+            pronostico,
+            real
+          );
+      });
+
+    puntosPorCliente[clienteId] =
+      puntos;
   });
 
-  for (const [clienteId, puntos] of Object.entries(puntosPorCliente)) {
+  for (
+    const [clienteId, puntos]
+    of Object.entries(puntosPorCliente)
+  ) {
+
     await setDoc(
       doc(db, "usuarios", clienteId),
       { puntos },
@@ -148,21 +229,36 @@ async function recalcularPuntos() {
   }
 }
 
-function calcularPuntos(pronostico, real) {
+function calcularPuntos(
+  pronostico,
+  real
+) {
+
   if (
-    Number(pronostico.local) === Number(real.local) &&
-    Number(pronostico.visitante) === Number(real.visitante)
+    Number(pronostico.local) ===
+      Number(real.local) &&
+    Number(pronostico.visitante) ===
+      Number(real.visitante)
   ) {
     return 3;
   }
 
   const signoPronostico =
-    Math.sign(Number(pronostico.local) - Number(pronostico.visitante));
+    Math.sign(
+      Number(pronostico.local) -
+      Number(pronostico.visitante)
+    );
 
   const signoReal =
-    Math.sign(Number(real.local) - Number(real.visitante));
+    Math.sign(
+      Number(real.local) -
+      Number(real.visitante)
+    );
 
-  if (signoPronostico === signoReal) {
+  if (
+    signoPronostico ===
+    signoReal
+  ) {
     return 1;
   }
 
@@ -170,16 +266,24 @@ function calcularPuntos(pronostico, real) {
 }
 
 async function cargarClientesAdmin() {
-  if (!tablaClientesAdmin) return;
+
+  if (!tablaClientesAdmin)
+    return;
 
   tablaClientesAdmin.innerHTML = "";
 
-  const resultado = await getDocs(collection(db, "usuarios"));
+  const resultado =
+    await getDocs(
+      collection(db, "usuarios")
+    );
 
   resultado.forEach((docCliente) => {
-    const cliente = docCliente.data();
 
-    const fila = document.createElement("tr");
+    const cliente =
+      docCliente.data();
+
+    const fila =
+      document.createElement("tr");
 
     fila.innerHTML = `
       <td>${cliente.nombre || "-"}</td>
@@ -189,35 +293,64 @@ async function cargarClientesAdmin() {
       <td><strong>${cliente.puntos || 0}</strong></td>
     `;
 
-    tablaClientesAdmin.appendChild(fila);
+    tablaClientesAdmin
+      .appendChild(fila);
   });
 }
+
 async function auditarClientesSinPronosticos() {
-  const usuariosSnap = await getDocs(collection(db, "usuarios"));
-  const pronosticosSnap = await getDocs(collection(db, "pronosticos"));
 
-  const idsPronosticos = new Set();
+  const usuariosSnap =
+    await getDocs(
+      collection(db, "usuarios")
+    );
 
-  pronosticosSnap.forEach((docPronostico) => {
-    idsPronosticos.add(docPronostico.id);
-  });
+  const pronosticosSnap =
+    await getDocs(
+      collection(db, "pronosticos")
+    );
+
+  const idsPronosticos =
+    new Set();
+
+  pronosticosSnap.forEach(
+    (docPronostico) => {
+      idsPronosticos.add(
+        docPronostico.id
+      );
+    }
+  );
 
   const problemas = [];
 
-  usuariosSnap.forEach((docUsuario) => {
-    const usuario = docUsuario.data();
+  usuariosSnap.forEach(
+    (docUsuario) => {
 
-    if (!idsPronosticos.has(docUsuario.id)) {
-      problemas.push({
-        id: docUsuario.id,
-        nombre: usuario.nombre || "-",
-        telefono: usuario.telefono || "-",
-        email: usuario.email || "-"
-      });
+      const usuario =
+        docUsuario.data();
+
+      if (
+        !idsPronosticos.has(
+          docUsuario.id
+        )
+      ) {
+
+        problemas.push({
+          id: docUsuario.id,
+          nombre:
+            usuario.nombre || "-",
+          telefono:
+            usuario.telefono || "-",
+          email:
+            usuario.email || "-"
+        });
+      }
     }
-  });
+  );
 
   console.table(problemas);
 
-  alert(`Clientes sin pronósticos encontrados: ${problemas.length}. Revisá la consola con F12.`);
+  alert(
+    `Clientes sin pronósticos encontrados: ${problemas.length}. Revisá la consola con F12.`
+  );
 }
