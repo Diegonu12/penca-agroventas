@@ -192,3 +192,32 @@ async function cargarClientesAdmin() {
     tablaClientesAdmin.appendChild(fila);
   });
 }
+async function auditarClientesSinPronosticos() {
+  const usuariosSnap = await getDocs(collection(db, "usuarios"));
+  const pronosticosSnap = await getDocs(collection(db, "pronosticos"));
+
+  const idsPronosticos = new Set();
+
+  pronosticosSnap.forEach((docPronostico) => {
+    idsPronosticos.add(docPronostico.id);
+  });
+
+  const problemas = [];
+
+  usuariosSnap.forEach((docUsuario) => {
+    const usuario = docUsuario.data();
+
+    if (!idsPronosticos.has(docUsuario.id)) {
+      problemas.push({
+        id: docUsuario.id,
+        nombre: usuario.nombre || "-",
+        telefono: usuario.telefono || "-",
+        email: usuario.email || "-"
+      });
+    }
+  });
+
+  console.table(problemas);
+
+  alert(`Clientes sin pronósticos encontrados: ${problemas.length}. Revisá la consola con F12.`);
+}

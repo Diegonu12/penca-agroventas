@@ -6,7 +6,8 @@ import {
   doc,
   setDoc,
   query,
-  orderBy
+  orderBy,
+  getDoc
 } from "./firebase.js";
 
 const formIndex = document.getElementById("registro-cliente-index");
@@ -42,7 +43,7 @@ if (formIndex) {
     }
 
     try {
-      const idCliente = Date.now().toString();
+      const idCliente = telefono;
 
    
 

@@ -81,8 +81,12 @@ if (buscarPorCodigo) {
       return;
     }
 
-    clienteActivo = clienteEncontrado.id;
-    pronosticosActuales = {};
+   clienteActivo = clienteEncontrado.id;
+
+console.log("ID REAL LUCAS:", clienteActivo);
+console.log("DATOS CLIENTE:", clienteEncontrado);
+
+pronosticosActuales = {};
 
     if (clienteSeleccionadoTexto) {
       clienteSeleccionadoTexto.textContent =
