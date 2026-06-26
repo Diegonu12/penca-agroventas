@@ -3794,3 +3794,83 @@ footer {
   color: #9b1c1c;
   border: 1px solid #e74c3c;
 }
+/* BUSCADOR EN TABLA DE POSICIONES */
+
+.buscador-ranking {
+  margin: 20px 0;
+  padding: 18px;
+  border-radius: 18px;
+  background: #f8fafc;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.buscador-ranking label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+.buscador-ranking input {
+  width: 100%;
+  padding: 13px 15px;
+  border-radius: 12px;
+  border: 1px solid #d1d5db;
+  font-size: 15px;
+  outline: none;
+  margin-bottom: 12px;
+}
+
+.buscador-ranking input:focus {
+  border-color: #16a34a;
+  box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.15);
+}
+
+.resultado-busqueda-ranking p {
+  margin: 0;
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.cliente-buscado-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background: white;
+  border-radius: 14px;
+  padding: 13px 15px;
+  margin-top: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.cliente-buscado-card strong {
+  display: block;
+  color: #111827;
+  font-size: 15px;
+}
+
+.cliente-buscado-card span {
+  display: block;
+  font-size: 13px;
+  color: #6b7280;
+  margin-top: 3px;
+}
+
+.cliente-buscado-puntos {
+  font-weight: 800;
+  color: #16a34a;
+  white-space: nowrap;
+  font-size: 16px;
+}
+
+@media (max-width: 600px) {
+  .cliente-buscado-card {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .cliente-buscado-puntos {
+    font-size: 15px;
+  }
+}

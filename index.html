@@ -225,12 +225,27 @@
     </section>
 
     
-    <section class="card" id="ranking">
+   <section class="card" id="ranking">
 
   <h2>Tabla de posiciones</h2>
 
+  <div class="buscador-ranking">
+    <label for="buscadorClienteRanking">
+      Buscar cliente
+    </label>
 
-    <div class="tabla-scroll">
+    <input
+      type="text"
+      id="buscadorClienteRanking"
+      placeholder="Escribí nombre o apellido..."
+      autocomplete="off"
+    />
+
+    <div id="resultadoBuscadorRanking" class="resultado-busqueda-ranking">
+      
+
+
+  <div class="tabla-scroll">
 
   <table>
     <thead>
@@ -375,6 +390,95 @@
 </script>
 
 <script type="module" src="./index.js"></script>
+<script type="module" src="./index.js"></script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const inputBuscador = document.getElementById("buscadorClienteRanking");
+    const resultadoBusqueda = document.getElementById("resultadoBuscadorRanking");
+    const tablaPosiciones = document.getElementById("tablaPosiciones");
+
+    if (!inputBuscador || !resultadoBusqueda || !tablaPosiciones) return;
+
+    function normalizarTexto(texto) {
+      return texto
+        .toString()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .trim();
+    }
+
+    function obtenerClientesDesdeTabla() {
+      const filas = tablaPosiciones.querySelectorAll("tr");
+
+      return Array.from(filas)
+        .map((fila) => {
+          const celdas = fila.querySelectorAll("td");
+
+          return {
+            posicion: celdas[0]?.textContent.trim() || "",
+            nombre: celdas[1]?.textContent.trim() || "",
+            puntos: celdas[2]?.textContent.trim() || "0"
+          };
+        })
+        .filter((cliente) => cliente.nombre !== "");
+    }
+
+    function buscarCliente() {
+      const textoBuscado = normalizarTexto(inputBuscador.value);
+
+      if (textoBuscado.length < 2) {
+        resultadoBusqueda.innerHTML = `
+          <p>Escribí al menos 2 letras para buscar un cliente.</p>
+        `;
+        return;
+      }
+
+      const clientes = obtenerClientesDesdeTabla();
+
+      const resultados = clientes.filter((cliente) =>
+        normalizarTexto(cliente.nombre).includes(textoBuscado)
+      );
+
+      if (resultados.length === 0) {
+        resultadoBusqueda.innerHTML = `
+          <p>No se encontró ningún cliente con ese nombre.</p>
+        `;
+        return;
+      }
+
+      resultadoBusqueda.innerHTML = resultados
+        .slice(0, 6)
+        .map((cliente) => `
+          <div class="cliente-buscado-card">
+            <div>
+              <strong>${cliente.nombre}</strong>
+              <span>Posición #${cliente.posicion}</span>
+            </div>
+
+            <div class="cliente-buscado-puntos">
+              ${cliente.puntos} pts
+            </div>
+          </div>
+        `)
+        .join("");
+    }
+
+    inputBuscador.addEventListener("input", buscarCliente);
+
+    const observadorTabla = new MutationObserver(() => {
+      if (inputBuscador.value.trim() !== "") {
+        buscarCliente();
+      }
+    });
+
+    observadorTabla.observe(tablaPosiciones, {
+      childList: true,
+      subtree: true
+    });
+  });
+</script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
 <script>
