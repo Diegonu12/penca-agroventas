@@ -225,7 +225,7 @@
     </section>
 
     
-   <section class="card" id="ranking">
+   <section class="card" id="ra<section class="card" id="ranking">
 
   <h2>Tabla de posiciones</h2>
 
@@ -241,26 +241,26 @@
       autocomplete="off"
     />
 
-    <div id="resultadoBuscadorRanking" class="resultado-busqueda-ranking">
-      
-
+    <div
+      id="resultadoBuscadorRanking"
+      class="resultado-busqueda-ranking"
+    ></div>
+  </div>
 
   <div class="tabla-scroll">
 
-  <table>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>Cliente</th>
-        <th>Puntos</th>
-      </tr>
-    </thead>
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Cliente</th>
+          <th>Puntos</th>
+        </tr>
+      </thead>
 
-    <tbody id="tablaPosiciones"></tbody>
+      <tbody id="tablaPosiciones"></tbody>
+    </table>
 
-  </table>
-
-</div>
   </div>
 
 </section>
@@ -390,7 +390,6 @@
 </script>
 
 <script type="module" src="./index.js"></script>
-<script type="module" src="./index.js"></script>
 
 <script>
   document.addEventListener("DOMContentLoaded", () => {
@@ -428,10 +427,9 @@
     function buscarCliente() {
       const textoBuscado = normalizarTexto(inputBuscador.value);
 
+      resultadoBusqueda.innerHTML = "";
+
       if (textoBuscado.length < 2) {
-        resultadoBusqueda.innerHTML = `
-          <p>Escribí al menos 2 letras para buscar un cliente.</p>
-        `;
         return;
       }
 
