@@ -4137,7 +4137,7 @@ footer {
 
 @media (max-width: 640px) {
   .aviso-16avos {
-    width: 94%;
+    width: 98%;
     margin: 28px auto 22px;
   }
 
@@ -4565,5 +4565,104 @@ footer {
 
   .v3-sede {
     font-size: 10px;
+  }
+}
+/* MOBILE PROLIJO - CRUCES CONFIRMADOS */
+
+@media (max-width: 640px) {
+
+  .aviso-v3-card {
+    width: 94%;
+    margin: 0 auto;
+    padding: 22px 14px;
+    border-radius: 22px;
+    gap: 24px;
+  }
+
+  .aviso-v3-right {
+    width: 100%;
+  }
+
+  .aviso-v3-right h3 {
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 2.2px;
+    margin-bottom: 14px;
+  }
+
+  .v3-cruces {
+    width: 100%;
+    gap: 9px;
+  }
+
+  .v3-cruce {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 64px minmax(0, 1fr);
+    align-items: center;
+    gap: 6px 8px;
+    padding: 12px 10px;
+    border-radius: 14px;
+    min-height: 72px;
+    text-align: center;
+  }
+
+  .v3-cruce span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    font-size: 12px;
+    line-height: 1.15;
+    text-align: center;
+    white-space: normal;
+  }
+
+  .v3-derecha {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .v3-cruce img {
+    width: 20px;
+    height: 14px;
+    object-fit: cover;
+    border-radius: 3px;
+    flex-shrink: 0;
+  }
+
+  .v3-cruce strong {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    color: #ffcf33;
+    font-size: 12px;
+    line-height: 1.1;
+    white-space: nowrap;
+  }
+
+  .v3-cruce strong small {
+    font-size: 10px;
+    color: rgba(255, 255, 255, 0.78);
+    font-weight: 800;
+  }
+
+  .v3-sede {
+    grid-column: 1 / -1;
+    margin-top: 3px;
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.2;
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 700;
+  }
+
+  .v3-cruces-extra {
+    margin-top: 12px;
+    padding-top: 12px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.35;
   }
 }
