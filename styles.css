@@ -3874,3 +3874,476 @@ footer {
     font-size: 15px;
   }
 }
+.partido-pendiente {
+  margin-top: 10px;
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #fff7ed;
+  color: #9a3412;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.acierto-diferencia {
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid rgba(4, 120, 87, 0.25);
+}
+
+.acierto-empate {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border: 1px solid rgba(29, 78, 216, 0.25);
+}
+/* AVISO 16AVOS VERSION 3 */
+
+.aviso-16avos {
+  width: min(1280px, 96%);
+  margin: 38px auto 28px;
+}
+
+.aviso-v3-card {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(380px, 0.75fr);
+  gap: 42px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 28px;
+  padding: 42px;
+  background:
+    radial-gradient(circle at 82% 20%, rgba(242, 183, 5, 0.13), transparent 28%),
+    linear-gradient(135deg, #001d14 0%, #002719 55%, #003322 100%);
+  border: 1px solid rgba(242, 183, 5, 0.25);
+  box-shadow: 0 26px 60px rgba(0, 35, 20, 0.25);
+}
+
+.aviso-v3-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-top: 4px solid #f2b705;
+  pointer-events: none;
+}
+
+.aviso-v3-left,
+.aviso-v3-right {
+  position: relative;
+  z-index: 1;
+}
+
+.aviso-v3-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  border-radius: 999px;
+  color: #ffcf33;
+  border: 1px solid rgba(242, 183, 5, 0.35);
+  background: rgba(242, 183, 5, 0.08);
+  font-size: 13px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1.4px;
+  margin-bottom: 24px;
+}
+
+.aviso-v3-left h2 {
+  margin: 0;
+  max-width: 560px;
+  color: white;
+  font-size: clamp(38px, 4.4vw, 66px);
+  line-height: 1.02;
+  letter-spacing: -1.2px;
+  font-weight: 800;
+}
+
+.aviso-v3-left p {
+  margin: 20px 0 0;
+  max-width: 560px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 18px;
+  line-height: 1.55;
+}
+
+.aviso-v3-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
+  margin-top: 34px;
+}
+
+.aviso-v3-stats div {
+  padding-right: 34px;
+  margin-right: 34px;
+  border-right: 1px solid rgba(255, 255, 255, 0.14);
+}
+
+.aviso-v3-stats div:last-child {
+  border-right: none;
+  margin-right: 0;
+}
+
+.aviso-v3-stats strong {
+  display: block;
+  color: #ffcf33;
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.aviso-v3-stats span {
+  display: block;
+  margin-top: 6px;
+  color: rgba(255, 255, 255, 0.52);
+  font-size: 14px;
+}
+
+.aviso-v3-accion {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 38px;
+}
+
+.btn-aviso-v3 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 54px;
+  padding: 14px 38px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #f2b705, #ffcf33);
+  color: #002719;
+  font-size: 17px;
+  font-weight: 900;
+  text-decoration: none;
+  box-shadow: 0 14px 28px rgba(242, 183, 5, 0.22);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-aviso-v3:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 34px rgba(242, 183, 5, 0.28);
+}
+
+.aviso-v3-accion span {
+  color: rgba(255, 255, 255, 0.46);
+  font-size: 14px;
+}
+
+.aviso-v3-right h3 {
+  margin: 2px 0 14px;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+}
+
+.v3-cruces {
+  display: grid;
+  gap: 10px;
+}
+
+.v3-cruce {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 14px;
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.v3-cruce span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  color: white;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.v3-cruce img {
+  width: 24px;
+  height: 17px;
+  object-fit: cover;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.v3-cruce strong {
+  color: #ffcf33;
+  font-size: 13px;
+  font-weight: 900;
+  white-space: nowrap;
+}
+
+.v3-derecha {
+  justify-content: flex-end;
+}
+
+.v3-cruces-extra {
+  margin: 15px 0 0;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(255, 255, 255, 0.42);
+  font-size: 14px;
+  text-align: center;
+}
+
+.aviso-v3-footer {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  margin: 36px -42px 0;
+  padding: 20px 42px 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.075);
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.aviso-v3-footer span {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 14px;
+}
+
+/* TABLET */
+
+@media (max-width: 1000px) {
+  .aviso-v3-card {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding: 34px 28px 0;
+  }
+
+  .aviso-v3-left h2 {
+    max-width: 100%;
+  }
+
+  .aviso-v3-left p {
+    max-width: 100%;
+  }
+
+  .aviso-v3-footer {
+    margin: 28px -28px 0;
+    padding: 18px 28px 22px;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 640px) {
+  .aviso-16avos {
+    width: 94%;
+    margin: 28px auto 22px;
+  }
+
+  .aviso-v3-card {
+    border-radius: 22px;
+    padding: 24px 18px 0;
+    gap: 26px;
+  }
+
+  .aviso-v3-tag {
+    font-size: 11px;
+    padding: 7px 14px;
+    margin-bottom: 18px;
+  }
+
+  .aviso-v3-left h2 {
+    font-size: clamp(30px, 10vw, 44px);
+    line-height: 1.08;
+  }
+
+  .aviso-v3-left p {
+    font-size: 15px;
+    margin-top: 16px;
+  }
+
+  .aviso-v3-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .aviso-v3-stats div {
+    padding-right: 0;
+    margin-right: 0;
+    border-right: none;
+    text-align: center;
+  }
+
+  .aviso-v3-stats strong {
+    font-size: 24px;
+  }
+
+  .aviso-v3-stats span {
+    font-size: 12px;
+  }
+
+  .aviso-v3-accion {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-top: 26px;
+  }
+
+  .btn-aviso-v3 {
+    width: 100%;
+    min-height: 52px;
+    font-size: 16px;
+  }
+
+  .aviso-v3-accion span {
+    text-align: center;
+    font-size: 13px;
+  }
+
+  .aviso-v3-right h3 {
+    text-align: center;
+    font-size: 12px;
+  }
+
+  .v3-cruce {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 7px;
+  }
+
+  .v3-cruce span,
+  .v3-derecha {
+    justify-content: center;
+  }
+
+  .v3-cruces-extra {
+    font-size: 13px;
+  }
+
+  .aviso-v3-footer {
+    flex-direction: column;
+    gap: 8px;
+    margin: 24px -18px 0;
+    padding: 16px 18px 20px;
+    text-align: center;
+  }
+
+  .aviso-v3-footer span {
+    font-size: 13px;
+  }
+}
+
+.btn-aviso-16avos {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  padding: 13px 22px;
+  border-radius: 999px;
+  background: white;
+  color: #064e3b;
+  font-weight: 900;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn-aviso-16avos:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+}
+
+@media (max-width: 700px) {
+  .aviso-16avos-contenido {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .btn-aviso-16avos {
+    width: 100%;
+  }
+}
+/* GANADORES + RANKING EN HERO */
+
+.premios-hero-card {
+  max-width: 560px;
+}
+
+.premios-hero-card h3 {
+  text-align: center;
+  color: #f2b705;
+  margin-bottom: 18px;
+}
+
+.ganadores-lista {
+  display: grid;
+  gap: 10px;
+}
+
+.ganador-item {
+  padding: 13px 15px;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #064e3b;
+  border-left: 5px solid #f2b705;
+}
+
+.ganador-etapa {
+  display: block;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #0f5132;
+  margin-bottom: 3px;
+}
+
+.ganador-nombre {
+  display: block;
+  font-size: 18px;
+  font-weight: 900;
+  color: #003c25;
+}
+
+.ganador-final {
+  background: linear-gradient(135deg, #f2b705, #ffcf33);
+  border-left: 5px solid white;
+}
+
+.ganador-final .ganador-etapa,
+.ganador-final .ganador-nombre {
+  color: #003c25;
+}
+
+.ranking-hero-premios {
+  margin-top: 16px;
+  padding: 15px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.ranking-hero-premios h4 {
+  margin-bottom: 8px;
+  color: #f2b705;
+  text-align: center;
+}
+
+.ranking-hero-premios p {
+  margin: 5px 0;
+  color: white;
+  font-weight: 700;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .premios-hero-card {
+    max-width: 100%;
+  }
+
+  .ganador-nombre {
+    font-size: 16px;
+  }
+}

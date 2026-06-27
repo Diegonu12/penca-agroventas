@@ -20,26 +20,44 @@ const clienteSeleccionadoTexto = document.getElementById("clienteSeleccionadoTex
 let clienteActivo = null;
 let clientesRegistrados = [];
 let pronosticosActuales = {};
-let filtroActual = "todos";
+let pronosticosGuardadosOriginales = {};
+let filtroActual = obtenerFiltroInicialDesdeUrl();
 let resultadosOficiales = {};
+function obtenerFiltroInicialDesdeUrl() {
+  const parametros = new URLSearchParams(window.location.search);
+  const filtro = parametros.get("filtro");
+
+  if (filtro === "16avos") {
+    return "16avos de final";
+  }
+
+  return "todos";
+}
+function marcarBotonFiltroActivo() {
+  botonesFiltro.forEach((boton) => {
+    boton.classList.remove("activo");
+
+    if (boton.dataset.filtro === filtroActual) {
+      boton.classList.add("activo");
+    }
+  });
+}
 
 iniciarFixtureVendedor();
 
 async function iniciarFixtureVendedor() {
   await cargarClientesEnSelect();
   await cargarResultadosOficiales();
+  marcarBotonFiltroActivo();
   mostrarFixture();
 }
 
 async function cargarClientesEnSelect() {
-
   clientesRegistrados = [];
 
-  const resultado =
-    await getDocs(collection(db, "usuarios"));
+  const resultado = await getDocs(collection(db, "usuarios"));
 
   resultado.forEach((docCliente) => {
-
     const cliente = docCliente.data();
 
     clientesRegistrados.push({
@@ -48,10 +66,9 @@ async function cargarClientesEnSelect() {
       telefono: cliente.telefono || "",
       email: cliente.email || ""
     });
-
   });
-
 }
+
 if (buscarPorCodigo) {
   buscarPorCodigo.addEventListener("click", async () => {
     const codigo = codigoCliente.value.trim();
@@ -81,12 +98,9 @@ if (buscarPorCodigo) {
       return;
     }
 
-   clienteActivo = clienteEncontrado.id;
-
-console.log("ID REAL LUCAS:", clienteActivo);
-console.log("DATOS CLIENTE:", clienteEncontrado);
-
-pronosticosActuales = {};
+    clienteActivo = clienteEncontrado.id;
+    pronosticosActuales = {};
+    pronosticosGuardadosOriginales = {};
 
     if (clienteSeleccionadoTexto) {
       clienteSeleccionadoTexto.textContent =
@@ -99,27 +113,19 @@ pronosticosActuales = {};
 }
 
 async function cargarPronosticosGuardados() {
-
   if (!clienteActivo) return;
 
-  
-
-  const ref =
-    doc(db, "pronosticos", clienteActivo);  
-
-  const snap =
-    await getDoc(ref);
+  const ref = doc(db, "pronosticos", clienteActivo);
+  const snap = await getDoc(ref);
 
   if (snap.exists()) {
+    const datos = snap.data();
 
-    const datos =
-      snap.data();
+    pronosticosActuales = datos.partidos || {};
 
-    pronosticosActuales =
-      datos.partidos || {};
-
+    pronosticosGuardadosOriginales =
+      JSON.parse(JSON.stringify(pronosticosActuales));
   }
-
 }
 
 function obtenerPartidosFiltrados() {
@@ -132,12 +138,23 @@ function obtenerPartidosFiltrados() {
     );
   }
 
+  const grupos = [
+    "A", "B", "C", "D", "E", "F",
+    "G", "H", "I", "J", "K", "L"
+  ];
+
+  if (grupos.includes(filtroActual)) {
+    return partidos.filter((partido) =>
+      partido.grupo.includes(`GRUPO ${filtroActual}`)
+    );
+  }
+
   return partidos.filter((partido) =>
-    partido.grupo.includes(`GRUPO ${filtroActual}`)
+    partido.grupo === filtroActual
   );
 }
-function partidoYaComenzo(partido) {
 
+function partidoYaComenzo(partido) {
   const partes = partido.fecha.split(" - ");
 
   if (partes.length < 2) return false;
@@ -151,8 +168,34 @@ function partidoYaComenzo(partido) {
     new Date(`${anio}-${mes}-${dia}T${hora}:00`);
 
   return new Date() >= fechaPartido;
-
 }
+
+function partidoTieneEquipoPendiente(partido) {
+  const textoLocal = partido.local.toLowerCase();
+  const textoVisitante = partido.visitante.toLowerCase();
+
+  return (
+    textoLocal.includes("confirmar") ||
+    textoVisitante.includes("confirmar") ||
+    textoLocal.includes("grupo") ||
+    textoVisitante.includes("grupo") ||
+    textoLocal.includes("ganador") ||
+    textoVisitante.includes("ganador") ||
+    textoLocal.includes("perdedor") ||
+    textoVisitante.includes("perdedor")
+  );
+}
+
+function esFaseFinal(partido) {
+  return (
+    partido.grupo === "16avos de final" ||
+    partido.grupo === "Octavos de final" ||
+    partido.grupo === "Cuartos de final" ||
+    partido.grupo === "Semifinal" ||
+    partido.grupo === "Final"
+  );
+}
+
 async function cargarResultadosOficiales() {
   resultadosOficiales = {};
 
@@ -163,24 +206,77 @@ async function cargarResultadosOficiales() {
   });
 }
 
-function calcularEstadoPronostico(pronostico, real) {
+function calcularEstadoPronostico(pronostico, real, partido) {
   if (!pronostico || !real) return null;
 
-  if (
-    Number(pronostico.local) === Number(real.local) &&
-    Number(pronostico.visitante) === Number(real.visitante)
-  ) {
+  const pronosticoLocal = Number(pronostico.local);
+  const pronosticoVisitante = Number(pronostico.visitante);
+  const realLocal = Number(real.local);
+  const realVisitante = Number(real.visitante);
+
+  const diferenciaPronostico =
+    pronosticoLocal - pronosticoVisitante;
+
+  const diferenciaReal =
+    realLocal - realVisitante;
+
+  const signoPronostico = Math.sign(diferenciaPronostico);
+  const signoReal = Math.sign(diferenciaReal);
+
+  const resultadoExacto =
+    pronosticoLocal === realLocal &&
+    pronosticoVisitante === realVisitante;
+
+  if (esFaseFinal(partido)) {
+    if (resultadoExacto) {
+      return {
+        texto: "🎯 Resultado exacto +8 puntos",
+        clase: "acierto-exacto"
+      };
+    }
+
+    if (
+      diferenciaReal !== 0 &&
+      diferenciaPronostico === diferenciaReal
+    ) {
+      return {
+        texto: "✅ Acertaste diferencia de goles +5 puntos",
+        clase: "acierto-diferencia"
+      };
+    }
+
+    if (
+      signoReal !== 0 &&
+      signoPronostico === signoReal
+    ) {
+      return {
+        texto: "✅ Acertaste ganador +3 puntos",
+        clase: "acierto-ganador"
+      };
+    }
+
+    if (
+      diferenciaReal === 0 &&
+      diferenciaPronostico === 0
+    ) {
+      return {
+        texto: "🤝 Acertaste empate +1 punto",
+        clase: "acierto-empate"
+      };
+    }
+
+    return {
+      texto: "❌ Sin puntos",
+      clase: "sin-puntos"
+    };
+  }
+
+  if (resultadoExacto) {
     return {
       texto: "🎯 Acierto exacto +3 puntos",
       clase: "acierto-exacto"
     };
   }
-
-  const signoPronostico =
-    Math.sign(Number(pronostico.local) - Number(pronostico.visitante));
-
-  const signoReal =
-    Math.sign(Number(real.local) - Number(real.visitante));
 
   if (signoPronostico === signoReal) {
     return {
@@ -210,10 +306,15 @@ function mostrarFixture() {
   partidosFiltrados.forEach((partido) => {
     const pronostico = pronosticosActuales[partido.id] || {};
     const resultadoOficial = resultadosOficiales[String(partido.id)];
+
     const estadoPronostico = calcularEstadoPronostico(
-          pronostico,
-          resultadoOficial
-);
+      pronostico,
+      resultadoOficial,
+      partido
+    );
+
+    const pronosticoBloqueado =
+      partidoYaComenzo(partido) || partidoTieneEquipoPendiente(partido);
 
     const div = document.createElement("div");
     div.classList.add("partido");
@@ -232,29 +333,30 @@ function mostrarFixture() {
 
         <div class="app-pronostico">
 
-  <input
-    type="number"
-    class="input-pronostico"
-    min="0"
-    id="local-${partido.id}"
-    value="${pronostico.local ?? ""}"
-    placeholder="-"
-    ${partidoYaComenzo(partido) ? "disabled" : ""}
-  >
+          <input
+            type="number"
+            class="input-pronostico"
+            min="0"
+            id="local-${partido.id}"
+            value="${pronostico.local ?? ""}"
+            placeholder="-"
+            ${pronosticoBloqueado ? "disabled" : ""}
+          >
 
-  <strong>VS</strong>
+          <strong>VS</strong>
 
-  <input
-    type="number"
-    class="input-pronostico"
-    min="0"
-    id="visitante-${partido.id}"
-    value="${pronostico.visitante ?? ""}"
-    placeholder="-"
-    ${partidoYaComenzo(partido) ? "disabled" : ""}
-  >
+          <input
+            type="number"
+            class="input-pronostico"
+            min="0"
+            id="visitante-${partido.id}"
+            value="${pronostico.visitante ?? ""}"
+            placeholder="-"
+            ${pronosticoBloqueado ? "disabled" : ""}
+          >
 
-</div>
+        </div>
+
         <div class="app-equipo">
           <img src="${partido.banderaVisitante}" alt="${partido.visitante}">
           <span>${partido.visitante}</span>
@@ -263,21 +365,27 @@ function mostrarFixture() {
       </div>
 
       <div class="app-card-footer">
-  ${partido.grupo}
-</div>
+        ${partido.grupo}
+      </div>
 
-${resultadoOficial ? `
-  <div class="resultado-oficial">
-    <strong>Resultado oficial:</strong>
-    ${partido.local} ${resultadoOficial.local} - ${resultadoOficial.visitante} ${partido.visitante}
-  </div>
+      ${partidoTieneEquipoPendiente(partido) ? `
+        <div class="partido-pendiente">
+          Partido pendiente de confirmación. Se habilitará cuando estén definidos los equipos.
+        </div>
+      ` : ""}
 
-  ${estadoPronostico ? `
-    <div class="estado-pronostico ${estadoPronostico.clase}">
-      ${estadoPronostico.texto}
-    </div>
-  ` : ""}
-` : ""}
+      ${resultadoOficial ? `
+        <div class="resultado-oficial">
+          <strong>Resultado oficial:</strong>
+          ${partido.local} ${resultadoOficial.local} - ${resultadoOficial.visitante} ${partido.visitante}
+        </div>
+
+        ${estadoPronostico ? `
+          <div class="estado-pronostico ${estadoPronostico.clase}">
+            ${estadoPronostico.texto}
+          </div>
+        ` : ""}
+      ` : ""}
     `;
 
     listaFixture.appendChild(div);
@@ -301,6 +409,8 @@ function guardarValoresTemporales() {
   const inputs = document.querySelectorAll("#listaFixture input");
 
   inputs.forEach((input) => {
+    if (input.disabled) return;
+
     const partes = input.id.split("-");
     const tipo = partes[0];
     const idPartido = partes[1];
@@ -315,33 +425,46 @@ function guardarValoresTemporales() {
   });
 }
 
+function pronosticoCompleto(datos) {
+  return (
+    datos &&
+    datos.local !== undefined &&
+    datos.visitante !== undefined
+  );
+}
+
 if (guardarPronosticos) {
   guardarPronosticos.addEventListener("click", async () => {
+    if (!clienteActivo) {
+      alert("Primero seleccioná un cliente.");
+      return;
+    }
 
-  console.log("Cliente activo:", clienteActivo);
+    guardarValoresTemporales();
 
-  if (!clienteActivo) {
-    alert("Primero seleccioná un cliente.");
-    return;
-  }
+    const pronosticos = {};
 
-  guardarValoresTemporales();
-
-  const pronosticos = {};
-
-  Object.entries(pronosticosActuales).forEach(([idPartido, datos]) => {
-
-    if (
-      datos.local !== undefined &&
-      datos.visitante !== undefined
-    ) {
-
+    Object.entries(pronosticosActuales).forEach(([idPartido, datos]) => {
       const partido = partidos.find(
         (p) => String(p.id) === String(idPartido)
       );
 
-      if (partido) {
+      if (!partido) return;
 
+      const partidoBloqueado =
+        partidoYaComenzo(partido) || partidoTieneEquipoPendiente(partido);
+
+      const original = pronosticosGuardadosOriginales[idPartido];
+
+      if (partidoBloqueado) {
+        if (pronosticoCompleto(original)) {
+          pronosticos[idPartido] = original;
+        }
+
+        return;
+      }
+
+      if (pronosticoCompleto(datos)) {
         pronosticos[idPartido] = {
           local: Number(datos.local),
           visitante: Number(datos.visitante),
@@ -349,37 +472,30 @@ if (guardarPronosticos) {
           grupo: partido.grupo,
           fecha: partido.fecha
         };
-
       }
+    });
 
+    try {
+      await setDoc(
+        doc(db, "pronosticos", clienteActivo),
+        {
+          clienteId: clienteActivo,
+          partidos: pronosticos,
+          actualizado: new Date().toISOString()
+        }
+      );
+
+      pronosticosGuardadosOriginales =
+        JSON.parse(JSON.stringify(pronosticos));
+
+      pronosticosActuales =
+        JSON.parse(JSON.stringify(pronosticos));
+
+      alert("Pronósticos guardados correctamente ✅");
+
+    } catch (error) {
+      console.error("ERROR FIREBASE:", error);
+      alert("Error Firebase: " + error.message);
     }
-
   });
-
-  console.log("Pronósticos:", pronosticos);
-
-  try {
-
-    alert("Estoy por guardar en Firebase");
-
-await setDoc(
-  doc(db, "pronosticos", clienteActivo),
-  {
-    clienteId: clienteActivo,
-    partidos: pronosticos,
-    actualizado: new Date().toISOString()
-  }
-);
-
-alert("Pronósticos guardados correctamente ✅");
-
-} catch (error) {
-
-  console.error("ERROR FIREBASE:", error);
-
-  alert("Error Firebase: " + error.message);
-
-}  
-
-});
 }

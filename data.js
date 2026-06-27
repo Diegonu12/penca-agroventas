@@ -201,4 +201,276 @@ function crearPartidos() {
   });
 }
 
-export const partidos = crearPartidos();
+const banderaPlaceholder =
+  "https://placehold.co/80x50/e5e7eb/064e3b?text=TBD";
+
+function equipoTemporal(nombre) {
+  return {
+    nombre,
+    bandera: banderaPlaceholder
+  };
+}
+
+const faseFinalBase = [
+    // =========================
+  // 16AVOS DE FINAL
+  // =========================
+
+  {
+    id: 73,
+    fecha: "28/06/2026 - 16:00",
+    grupo: "16avos de final",
+    local: equipos.sudafrica,
+    visitante: equipos.canada
+  },
+  {
+    id: 74,
+    fecha: "29/06/2026 - 17:30",
+    grupo: "16avos de final",
+    local: equipos.alemania,
+    visitante: equipos.paraguay
+  },
+  {
+    id: 75,
+    fecha: "29/06/2026 - 22:00",
+    grupo: "16avos de final",
+    local: equipos.paisesBajos,
+    visitante: equipos.marruecos
+  },
+  {
+    id: 76,
+    fecha: "29/06/2026 - 14:00",
+    grupo: "16avos de final",
+    local: equipos.brasil,
+    visitante: equipos.japon
+  },
+  {
+    id: 77,
+    fecha: "30/06/2026 - 18:00",
+    grupo: "16avos de final",
+    local: equipos.francia,
+    visitante: equipos.suecia
+  },
+  {
+    id: 78,
+    fecha: "30/06/2026 - 14:00",
+    grupo: "16avos de final",
+    local: equipos.costaMarfil,
+    visitante: equipos.noruega
+  },
+  {
+    id: 79,
+    fecha: "30/06/2026 - 22:00",
+    grupo: "16avos de final",
+    local: equipos.mexico,
+    visitante: equipoTemporal("Rival por confirmar")
+  },
+  {
+    id: 80,
+    fecha: "01/07/2026 - 13:00",
+    grupo: "16avos de final",
+    local: equipoTemporal("1° Grupo L"),
+    visitante: equipoTemporal("Rival por confirmar")
+  },
+  {
+    id: 81,
+    fecha: "01/07/2026 - 21:00",
+    grupo: "16avos de final",
+    local: equipos.usa,
+    visitante: equipos.bosnia
+  },
+  {
+    id: 82,
+    fecha: "01/07/2026 - 17:00",
+    grupo: "16avos de final",
+    local: equipos.belgica,
+    visitante: equipoTemporal("Rival por confirmar")
+  },
+  {
+    id: 83,
+    fecha: "02/07/2026 - 20:00",
+    grupo: "16avos de final",
+    local: equipoTemporal("2° Grupo K"),
+    visitante: equipoTemporal("2° Grupo L")
+  },
+  {
+    id: 84,
+    fecha: "02/07/2026 - 16:00",
+    grupo: "16avos de final",
+    local: equipos.espana,
+    visitante: equipoTemporal("2° Grupo J")
+  },
+  {
+    id: 85,
+    fecha: "03/07/2026 - 00:00",
+    grupo: "16avos de final",
+    local: equipos.suiza,
+    visitante: equipoTemporal("Rival por confirmar")
+  },
+  {
+    id: 86,
+    fecha: "03/07/2026 - 19:00",
+    grupo: "16avos de final",
+    local: equipos.argentina,
+    visitante: equipos.caboVerde
+  },
+  {
+    id: 87,
+    fecha: "03/07/2026 - 22:30",
+    grupo: "16avos de final",
+    local: equipoTemporal("1° Grupo K"),
+    visitante: equipoTemporal("Rival por confirmar")
+  },
+  {
+    id: 88,
+    fecha: "03/07/2026 - 15:00",
+    grupo: "16avos de final",
+    local: equipos.australia,
+    visitante: equipos.egipto
+  },
+
+  // =========================
+  // OCTAVOS DE FINAL
+  // =========================
+
+  {
+    id: 89,
+    fecha: "04/07/2026 - 18:00",
+    grupo: "Octavos de final",
+    local: equipoTemporal("Ganador P74"),
+    visitante: equipoTemporal("Ganador P77")
+  },
+  {
+    id: 90,
+    fecha: "04/07/2026 - 14:00",
+    grupo: "Octavos de final",
+    local: equipoTemporal("Ganador P73"),
+    visitante: equipoTemporal("Ganador P75")
+  },
+  {
+    id: 91,
+    fecha: "05/07/2026 - 17:00",
+    grupo: "Octavos de final",
+    local: equipoTemporal("Ganador P76"),
+    visitante: equipoTemporal("Ganador P78")
+  },
+  {
+    id: 92,
+    fecha: "05/07/2026 - 21:00",
+    grupo: "Octavos de final",
+    local: equipoTemporal("Ganador P79"),
+    visitante: equipoTemporal("Ganador P80")
+  },
+  {
+    id: 93,
+    fecha: "06/07/2026 - 16:00",
+    grupo: "Octavos de final",
+    local: equipoTemporal("Ganador P83"),
+    visitante: equipoTemporal("Ganador P84")
+  },
+  {
+    id: 94,
+    fecha: "06/07/2026 - 21:00",
+    grupo: "Octavos de final",
+    local: equipoTemporal("Ganador P81"),
+    visitante: equipoTemporal("Ganador P82")
+  },
+  {
+    id: 95,
+    fecha: "07/07/2026 - 13:00",
+    grupo: "Octavos de final",
+    local: equipoTemporal("Ganador P86"),
+    visitante: equipoTemporal("Ganador P88")
+  },
+  {
+    id: 96,
+    fecha: "07/07/2026 - 17:00",
+    grupo: "Octavos de final",
+    local: equipoTemporal("Ganador P85"),
+    visitante: equipoTemporal("Ganador P87")
+  },
+
+  // =========================
+  // CUARTOS DE FINAL
+  // =========================
+
+  {
+    id: 97,
+    fecha: "09/07/2026 - 17:00",
+    grupo: "Cuartos de final",
+    local: equipoTemporal("Ganador P89"),
+    visitante: equipoTemporal("Ganador P90")
+  },
+  {
+    id: 98,
+    fecha: "10/07/2026 - 16:00",
+    grupo: "Cuartos de final",
+    local: equipoTemporal("Ganador P93"),
+    visitante: equipoTemporal("Ganador P94")
+  },
+  {
+    id: 99,
+    fecha: "11/07/2026 - 18:00",
+    grupo: "Cuartos de final",
+    local: equipoTemporal("Ganador P91"),
+    visitante: equipoTemporal("Ganador P92")
+  },
+  {
+    id: 100,
+    fecha: "11/07/2026 - 22:00",
+    grupo: "Cuartos de final",
+    local: equipoTemporal("Ganador P95"),
+    visitante: equipoTemporal("Ganador P96")
+  },
+
+  // =========================
+  // SEMIFINALES
+  // =========================
+
+  {
+    id: 101,
+    fecha: "14/07/2026 - 16:00",
+    grupo: "Semifinal",
+    local: equipoTemporal("Ganador P97"),
+    visitante: equipoTemporal("Ganador P98")
+  },
+  {
+    id: 102,
+    fecha: "15/07/2026 - 16:00",
+    grupo: "Semifinal",
+    local: equipoTemporal("Ganador P99"),
+    visitante: equipoTemporal("Ganador P100")
+  },
+
+  // =========================
+  // GRAN FINAL
+  // =========================
+
+  {
+    id: 104,
+    fecha: "19/07/2026 - 16:00",
+    grupo: "Final",
+    local: equipoTemporal("Ganador P101"),
+    visitante: equipoTemporal("Ganador P102")
+  }
+];
+
+function crearPartidosFaseFinal() {
+  return faseFinalBase.map((partido) => {
+    return {
+      id: partido.id,
+      fecha: partido.fecha,
+      grupo: partido.grupo,
+      local: partido.local.nombre,
+      visitante: partido.visitante.nombre,
+      banderaLocal: partido.local.bandera,
+      banderaVisitante: partido.visitante.bandera,
+      resultadoReal: null
+    };
+  });
+}
+
+export const partidos = [
+  ...crearPartidos(),
+  ...crearPartidosFaseFinal()
+];

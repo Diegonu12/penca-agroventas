@@ -3,524 +3,608 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Penca Mundial 2026 | Agroventas</title>
+
   <link rel="stylesheet" href="styles.css" />
+
   <link
-  rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
-/>
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"
+  />
 </head>
+
 <body>
 
   <header class="header">
-  <nav class="navbar">
-  <img src="assets/logo.png" alt="Logo Agroventas" class="nav-logo">
 
-  <button class="menu-icono" id="menuBtn" aria-label="Abrir menú">
-    <span></span>
-    <span></span>
-    <span></span>
-  </button>
+    <nav class="navbar">
+      <img src="assets/logo.png" alt="Logo Agroventas" class="nav-logo">
 
- <ul class="nav-list" id="navList">
-  <li><a href="#registro">Registro</a></li>
-  <li><a href="#ranking">Ranking</a></li>
-  <li><a href="fixture.html">Fixture</a></li>
-</ul>
+      <button class="menu-icono" id="menuBtn" aria-label="Abrir menú">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
 
-<a href="#registro" class="btn-nav">¡Participá!</a>
-</nav>
-  <section class="hero">
-    <div class="hero-texto">
+      <ul class="nav-list" id="navList">
+        <li><a href="#ranking">Ranking</a></li>
+        <li><a href="fixture.html">Fixture</a></li>
+      </ul>
 
-      <h1>Viví la pasión del Mundial 2026</h1>
+      <a href="fixture.html?filtro=16avos" class="btn-nav">¡Pronosticá!</a>
+    </nav>
+
+    <section class="hero">
+
+      <div class="hero-texto">
+
+        <h1>Viví la pasión del Mundial 2026</h1>
+
+        <p>
+          Una penca exclusiva para clientes y amigos de Agroventas.
+          Pronosticá los partidos, sumá puntos y competí por premios especiales.
+        </p>
+
+      </div>
+
+      <div class="hero-visual">
+
+        <div class="mockup-card premios-hero-card">
+
+  <h3>Ganadores de premios exclusivos</h3>
+
+  <div class="ganadores-lista">
+
+    <div class="ganador-item">
+      <span class="ganador-etapa">Ganador fase de grupos</span>
+      <strong class="ganador-nombre">Por definir</strong>
+    </div>
+
+    <div class="ganador-item">
+      <span class="ganador-etapa">Ganador octavos de final</span>
+      <strong class="ganador-nombre">Por definir</strong>
+    </div>
+
+    <div class="ganador-item">
+      <span class="ganador-etapa">Ganador cuartos de final</span>
+      <strong class="ganador-nombre">Por definir</strong>
+    </div>
+
+    <div class="ganador-item ganador-final">
+      <span class="ganador-etapa">GANADOR FINAL</span>
+      <strong class="ganador-nombre">Por definir</strong>
+    </div>
+
+
+
+
+</div>
+          <div class="mini-ranking">
+            <h4>Ranking Actual</h4>
+
+            <div id="rankingHero">
+              <p>Cargando ranking...</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </header>
+
+  <main>
+<section class="aviso-16avos aviso-eliminatoria-v3">
+
+  <div class="aviso-v3-card">
+
+    <div class="aviso-v3-left">
+
+      <span class="aviso-v3-tag">
+        Nuevo
+      </span>
+
+      <h2>Pronosticá 16avos de Final</h2>
 
       <p>
-        Una penca exclusiva para clientes y amigos de Agroventas.
-        Registrate, pronosticá y competí por un premio especial.
+        Ya hay cruces confirmados de 16avos de final.
+        Cargá tus resultados.
       </p>
+
+      <div class="aviso-v3-stats">
+
+        <div>
+          <strong>16</strong>
+          <span>partidos</span>
+        </div>
+
+        <div>
+          <strong>28/06</strong>
+          <span>primer partido</span>
+        </div>
+
+        <div>
+          <strong>03/07</strong>
+          <span>último partido</span>
+        </div>
+
+      </div>
+
+      <div class="aviso-v3-accion">
+
+        <a href="fixture.html?filtro=16avos" class="btn-aviso-v3">
+          Pronosticar ahora
+        </a>
+
+        <span>
+          Tenes tiempo hasta que comienza cada partido.
+        </span>
+
+      </div>
 
     </div>
 
-    <div class="hero-visual">
-      <div class="mockup-card">
+    <div class="aviso-v3-right">
 
-  <h3>Próximos partidos de Uruguay</h3>
+  <h3>Cruces confirmados</h3>
 
-  <div class="mini-partido">
+  <div class="v3-cruces">
 
-    <span>
-      <img src="https://flagcdn.com/w40/uy.png"
-      class="mini-bandera"
-      alt="Uruguay">
+    <div class="v3-cruce">
+      <span>
+        <img src="https://flagcdn.com/w40/za.png" alt="Sudáfrica">
+        Sudáfrica
+      </span>
 
-      Uruguay
-    </span>
+      <strong>28/06</strong>
 
-    <strong>1 - 1</strong>
+      <span class="v3-derecha">
+        Canadá
+        <img src="https://flagcdn.com/w40/ca.png" alt="Canadá">
+      </span>
+    </div>
 
-    <span>
-      <img src="https://flagcdn.com/w40/sa.png"
-      class="mini-bandera"
-      alt="Arabia Saudita">
+    <div class="v3-cruce">
+      <span>
+        <img src="https://flagcdn.com/w40/br.png" alt="Brasil">
+        Brasil
+      </span>
 
-      Arabia Saudita
-    </span>
+      <strong>29/06</strong>
+
+      <span class="v3-derecha">
+        Japón
+        <img src="https://flagcdn.com/w40/jp.png" alt="Japón">
+      </span>
+    </div>
+
+    <div class="v3-cruce">
+      <span>
+        <img src="https://flagcdn.com/w40/de.png" alt="Alemania">
+        Alemania
+      </span>
+
+      <strong>29/06</strong>
+
+      <span class="v3-derecha">
+        Paraguay
+        <img src="https://flagcdn.com/w40/py.png" alt="Paraguay">
+      </span>
+    </div>
+
+    <div class="v3-cruce">
+      <span>
+        <img src="https://flagcdn.com/w40/nl.png" alt="Países Bajos">
+        Países Bajos
+      </span>
+
+      <strong>29/06</strong>
+
+      <span class="v3-derecha">
+        Marruecos
+        <img src="https://flagcdn.com/w40/ma.png" alt="Marruecos">
+      </span>
+    </div>
+
+    <div class="v3-cruce">
+      <span>
+        <img src="https://flagcdn.com/w40/ci.png" alt="Costa de Marfil">
+        Costa de Marfil
+      </span>
+
+      <strong>30/06</strong>
+
+      <span class="v3-derecha">
+        Noruega
+        <img src="https://flagcdn.com/w40/no.png" alt="Noruega">
+      </span>
+    </div>
+
+    <div class="v3-cruce">
+      <span>
+        <img src="https://flagcdn.com/w40/fr.png" alt="Francia">
+        Francia
+      </span>
+
+      <strong>30/06</strong>
+
+      <span class="v3-derecha">
+        Suecia
+        <img src="https://flagcdn.com/w40/se.png" alt="Suecia">
+      </span>
+    </div>
+
+    <div class="v3-cruce">
+      <span>
+        <img src="https://flagcdn.com/w40/us.png" alt="Estados Unidos">
+        EE.UU.
+      </span>
+
+      <strong>01/07</strong>
+
+      <span class="v3-derecha">
+        Bosnia
+        <img src="https://flagcdn.com/w40/ba.png" alt="Bosnia">
+      </span>
+    </div>
+
+    <div class="v3-cruce">
+      <span>
+        <img src="https://flagcdn.com/w40/au.png" alt="Australia">
+        Australia
+      </span>
+
+      <strong>03/07</strong>
+
+      <span class="v3-derecha">
+        Egipto
+        <img src="https://flagcdn.com/w40/eg.png" alt="Egipto">
+      </span>
+    </div>
+
+    <div class="v3-cruce">
+      <span>
+        <img src="https://flagcdn.com/w40/ar.png" alt="Argentina">
+        Argentina
+      </span>
+
+      <strong>03/07</strong>
+
+      <span class="v3-derecha">
+        Cabo Verde
+        <img src="https://flagcdn.com/w40/cv.png" alt="Cabo Verde">
+      </span>
+    </div>
 
   </div>
 
-  <div class="mini-fecha">
-    15 Junio 2026 · Miami
-  </div>
+  <p class="v3-cruces-extra">
+    Los demás cruces se habilitarán cuando se confirmen los equipos.
+  </p>
 
-  <div class="mini-partido">
 
-    <span>
-      <img src="https://flagcdn.com/w40/uy.png"
-      class="mini-bandera"
-      alt="Uruguay">
-
-      Uruguay
-    </span>
-
-    <strong>2 - 2</strong>
-
-    <span>
-      <img src="https://flagcdn.com/w40/cv.png"
-      class="mini-bandera"
-      alt="Cabo Verde">
-
-      Cabo Verde
-    </span>
+    
 
   </div>
 
-  <div class="mini-fecha">
-    21 Junio 2026 · Miami
-  </div>
-
-  <div class="mini-partido">
-
-    <span>
-      <img src="https://flagcdn.com/w40/uy.png"
-      class="mini-bandera"
-      alt="Uruguay">
-
-      Uruguay
-    </span>
-
-    <strong>VS</strong>
-
-    <span>
-      <img src="https://flagcdn.com/w40/es.png"
-      class="mini-bandera"
-      alt="España">
-
-      España
-    </span>
-
-  </div>
-
-  <div class="mini-fecha">
-    26 Junio 2026 · Guadalajara
-  </div>
-
-  <div class="mini-ranking">
-
-  <h4>Ranking</h4>
-
-  <div id="rankingHero">
-    <p>Cargando ranking...</p>
-  </div>
-
-</div>
-
-  </section>
-</header>
-
-  <main>
-
-    <section class="info-grid" id="como-funciona">
-      <article>
-        <h3>1. Registrate</h3>
-        <p>Ingresá tus datos como cliente de Agroventas.</p>
-      </article>
-      <article>
-        <h3>2. Pronosticá</h3>
-        <p>Elegí los resultados de cada partido del fixture.</p>
-      </article>
-      <article>
-        <h3>3. Sumá puntos</h3>
-        <p>Cuanto más acertás, más arriba quedás en la tabla.</p>
-      </article>
-    </section>
-
-    </section>
-
-    <section class="card" id="registro">
-      <h2>Registro de cliente</h2>
-
-<form id="registro-cliente-index" class="formulario">
-
-  <input
-    type="text"
-    id="nombreIndex"
-    placeholder="Nombre completo"
-    required
-  />
-
-  <input
-    type="text"
-    id="direccionIndex"
-    placeholder="Dirección"
-    required
-  />
-
-  <input
-    type="text"
-    id="cumpleIndex"
-    placeholder="Fecha de Cumpleaños (día/mes)"
-    maxlength="5"
-    required
-  />
-
-  <input
-    type="tel"
-    id="telefonoIndex"
-    placeholder="Teléfono"
-    required
-  />
-
-  <input
-    type="email"
-    id="emailIndex"
-    placeholder="Correo electrónico"
-    required
-  />
-
-  <button type="submit">
-    Registrarme
-  </button>
-
-</form>
-    </section>
-
+</section>
     <section class="card reglas" id="puntos">
-      <h2>¿Cómo sumar puntos?</h2>
+
+      <h2>¿Cómo sumar puntos en fase final?</h2>
 
       <div class="puntos-grid">
+
         <div>
-          <strong>3 puntos</strong>
+          <strong>8 puntos</strong>
           <p>Resultado exacto.</p>
         </div>
+
+        <div>
+          <strong>5 puntos</strong>
+          <p>Acertar la diferencia de goles.</p>
+        </div>
+
+        <div>
+          <strong>3 puntos</strong>
+          <p>Acertar el ganador del partido.</p>
+        </div>
+
         <div>
           <strong>1 punto</strong>
-          <p>Acertar ganador o empate.</p>
+          <p>Acertar empate.</p>
         </div>
+
         <div>
           <strong>0 puntos</strong>
           <p>Resultado incorrecto.</p>
         </div>
+
       </div>
+
     </section>
 
-    
-   <section class="card" id="ra<section class="card" id="ranking">
+    <section class="card" id="ranking">
 
-  <h2>Tabla de posiciones</h2>
+      <h2>Tabla de posiciones</h2>
 
-  <div class="buscador-ranking">
-    <label for="buscadorClienteRanking">
-      Buscar cliente
-    </label>
+      <div class="buscador-ranking">
 
-    <input
-      type="text"
-      id="buscadorClienteRanking"
-      placeholder="Escribí nombre o apellido..."
-      autocomplete="off"
-    />
+        <label for="buscadorClienteRanking">
+          Buscar cliente
+        </label>
 
-    <div
-      id="resultadoBuscadorRanking"
-      class="resultado-busqueda-ranking"
-    ></div>
-  </div>
+        <input
+          type="text"
+          id="buscadorClienteRanking"
+          placeholder="Escribí nombre o apellido..."
+          autocomplete="off"
+        />
 
-  <div class="tabla-scroll">
+        <div
+          id="resultadoBuscadorRanking"
+          class="resultado-busqueda-ranking"
+        ></div>
 
-    <table>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>Cliente</th>
-          <th>Puntos</th>
-        </tr>
-      </thead>
+      </div>
 
-      <tbody id="tablaPosiciones"></tbody>
-    </table>
+      <div class="tabla-scroll">
 
-  </div>
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Cliente</th>
+              <th>Puntos</th>
+            </tr>
+          </thead>
 
-</section>
+          <tbody id="tablaPosiciones"></tbody>
+        </table>
 
-<!-- PREMIOS OFICIALES -->
+      </div>
 
-<section class="premios-section">
+    </section>
 
-  <div class="premios-header">
+    <section class="premios-section">
 
-    <span>PREMIOS OFICIALES</span>
+      <div class="premios-header">
 
+        <span>PREMIOS OFICIALES</span>
 
-    <p>
-      Durante todo el Mundial habrá premios para los líderes de cada etapa y un gran premio final para el campeón absoluto.
-    </p>
+        <p>
+          Durante todo el Mundial habrá premios para los líderes de cada etapa
+          y un gran premio final para el campeón absoluto.
+        </p>
 
-  </div>
+      </div>
 
-  <div class="premio-principal">
+      <div class="premio-principal">
 
-    <h3>Campeón de la Penca Agroventas</h3>
+        <h3>Campeón de la Penca Agroventas</h3>
 
-    <ul>
+        <ul>
+          <li>
+            2 entradas para el próximo partido de Uruguay en Montevideo después de la Copa del Mundo.
+          </li>
 
-      <li>
-        2 entradas para el próximo partido de Uruguay en Montevideo después de la Copa del Mundo.
-      </li>
+          <li>
+            2 noches para dos personas en Hotel Hyatt Centric con cena y desayuno.
+          </li>
 
-      <li>
-        2 noches para dos personas en Hotel Hyatt Centric con cena y desayuno.
-      </li>
+          <li>
+            Almuerzo en Restaurante 1930.
+          </li>
+        </ul>
 
-      <li>
-        Almuerzo en Restaurante 1930.
-      </li>
+      </div>
 
-    </ul>
+      <div class="premios-grid">
 
-  </div>
+        <div class="premio-card">
+          <h4>Líder Fase de Grupos</h4>
+          <p>Camiseta Oficial 2026 de la Selección Uruguaya</p>
+        </div>
 
-  <div class="premios-grid">
+        <div class="premio-card">
+          <h4>Líder Octavos de Final</h4>
+          <p>Monopatín Eléctrico</p>
+        </div>
 
-    <div class="premio-card">
-      <h4>Líder Fase de Grupos</h4>
-      <p>Camiseta Oficial 2026 de la Selección Uruguaya</p>
-    </div>
+        <div class="premio-card">
+          <h4>Líder Cuartos de Final</h4>
+          <p>Barra de sonido + Proyector</p>
+        </div>
 
-    <div class="premio-card">
-      <h4>Líder Octavos de Final</h4>
-      <p>Monopatín Eléctrico</p>
-    </div>
+      </div>
 
-    <div class="premio-card">
-      <h4>Líder Cuartos de Final</h4>
-      <p>Barra de sonido + Proyector</p>
-    </div>
-
-  </div>
-
-</section>
+    </section>
 
   </main>
 
   <footer>
 
-  <img
-    src="assets/logo.png"
-    alt="Logo Agroventas"
-    class="logo-footer"
-  >
+    <img
+      src="assets/logo.png"
+      alt="Logo Agroventas"
+      class="logo-footer"
+    >
 
-  <div class="sponsors-footer">
+    <div class="sponsors-footer">
 
+      <div class="swiper sponsorsSwiper">
 
-  <div class="swiper sponsorsSwiper">
+        <div class="swiper-wrapper">
 
-    <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="assets/calier.png" alt="Calier">
+          </div>
 
-      <div class="swiper-slide">
-        <img src="assets/calier.png" alt="Calier">
+          <div class="swiper-slide">
+            <img src="assets/nuevo.cibeles.png" alt="Cibeles">
+          </div>
+
+          <div class="swiper-slide">
+            <img src="assets/fatro.png" alt="Fatro">
+          </div>
+
+          <div class="swiper-slide">
+            <img src="assets/virbac.png" alt="Virbac">
+          </div>
+
+          <div class="swiper-slide">
+            <img src="assets/doralben.logo.png" alt="Doralben">
+          </div>
+
+        </div>
+
+        <div class="swiper-pagination"></div>
+
       </div>
 
-      <div class="swiper-slide">
-        <img src="assets/nuevo.cibeles.png" alt="Cibeles">
-      </div>
-
-      <div class="swiper-slide">
-        <img src="assets/fatro.png" alt="Fatro">
-      </div>
-
-      <div class="swiper-slide">
-        <img src="assets/virbac.png" alt="Virbac">
-      </div>
-<div class="swiper-slide">
-        <img src="assets/doralben.logo.png" alt="Virbac">
-      </div>
     </div>
 
-    <div class="swiper-pagination"></div>
+    <p>
+      Penca Mundial 2026 | Agroventas | dinubo.
+    </p>
 
-  </div>
+  </footer>
 
-</div>
-  <p>
-    Penca Mundial 2026 | Agroventas | dinubo.
-  </p>
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navList = document.getElementById("navList");
 
-</footer>
+    if (menuBtn && navList) {
+      menuBtn.addEventListener("click", () => {
+        navList.classList.toggle("activo");
+      });
 
-  
- <script>
-  const menuBtn = document.getElementById("menuBtn");
-  const navList = document.getElementById("navList");
+      navList.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          navList.classList.remove("activo");
+        });
+      });
+    }
+  </script>
 
-  if (menuBtn && navList) {
-    menuBtn.addEventListener("click", () => {
-      navList.classList.toggle("activo");
-    });
+  <script type="module" src="./index.js"></script>
 
-    navList.querySelectorAll("a").forEach((link) => {
-      link.addEventListener("click", () => {
-        navList.classList.remove("activo");
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const inputBuscador = document.getElementById("buscadorClienteRanking");
+      const resultadoBusqueda = document.getElementById("resultadoBuscadorRanking");
+      const tablaPosiciones = document.getElementById("tablaPosiciones");
+
+      if (!inputBuscador || !resultadoBusqueda || !tablaPosiciones) return;
+
+      function normalizarTexto(texto) {
+        return texto
+          .toString()
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .trim();
+      }
+
+      function obtenerClientesDesdeTabla() {
+        const filas = tablaPosiciones.querySelectorAll("tr");
+
+        return Array.from(filas)
+          .map((fila) => {
+            const celdas = fila.querySelectorAll("td");
+
+            return {
+              posicion: celdas[0]?.textContent.trim() || "",
+              nombre: celdas[1]?.textContent.trim() || "",
+              puntos: celdas[2]?.textContent.trim() || "0"
+            };
+          })
+          .filter((cliente) => cliente.nombre !== "");
+      }
+
+      function buscarCliente() {
+        const textoBuscado = normalizarTexto(inputBuscador.value);
+
+        resultadoBusqueda.innerHTML = "";
+
+        if (textoBuscado.length < 2) {
+          return;
+        }
+
+        const clientes = obtenerClientesDesdeTabla();
+
+        const resultados = clientes.filter((cliente) =>
+          normalizarTexto(cliente.nombre).includes(textoBuscado)
+        );
+
+        if (resultados.length === 0) {
+          resultadoBusqueda.innerHTML = `
+            <p>No se encontró ningún cliente con ese nombre.</p>
+          `;
+          return;
+        }
+
+        resultadoBusqueda.innerHTML = resultados
+          .slice(0, 6)
+          .map((cliente) => `
+            <div class="cliente-buscado-card">
+              <div>
+                <strong>${cliente.nombre}</strong>
+                <span>Posición #${cliente.posicion}</span>
+              </div>
+
+              <div class="cliente-buscado-puntos">
+                ${cliente.puntos} pts
+              </div>
+            </div>
+          `)
+          .join("");
+      }
+
+      inputBuscador.addEventListener("input", buscarCliente);
+
+      const observadorTabla = new MutationObserver(() => {
+        if (inputBuscador.value.trim() !== "") {
+          buscarCliente();
+        }
+      });
+
+      observadorTabla.observe(tablaPosiciones, {
+        childList: true,
+        subtree: true
       });
     });
-  }
-</script>
+  </script>
 
-<script type="module" src="./index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const inputBuscador = document.getElementById("buscadorClienteRanking");
-    const resultadoBusqueda = document.getElementById("resultadoBuscadorRanking");
-    const tablaPosiciones = document.getElementById("tablaPosiciones");
+  <script>
+    new Swiper(".sponsorsSwiper", {
+      loop: true,
 
-    if (!inputBuscador || !resultadoBusqueda || !tablaPosiciones) return;
-
-    function normalizarTexto(texto) {
-      return texto
-        .toString()
-        .toLowerCase()
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, "")
-        .trim();
-    }
-
-    function obtenerClientesDesdeTabla() {
-      const filas = tablaPosiciones.querySelectorAll("tr");
-
-      return Array.from(filas)
-        .map((fila) => {
-          const celdas = fila.querySelectorAll("td");
-
-          return {
-            posicion: celdas[0]?.textContent.trim() || "",
-            nombre: celdas[1]?.textContent.trim() || "",
-            puntos: celdas[2]?.textContent.trim() || "0"
-          };
-        })
-        .filter((cliente) => cliente.nombre !== "");
-    }
-
-    function buscarCliente() {
-      const textoBuscado = normalizarTexto(inputBuscador.value);
-
-      resultadoBusqueda.innerHTML = "";
-
-      if (textoBuscado.length < 2) {
-        return;
-      }
-
-      const clientes = obtenerClientesDesdeTabla();
-
-      const resultados = clientes.filter((cliente) =>
-        normalizarTexto(cliente.nombre).includes(textoBuscado)
-      );
-
-      if (resultados.length === 0) {
-        resultadoBusqueda.innerHTML = `
-          <p>No se encontró ningún cliente con ese nombre.</p>
-        `;
-        return;
-      }
-
-      resultadoBusqueda.innerHTML = resultados
-        .slice(0, 6)
-        .map((cliente) => `
-          <div class="cliente-buscado-card">
-            <div>
-              <strong>${cliente.nombre}</strong>
-              <span>Posición #${cliente.posicion}</span>
-            </div>
-
-            <div class="cliente-buscado-puntos">
-              ${cliente.puntos} pts
-            </div>
-          </div>
-        `)
-        .join("");
-    }
-
-    inputBuscador.addEventListener("input", buscarCliente);
-
-    const observadorTabla = new MutationObserver(() => {
-      if (inputBuscador.value.trim() !== "") {
-        buscarCliente();
-      }
-    });
-
-    observadorTabla.observe(tablaPosiciones, {
-      childList: true,
-      subtree: true
-    });
-  });
-</script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
-<script>
-
-  new Swiper(".sponsorsSwiper", {
-
-    loop: true,
-
-    autoplay: {
-
-      delay: 2500,
-
-      disableOnInteraction: false,
-
-    },
-
-    pagination: {
-
-      el: ".swiper-pagination",
-
-      clickable: true,
-
-    },
-
-    breakpoints: {
-
-      0: {
-
-        slidesPerView: 1,
-
+      autoplay: {
+        delay: 2500,
+        disableOnInteraction: false,
       },
 
-      768: {
+      pagination: {
+        el: ".swiper-pagination",
+        clickable: true,
+      },
 
-        slidesPerView: 3,
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+        },
 
+        768: {
+          slidesPerView: 3,
+        }
       }
-
-    }
-
-  });
-
-</script>
-
+    });
+  </script>
 
 </body>
 </html>
