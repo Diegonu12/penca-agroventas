@@ -4373,3 +4373,197 @@ footer {
     font-size: 16px;
   }
 }
+.v3-cruce {
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+}
+
+.v3-cruce strong {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.v3-cruce strong small {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.72);
+  font-weight: 800;
+}
+
+.v3-sede {
+  grid-column: 1 / -1;
+  display: block;
+  margin-top: 2px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.48);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+}
+
+/* Ajuste mobile para que siga horizontal */
+@media (max-width: 640px) {
+  .v3-cruce {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    gap: 6px 8px;
+    padding: 10px 10px;
+    text-align: left;
+  }
+
+  .v3-cruce span {
+    font-size: 12px;
+    gap: 5px;
+    white-space: nowrap;
+  }
+
+  .v3-cruce img {
+    width: 19px;
+    height: 13px;
+  }
+
+  .v3-cruce strong {
+    font-size: 12px;
+  }
+
+  .v3-cruce strong small {
+    font-size: 10px;
+  }
+
+  .v3-derecha {
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  .v3-sede {
+    font-size: 11px;
+    margin-top: 0;
+  }
+}
+/* AJUSTE COMPACTO AVISO 16AVOS */
+
+.aviso-v3-card {
+  grid-template-columns: minmax(0, 1.15fr) minmax(420px, 0.85fr);
+  gap: 28px;
+  padding: 34px 38px;
+}
+
+.aviso-v3-left h2 {
+  font-size: clamp(46px, 4.6vw, 72px);
+  line-height: 0.98;
+}
+
+.aviso-v3-left p {
+  margin-top: 18px;
+  font-size: 17px;
+  line-height: 1.45;
+}
+
+.aviso-v3-stats {
+  margin-top: 28px;
+}
+
+.aviso-v3-accion {
+  margin-top: 30px;
+}
+
+.aviso-v3-right h3 {
+  margin-bottom: 10px;
+}
+
+.v3-cruces {
+  gap: 7px;
+}
+
+.v3-cruce {
+  min-height: auto;
+  padding: 9px 12px;
+  gap: 6px 10px;
+  border-radius: 12px;
+}
+
+.v3-cruce span {
+  font-size: 14px;
+}
+
+.v3-cruce img {
+  width: 22px;
+  height: 15px;
+}
+
+.v3-cruce strong {
+  font-size: 13px;
+  line-height: 1.1;
+}
+
+.v3-cruce strong small {
+  font-size: 10px;
+}
+
+.v3-sede {
+  margin-top: -2px;
+  font-size: 11px;
+  line-height: 1.1;
+}
+
+.v3-cruces-extra {
+  margin-top: 10px;
+  padding-top: 10px;
+  font-size: 13px;
+}
+
+/* MOBILE MÁS COMPACTO */
+
+@media (max-width: 640px) {
+  .aviso-v3-card {
+    padding: 20px 14px;
+    gap: 20px;
+  }
+
+  .aviso-v3-left h2 {
+    font-size: clamp(30px, 10vw, 42px);
+  }
+
+  .aviso-v3-left p {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .aviso-v3-stats {
+    margin-top: 20px;
+  }
+
+  .aviso-v3-accion {
+    margin-top: 22px;
+  }
+
+  .v3-cruces {
+    gap: 7px;
+  }
+
+  .v3-cruce {
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    padding: 8px 9px;
+    gap: 4px 6px;
+  }
+
+  .v3-cruce span {
+    font-size: 12px;
+  }
+
+  .v3-cruce img {
+    width: 18px;
+    height: 13px;
+  }
+
+  .v3-cruce strong {
+    font-size: 11px;
+  }
+
+  .v3-cruce strong small {
+    font-size: 9px;
+  }
+
+  .v3-sede {
+    font-size: 10px;
+  }
+}
