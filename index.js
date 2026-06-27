@@ -197,7 +197,7 @@ async function cargarClientesRegistrados() {
 
     const ranking = [];
 
-    usuariosSnap.forEach((docUsuario) => {
+        usuariosSnap.forEach((docUsuario) => {
       const usuario = docUsuario.data();
       const clienteId = docUsuario.id;
 
@@ -227,13 +227,20 @@ async function cargarClientesRegistrados() {
         );
       });
 
+      const puntosGuardados = Number(usuario.puntos || 0);
+
+      const puntosFinales = Math.max(
+        puntosTotales,
+        puntosGuardados
+      );
+
       ranking.push({
         id: clienteId,
         nombre: usuario.nombre || "-",
-        puntos: puntosTotales
+        puntos: puntosFinales
       });
     });
-
+    
     ranking.sort((a, b) => {
       if (b.puntos !== a.puntos) {
         return b.puntos - a.puntos;
