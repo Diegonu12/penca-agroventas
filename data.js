@@ -212,7 +212,7 @@ function equipoTemporal(nombre) {
 }
 
 const faseFinalBase = [
-    // =========================
+     // =========================
   // 16AVOS DE FINAL
   // =========================
 
@@ -263,14 +263,14 @@ const faseFinalBase = [
     fecha: "30/06/2026 - 22:00",
     grupo: "16avos de final",
     local: equipos.mexico,
-    visitante: equipoTemporal("Rival por confirmar")
+    visitante: equipos.ecuador
   },
   {
     id: 80,
     fecha: "01/07/2026 - 13:00",
     grupo: "16avos de final",
-    local: equipoTemporal("1° Grupo L"),
-    visitante: equipoTemporal("Rival por confirmar")
+    local: equipos.inglaterra,
+    visitante: equipos.congo
   },
   {
     id: 81,
@@ -284,28 +284,28 @@ const faseFinalBase = [
     fecha: "01/07/2026 - 17:00",
     grupo: "16avos de final",
     local: equipos.belgica,
-    visitante: equipoTemporal("Rival por confirmar")
+    visitante: equipos.senegal
   },
   {
     id: 83,
     fecha: "02/07/2026 - 20:00",
     grupo: "16avos de final",
-    local: equipoTemporal("2° Grupo K"),
-    visitante: equipoTemporal("2° Grupo L")
+    local: equipos.portugal,
+    visitante: equipos.croacia
   },
   {
     id: 84,
     fecha: "02/07/2026 - 16:00",
     grupo: "16avos de final",
     local: equipos.espana,
-    visitante: equipoTemporal("2° Grupo J")
+    visitante: equipos.austria
   },
   {
     id: 85,
     fecha: "03/07/2026 - 00:00",
     grupo: "16avos de final",
     local: equipos.suiza,
-    visitante: equipoTemporal("Rival por confirmar")
+    visitante: equipos.argelia
   },
   {
     id: 86,
@@ -318,8 +318,8 @@ const faseFinalBase = [
     id: 87,
     fecha: "03/07/2026 - 22:30",
     grupo: "16avos de final",
-    local: equipoTemporal("1° Grupo K"),
-    visitante: equipoTemporal("Rival por confirmar")
+    local: equipos.colombia,
+    visitante: equipos.ghana
   },
   {
     id: 88,

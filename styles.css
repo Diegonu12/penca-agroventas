@@ -5492,3 +5492,118 @@ footer {
     text-overflow: ellipsis !important;
   }
 }
+/* SCROLL INTERNO PARA LOS 16 CRUCES CONFIRMADOS */
+
+.v3-cruces {
+  max-height: 720px !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding-right: 6px !important;
+  -webkit-overflow-scrolling: touch !important;
+}
+
+.v3-cruces::-webkit-scrollbar {
+  width: 6px;
+}
+
+.v3-cruces::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 999px;
+}
+
+.v3-cruces::-webkit-scrollbar-thumb {
+  background: rgba(255, 204, 41, 0.55);
+  border-radius: 999px;
+}
+
+@media (max-width: 1200px) {
+  .v3-cruces {
+    max-height: 520px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding-right: 4px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+}
+/* FIX MOBILE LISTA 16 CRUCES - MÁS LEGIBLE */
+
+@media (max-width: 640px) {
+  .v3-cruces {
+    max-height: 430px !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    padding-right: 4px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    -webkit-overflow-scrolling: touch !important;
+  }
+
+  .v3-cruce {
+    min-height: 66px !important;
+    padding: 12px 10px !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 58px minmax(0, 1fr) !important;
+    align-items: center !important;
+    gap: 6px !important;
+    border-radius: 14px !important;
+    box-sizing: border-box !important;
+  }
+
+  .v3-cruce > span:first-child,
+  .v3-cruce .v3-derecha {
+    font-size: 11.5px !important;
+    line-height: 1.15 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 5px !important;
+  }
+
+  .v3-cruce > span:first-child {
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
+
+  .v3-cruce .v3-derecha {
+    justify-content: flex-end !important;
+    text-align: right !important;
+  }
+
+  .v3-cruce img {
+    width: 18px !important;
+    height: 13px !important;
+    object-fit: cover !important;
+    border-radius: 3px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .v3-cruce strong {
+    font-size: 12px !important;
+    line-height: 1 !important;
+    text-align: center !important;
+    color: #ffcc29 !important;
+    white-space: nowrap !important;
+  }
+
+  .v3-cruce strong small {
+    display: block !important;
+    font-size: 8px !important;
+    margin-top: 3px !important;
+    color: rgba(255, 255, 255, 0.85) !important;
+  }
+
+  .v3-sede {
+    grid-column: 1 / -1 !important;
+    font-size: 10px !important;
+    line-height: 1.1 !important;
+    text-align: center !important;
+    margin-top: 2px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    opacity: 0.75 !important;
+  }
+}
