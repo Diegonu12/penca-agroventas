@@ -442,7 +442,17 @@ if (guardarPronosticos) {
 
     guardarValoresTemporales();
 
-    const pronosticos = {};
+    const pronosticoRef = doc(db, "pronosticos", clienteActivo);
+    const pronosticoSnap = await getDoc(pronosticoRef);
+
+    const partidosGuardadosEnFirebase =
+      pronosticoSnap.exists() && pronosticoSnap.data().partidos
+        ? pronosticoSnap.data().partidos
+        : {};
+
+    const pronosticos = {
+      ...partidosGuardadosEnFirebase
+    };
 
     Object.entries(pronosticosActuales).forEach(([idPartido, datos]) => {
       const partido = partidos.find(
@@ -454,13 +464,7 @@ if (guardarPronosticos) {
       const partidoBloqueado =
         partidoYaComenzo(partido) || partidoTieneEquipoPendiente(partido);
 
-      const original = pronosticosGuardadosOriginales[idPartido];
-
       if (partidoBloqueado) {
-        if (pronosticoCompleto(original)) {
-          pronosticos[idPartido] = original;
-        }
-
         return;
       }
 
@@ -477,12 +481,13 @@ if (guardarPronosticos) {
 
     try {
       await setDoc(
-        doc(db, "pronosticos", clienteActivo),
+        pronosticoRef,
         {
           clienteId: clienteActivo,
           partidos: pronosticos,
           actualizado: new Date().toISOString()
-        }
+        },
+        { merge: true }
       );
 
       pronosticosGuardadosOriginales =
