@@ -5359,3 +5359,136 @@ footer {
     display: block;
   }
 }
+/* FIX IPHONE / CHROME MOBILE AVISO 16AVOS */
+
+@media (max-width: 1200px) {
+  .aviso-eliminatoria-v3,
+  .aviso-16avos {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+    padding: 18px 10px !important;
+    box-sizing: border-box !important;
+  }
+
+  .aviso-v3-card {
+    display: flex !important;
+    flex-direction: column !important;
+    grid-template-columns: 1fr !important;
+    width: 100% !important;
+    max-width: 540px !important;
+    margin: 0 auto !important;
+    padding: 18px 14px !important;
+    gap: 22px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .aviso-v3-left,
+  .aviso-v3-right {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    text-align: center !important;
+    overflow: hidden !important;
+  }
+
+  .titulo-16avos {
+    text-align: center !important;
+    margin: 0 auto 14px !important;
+  }
+
+  .titulo-pronostica {
+    font-size: 38px !important;
+    line-height: 0.95 !important;
+  }
+
+  .titulo-fase {
+    font-size: 28px !important;
+    line-height: 1 !important;
+  }
+
+  .aviso-v3-left p {
+    text-align: center !important;
+    max-width: 100% !important;
+    font-size: 14px !important;
+    line-height: 1.35 !important;
+  }
+
+  .aviso-v3-stats {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+    width: 100% !important;
+  }
+
+  .aviso-v3-accion {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+  }
+
+  .btn-aviso-v3 {
+    width: 100% !important;
+    max-width: 260px !important;
+    text-align: center !important;
+  }
+
+  .v3-cruce {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 58px minmax(0, 1fr) !important;
+    width: 100% !important;
+    gap: 6px !important;
+    padding: 10px 8px !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+
+  .v3-cruce > span:first-child,
+  .v3-cruce .v3-derecha {
+    min-width: 0 !important;
+    font-size: 11.5px !important;
+    line-height: 1.1 !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  .v3-cruce > span:first-child {
+    justify-content: flex-start !important;
+    text-align: left !important;
+  }
+
+  .v3-cruce .v3-derecha {
+    justify-content: flex-end !important;
+    text-align: right !important;
+  }
+
+  .v3-cruce img {
+    width: 18px !important;
+    height: 13px !important;
+    flex-shrink: 0 !important;
+  }
+
+  .v3-cruce strong {
+    font-size: 11px !important;
+    line-height: 1 !important;
+    text-align: center !important;
+  }
+
+  .v3-cruce strong small {
+    font-size: 8px !important;
+  }
+
+  .v3-sede {
+    grid-column: 1 / -1 !important;
+    display: block !important;
+    width: 100% !important;
+    text-align: center !important;
+    font-size: 11px !important;
+    margin-top: 4px !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+}
