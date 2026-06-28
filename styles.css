@@ -5349,3 +5349,13 @@ footer {
     font-weight: 500 !important;
   }
 }
+/* Pronosticá del menú solo visible en mobile */
+.solo-mobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .solo-mobile {
+    display: block;
+  }
+}
