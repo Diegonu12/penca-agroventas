@@ -179,6 +179,18 @@ async function recalcularPuntos() {
       docResultado.data();
   });
 
+  const usuariosSnap =
+    await getDocs(
+      collection(db, "usuarios")
+    );
+
+  const usuariosPorId = {};
+
+  usuariosSnap.forEach((docUsuario) => {
+    usuariosPorId[docUsuario.id] =
+      docUsuario.data();
+  });
+
   const pronosticosSnap =
     await getDocs(
       collection(db, "pronosticos")
@@ -189,76 +201,169 @@ async function recalcularPuntos() {
   pronosticosSnap.forEach((docPronostico) => {
 
     const clienteId = docPronostico.id;
-
     const data = docPronostico.data();
+    const pronosticos = data.partidos || {};
 
-    const pronosticos =
-      data.partidos || {};
-
-    let puntos = 0;
+    let puntosCalculados = 0;
 
     Object.entries(pronosticos)
       .forEach(([partidoId, pronostico]) => {
 
-        const real =
-          resultados[partidoId];
+        const real = resultados[partidoId];
 
         if (!real) return;
 
-        puntos +=
+        const partidoEncontrado =
+          partidos.find(
+            (partido) =>
+              String(partido.id) === String(partidoId)
+          );
+
+        const grupo =
+          partidoEncontrado?.grupo ||
+          pronostico.grupo ||
+          real.grupo ||
+          "";
+
+        puntosCalculados +=
           calcularPuntos(
             pronostico,
-            real
+            real,
+            grupo
           );
       });
 
-    puntosPorCliente[clienteId] =
-      puntos;
+    const usuario =
+      usuariosPorId[clienteId] || {};
+
+    const puntosActualesFirebase =
+      Number(usuario.puntos || 0);
+
+    const puntosBase =
+      Number(usuario.puntosBase || 0);
+
+    const puntosFinales =
+      Math.max(
+        puntosActualesFirebase,
+        puntosBase + puntosCalculados,
+        puntosCalculados
+      );
+
+    puntosPorCliente[clienteId] = {
+      puntosFinales,
+      puntosCalculados
+    };
   });
 
   for (
-    const [clienteId, puntos]
+    const [clienteId, datos]
     of Object.entries(puntosPorCliente)
   ) {
 
     await setDoc(
       doc(db, "usuarios", clienteId),
-      { puntos },
+      {
+        puntos: datos.puntosFinales,
+        puntosCalculados: datos.puntosCalculados,
+        actualizadoPuntos: new Date().toISOString()
+      },
       { merge: true }
     );
   }
 }
 
+function esFaseFinalAdmin(grupo) {
+  return (
+    grupo === "16avos de final" ||
+    grupo === "Octavos de final" ||
+    grupo === "Cuartos de final" ||
+    grupo === "Semifinal" ||
+    grupo === "Final"
+  );
+}
+
 function calcularPuntos(
   pronostico,
-  real
+  real,
+  grupo
 ) {
 
+  if (!pronostico || !real) return 0;
+
   if (
-    Number(pronostico.local) ===
-      Number(real.local) &&
-    Number(pronostico.visitante) ===
-      Number(real.visitante)
+    pronostico.local === undefined ||
+    pronostico.visitante === undefined ||
+    real.local === undefined ||
+    real.visitante === undefined ||
+    real.local === "" ||
+    real.visitante === ""
   ) {
+    return 0;
+  }
+
+  const pronosticoLocal =
+    Number(pronostico.local);
+
+  const pronosticoVisitante =
+    Number(pronostico.visitante);
+
+  const realLocal =
+    Number(real.local);
+
+  const realVisitante =
+    Number(real.visitante);
+
+  const diferenciaPronostico =
+    pronosticoLocal - pronosticoVisitante;
+
+  const diferenciaReal =
+    realLocal - realVisitante;
+
+  const signoPronostico =
+    Math.sign(diferenciaPronostico);
+
+  const signoReal =
+    Math.sign(diferenciaReal);
+
+  const resultadoExacto =
+    pronosticoLocal === realLocal &&
+    pronosticoVisitante === realVisitante;
+
+  if (esFaseFinalAdmin(grupo)) {
+
+    if (resultadoExacto) {
+      return 8;
+    }
+
+    if (
+      diferenciaReal !== 0 &&
+      diferenciaPronostico === diferenciaReal
+    ) {
+      return 5;
+    }
+
+    if (
+      diferenciaReal !== 0 &&
+      signoPronostico === signoReal
+    ) {
+      return 3;
+    }
+
+    if (
+      diferenciaReal === 0 &&
+      diferenciaPronostico === 0
+    ) {
+      return 1;
+    }
+
+    return 0;
+  }
+
+  if (resultadoExacto) {
     return 3;
   }
 
-  const signoPronostico =
-    Math.sign(
-      Number(pronostico.local) -
-      Number(pronostico.visitante)
-    );
-
-  const signoReal =
-    Math.sign(
-      Number(real.local) -
-      Number(real.visitante)
-    );
-
-  if (
-    signoPronostico ===
-    signoReal
-  ) {
+  if (signoPronostico === signoReal) {
     return 1;
   }
 

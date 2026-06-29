@@ -227,12 +227,14 @@ async function cargarClientesRegistrados() {
         );
       });
 
-      const puntosGuardados = Number(usuario.puntos || 0);
+     const puntosGuardados = Number(usuario.puntos || 0);
+const puntosBase = Number(usuario.puntosBase || 0);
 
-      const puntosFinales = Math.max(
-        puntosTotales,
-        puntosGuardados
-      );
+const puntosFinales = Math.max(
+  puntosGuardados,
+  puntosBase + puntosTotales,
+  puntosTotales
+);
 
       ranking.push({
         id: clienteId,
