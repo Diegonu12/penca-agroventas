@@ -7,7 +7,7 @@ import {
   getDoc
 } from "./firebase.js";
 
-import { partidos } from "./data.js?v=14";
+import { partidos } from "./data.js?v=20";
 
 const listaFixture = document.getElementById("listaFixture");
 const guardarPronosticos = document.getElementById("guardarPronosticos");
@@ -169,6 +169,7 @@ function partidoYaComenzo(partido) {
 
   return new Date() >= fechaPartido;
 }
+
 
 function partidoTieneEquipoPendiente(partido) {
   const textoLocal = partido.local.toLowerCase();
@@ -450,9 +451,7 @@ if (guardarPronosticos) {
         ? pronosticoSnap.data().partidos
         : {};
 
-    const pronosticos = {
-      ...partidosGuardadosEnFirebase
-    };
+    const partidosAActualizar = {};
 
     Object.entries(pronosticosActuales).forEach(([idPartido, datos]) => {
       const partido = partidos.find(
@@ -464,12 +463,14 @@ if (guardarPronosticos) {
       const partidoBloqueado =
         partidoYaComenzo(partido) || partidoTieneEquipoPendiente(partido);
 
+      // Si el partido ya empezó, no se modifica.
+      // Pero tampoco se borra lo que ya estaba guardado.
       if (partidoBloqueado) {
         return;
       }
 
       if (pronosticoCompleto(datos)) {
-        pronosticos[idPartido] = {
+        partidosAActualizar[idPartido] = {
           local: Number(datos.local),
           visitante: Number(datos.visitante),
           partido: `${partido.local} vs ${partido.visitante}`,
@@ -479,22 +480,45 @@ if (guardarPronosticos) {
       }
     });
 
+    if (Object.keys(partidosAActualizar).length === 0) {
+      alert("No hay pronósticos nuevos para guardar.");
+      return;
+    }
+
     try {
+      // Backup antes de guardar, por seguridad
+      await setDoc(
+        doc(db, "backupsPronosticos", `${clienteActivo}_${Date.now()}`),
+        {
+          clienteId: clienteActivo,
+          creado: new Date().toISOString(),
+          partidosAntes: partidosGuardadosEnFirebase,
+          partidosNuevos: partidosAActualizar
+        }
+      );
+
+      // Guardado seguro: solo actualiza/agrega partidos nuevos.
+      // No borra los anteriores.
       await setDoc(
         pronosticoRef,
         {
           clienteId: clienteActivo,
-          partidos: pronosticos,
+          partidos: partidosAActualizar,
           actualizado: new Date().toISOString()
         },
         { merge: true }
       );
 
+      const partidosCombinados = {
+        ...partidosGuardadosEnFirebase,
+        ...partidosAActualizar
+      };
+
       pronosticosGuardadosOriginales =
-        JSON.parse(JSON.stringify(pronosticos));
+        JSON.parse(JSON.stringify(partidosCombinados));
 
       pronosticosActuales =
-        JSON.parse(JSON.stringify(pronosticos));
+        JSON.parse(JSON.stringify(partidosCombinados));
 
       alert("Pronósticos guardados correctamente ✅");
 
