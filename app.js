@@ -7,7 +7,7 @@ import {
   getDoc
 } from "./firebase.js";
 
-import { partidos } from "./data.js?v=21";
+import { partidos } from "./data.js?v=22";
 
 const listaFixture = document.getElementById("listaFixture");
 const guardarPronosticos = document.getElementById("guardarPronosticos");
@@ -486,16 +486,7 @@ if (guardarPronosticos) {
     }
 
     try {
-      // Backup antes de guardar, por seguridad
-      await setDoc(
-        doc(db, "backupsPronosticos", `${clienteActivo}_${Date.now()}`),
-        {
-          clienteId: clienteActivo,
-          creado: new Date().toISOString(),
-          partidosAntes: partidosGuardadosEnFirebase,
-          partidosNuevos: partidosAActualizar
-        }
-      );
+      
 
       // Guardado seguro: solo actualiza/agrega partidos nuevos.
       // No borra los anteriores.
