@@ -7,7 +7,7 @@ import {
   getDoc
 } from "./firebase.js";
 
-import { partidos } from "./data.js?v=26";
+import { partidos } from "./data.js?v=36";
 
 const listaFixture = document.getElementById("listaFixture");
 const guardarPronosticos = document.getElementById("guardarPronosticos");
@@ -23,16 +23,39 @@ let pronosticosActuales = {};
 let pronosticosGuardadosOriginales = {};
 let filtroActual = obtenerFiltroInicialDesdeUrl();
 let resultadosOficiales = {};
+
 function obtenerFiltroInicialDesdeUrl() {
   const parametros = new URLSearchParams(window.location.search);
   const filtro = parametros.get("filtro");
 
-  if (filtro === "16avos") {
+  if (!filtro) {
+    return "todos";
+  }
+
+  const filtrosValidos = [
+    "todos",
+    "16avos de final",
+    "Octavos de final",
+    "Cuartos de final",
+    "Semifinal",
+    "Final"
+  ];
+
+  if (filtrosValidos.includes(filtro)) {
+    return filtro;
+  }
+
+  if (filtro.toLowerCase() === "16avos") {
     return "16avos de final";
+  }
+
+  if (filtro.toLowerCase() === "octavos") {
+    return "Octavos de final";
   }
 
   return "todos";
 }
+
 function marcarBotonFiltroActivo() {
   botonesFiltro.forEach((boton) => {
     boton.classList.remove("activo");
@@ -399,11 +422,19 @@ botonesFiltro.forEach((boton) => {
   boton.addEventListener("click", () => {
     guardarValoresTemporales();
 
-    botonesFiltro.forEach((btn) => btn.classList.remove("activo"));
-    boton.classList.add("activo");
-
     filtroActual = boton.dataset.filtro;
 
+    const nuevaUrl = new URL(window.location.href);
+
+    if (filtroActual === "todos") {
+      nuevaUrl.searchParams.delete("filtro");
+    } else {
+      nuevaUrl.searchParams.set("filtro", filtroActual);
+    }
+
+    window.history.replaceState({}, "", nuevaUrl);
+
+    marcarBotonFiltroActivo();
     mostrarFixture();
   });
 });
