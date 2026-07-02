@@ -7,7 +7,7 @@ import {
   getDoc
 } from "./firebase.js";
 
-import { partidos } from "./data.js?v=22";
+import { partidos } from "./data.js?v=26";
 
 const listaFixture = document.getElementById("listaFixture");
 const guardarPronosticos = document.getElementById("guardarPronosticos");
@@ -172,8 +172,8 @@ function partidoYaComenzo(partido) {
 
 
 function partidoTieneEquipoPendiente(partido) {
-  const textoLocal = partido.local.toLowerCase();
-  const textoVisitante = partido.visitante.toLowerCase();
+  const textoLocal = String(partido.local || "").toLowerCase();
+  const textoVisitante = String(partido.visitante || "").toLowerCase();
 
   return (
     textoLocal.includes("confirmar") ||
@@ -183,7 +183,9 @@ function partidoTieneEquipoPendiente(partido) {
     textoLocal.includes("ganador") ||
     textoVisitante.includes("ganador") ||
     textoLocal.includes("perdedor") ||
-    textoVisitante.includes("perdedor")
+    textoVisitante.includes("perdedor") ||
+    textoLocal.includes("tbd") ||
+    textoVisitante.includes("tbd")
   );
 }
 

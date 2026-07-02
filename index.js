@@ -6,7 +6,7 @@ import {
   setDoc
 } from "./firebase.js";
 
-import { partidos } from "./data.js?v=14";
+import { partidos } from "./data.js?v=22";
 
 const formIndex = document.getElementById("registro-cliente-index");
 const tablaPosiciones = document.getElementById("tablaPosiciones");

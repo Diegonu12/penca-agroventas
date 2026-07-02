@@ -329,65 +329,65 @@ const faseFinalBase = [
     visitante: equipos.egipto
   },
 
-  // =========================
+    // =========================
   // OCTAVOS DE FINAL
   // =========================
 
   {
     id: 89,
-    fecha: "04/07/2026 - 18:00",
+    fecha: "04/07/2026 - 14:00",
     grupo: "Octavos de final",
-    local: equipoTemporal("Ganador P74"),
-    visitante: equipoTemporal("Ganador P77")
+    local: equipos.canada,
+    visitante: equipos.marruecos
   },
   {
     id: 90,
-    fecha: "04/07/2026 - 14:00",
+    fecha: "04/07/2026 - 18:00",
     grupo: "Octavos de final",
-    local: equipoTemporal("Ganador P73"),
-    visitante: equipoTemporal("Ganador P75")
+    local: equipos.paraguay,
+    visitante: equipos.francia
   },
   {
     id: 91,
     fecha: "05/07/2026 - 17:00",
     grupo: "Octavos de final",
-    local: equipoTemporal("Ganador P76"),
-    visitante: equipoTemporal("Ganador P78")
+    local: equipos.brasil,
+    visitante: equipos.noruega
   },
   {
     id: 92,
     fecha: "05/07/2026 - 21:00",
     grupo: "Octavos de final",
-    local: equipoTemporal("Ganador P79"),
-    visitante: equipoTemporal("Ganador P80")
+    local: equipos.mexico,
+    visitante: equipos.inglaterra
   },
   {
     id: 93,
     fecha: "06/07/2026 - 16:00",
     grupo: "Octavos de final",
-    local: equipoTemporal("Ganador P83"),
-    visitante: equipoTemporal("Ganador P84")
+    local: equipoTemporal("Ganador Portugal/Croacia"),
+    visitante: equipos.espana
   },
   {
     id: 94,
     fecha: "06/07/2026 - 21:00",
     grupo: "Octavos de final",
-    local: equipoTemporal("Ganador P81"),
-    visitante: equipoTemporal("Ganador P82")
+    local: equipos.usa,
+    visitante: equipos.belgica
   },
   {
     id: 95,
     fecha: "07/07/2026 - 13:00",
     grupo: "Octavos de final",
-    local: equipoTemporal("Ganador P86"),
-    visitante: equipoTemporal("Ganador P88")
+    local: equipoTemporal("Ganador Argentina/Cabo Verde"),
+    visitante: equipoTemporal("Ganador Australia/Egipto")
   },
   {
     id: 96,
     fecha: "07/07/2026 - 17:00",
     grupo: "Octavos de final",
-    local: equipoTemporal("Ganador P85"),
-    visitante: equipoTemporal("Ganador P87")
+    local: equipoTemporal("Ganador Suiza/Argelia"),
+    visitante: equipoTemporal("Ganador Colombia/Ghana")
   },
 
   // =========================
