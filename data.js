@@ -362,12 +362,12 @@ const faseFinalBase = [
     visitante: equipos.inglaterra
   },
   {
-    id: 93,
-    fecha: "06/07/2026 - 16:00",
-    grupo: "Octavos de final",
-    local: equipo.Portugal,
-    visitante: equipos.espana
-  },
+  id: 93,
+  fecha: "06/07/2026 - 16:00",
+  grupo: "Octavos de final",
+  local: equipos.portugal,
+  visitante: equipos.espana
+},
   {
     id: 94,
     fecha: "06/07/2026 - 21:00",

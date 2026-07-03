@@ -7,7 +7,7 @@ import {
   getDoc
 } from "./firebase.js";
 
-import { partidos } from "./data.js?v=37";
+import { partidos } from "./data.js?v=41";
 
 const listaFixture = document.getElementById("listaFixture");
 const guardarPronosticos = document.getElementById("guardarPronosticos");
@@ -151,8 +151,51 @@ async function cargarPronosticosGuardados() {
   }
 }
 
+function normalizarTextoFiltro(texto) {
+  return String(texto || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+}
+
 function obtenerPartidosFiltrados() {
-  if (filtroActual === "todos") return partidos;
+
+  if (filtroActual === "todos") {
+    return partidos.filter((partido) =>
+      partido.id >= 73 && partido.id <= 104
+    );
+  }
+
+  if (filtroActual === "16avos de final") {
+    return partidos.filter((partido) =>
+      partido.id >= 73 && partido.id <= 88
+    );
+  }
+
+  if (filtroActual === "Octavos de final") {
+    return partidos.filter((partido) =>
+      partido.id >= 89 && partido.id <= 96
+    );
+  }
+
+  if (filtroActual === "Cuartos de final") {
+    return partidos.filter((partido) =>
+      partido.id >= 97 && partido.id <= 100
+    );
+  }
+
+  if (filtroActual === "Semifinal") {
+    return partidos.filter((partido) =>
+      partido.id === 101 || partido.id === 102
+    );
+  }
+
+  if (filtroActual === "Final") {
+    return partidos.filter((partido) =>
+      partido.id === 104
+    );
+  }
 
   if (filtroActual === "uruguay") {
     return partidos.filter((partido) =>
@@ -161,20 +204,7 @@ function obtenerPartidosFiltrados() {
     );
   }
 
-  const grupos = [
-    "A", "B", "C", "D", "E", "F",
-    "G", "H", "I", "J", "K", "L"
-  ];
-
-  if (grupos.includes(filtroActual)) {
-    return partidos.filter((partido) =>
-      partido.grupo.includes(`GRUPO ${filtroActual}`)
-    );
-  }
-
-  return partidos.filter((partido) =>
-    partido.grupo === filtroActual
-  );
+  return partidos;
 }
 
 function partidoYaComenzo(partido) {
@@ -323,6 +353,13 @@ function mostrarFixture() {
   listaFixture.innerHTML = "";
 
   const partidosFiltrados = obtenerPartidosFiltrados();
+
+
+  console.log("Filtro actual:", filtroActual);
+  console.log("Partidos cargados:", partidos.length);
+  console.log("Grupos existentes:", partidos.map((p) => p.grupo));
+  console.log("Partidos filtrados:", partidosFiltrados);
+
 
   if (contadorPartidos) {
     contadorPartidos.textContent =
