@@ -365,7 +365,7 @@ const faseFinalBase = [
     id: 93,
     fecha: "06/07/2026 - 16:00",
     grupo: "Octavos de final",
-    local: equipoTemporal("Ganador Portugal/Croacia"),
+    local: equipo.Portugal,
     visitante: equipos.espana
   },
   {
