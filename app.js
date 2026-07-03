@@ -7,7 +7,7 @@ import {
   getDoc
 } from "./firebase.js";
 
-import { partidos } from "./data.js?v=41";
+import { partidos } from "./data.js?v=42";
 
 const listaFixture = document.getElementById("listaFixture");
 const guardarPronosticos = document.getElementById("guardarPronosticos");
@@ -69,8 +69,24 @@ function marcarBotonFiltroActivo() {
 iniciarFixtureVendedor();
 
 async function iniciarFixtureVendedor() {
-  await cargarClientesEnSelect();
-  await cargarResultadosOficiales();
+  marcarBotonFiltroActivo();
+
+  // Primero mostramos el fixture aunque Firebase demore o falle
+  mostrarFixture();
+
+  try {
+    await cargarClientesEnSelect();
+  } catch (error) {
+    console.error("Error cargando clientes:", error);
+  }
+
+  try {
+    await cargarResultadosOficiales();
+  } catch (error) {
+    console.error("Error cargando resultados oficiales:", error);
+  }
+
+  // Volvemos a mostrar el fixture con los datos que se hayan podido cargar
   marcarBotonFiltroActivo();
   mostrarFixture();
 }
