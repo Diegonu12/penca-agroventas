@@ -329,7 +329,7 @@ const faseFinalBase = [
     visitante: equipos.egipto
   },
 
-    // =========================
+     // =========================
   // OCTAVOS DE FINAL
   // =========================
 
@@ -362,12 +362,12 @@ const faseFinalBase = [
     visitante: equipos.inglaterra
   },
   {
-  id: 93,
-  fecha: "06/07/2026 - 16:00",
-  grupo: "Octavos de final",
-  local: equipos.portugal,
-  visitante: equipos.espana
-},
+    id: 93,
+    fecha: "06/07/2026 - 16:00",
+    grupo: "Octavos de final",
+    local: equipos.portugal,
+    visitante: equipos.espana
+  },
   {
     id: 94,
     fecha: "06/07/2026 - 21:00",
@@ -379,18 +379,18 @@ const faseFinalBase = [
     id: 95,
     fecha: "07/07/2026 - 13:00",
     grupo: "Octavos de final",
-    local: equipoTemporal("Ganador Argentina/Cabo Verde"),
-    visitante: equipoTemporal("Ganador Australia/Egipto")
+    local: equipos.argentina,
+    visitante: equipos.egipto
   },
   {
     id: 96,
     fecha: "07/07/2026 - 17:00",
     grupo: "Octavos de final",
-    local: equipoTemporal("Ganador Suiza/Argelia"),
-    visitante: equipoTemporal("Ganador Colombia/Ghana")
+    local: equipos.suiza,
+    visitante: equipos.colombia
   },
 
-  // =========================
+    // =========================
   // CUARTOS DE FINAL
   // =========================
 
@@ -398,29 +398,29 @@ const faseFinalBase = [
     id: 97,
     fecha: "09/07/2026 - 17:00",
     grupo: "Cuartos de final",
-    local: equipoTemporal("Ganador P89"),
-    visitante: equipoTemporal("Ganador P90")
+    local: equipos.francia,
+    visitante: equipos.marruecos
   },
   {
     id: 98,
     fecha: "10/07/2026 - 16:00",
     grupo: "Cuartos de final",
-    local: equipoTemporal("Ganador P93"),
-    visitante: equipoTemporal("Ganador P94")
+    local: equipoTemporal("Ganador Portugal/España"),
+    visitante: equipoTemporal("Ganador Estados Unidos/Bélgica")
   },
   {
     id: 99,
     fecha: "11/07/2026 - 18:00",
     grupo: "Cuartos de final",
-    local: equipoTemporal("Ganador P91"),
-    visitante: equipoTemporal("Ganador P92")
+    local: equipos.noruega,
+    visitante: equipoTemporal("Ganador México/Inglaterra")
   },
   {
     id: 100,
     fecha: "11/07/2026 - 22:00",
     grupo: "Cuartos de final",
-    local: equipoTemporal("Ganador P95"),
-    visitante: equipoTemporal("Ganador P96")
+    local: equipoTemporal("Ganador Argentina/Egipto"),
+    visitante: equipoTemporal("Ganador Suiza/Colombia")
   },
 
   // =========================
