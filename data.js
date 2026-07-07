@@ -329,7 +329,7 @@ const faseFinalBase = [
     visitante: equipos.egipto
   },
 
-     // =========================
+      // =========================
   // OCTAVOS DE FINAL
   // =========================
 
@@ -356,7 +356,7 @@ const faseFinalBase = [
   },
   {
     id: 92,
-    fecha: "05/07/2026 - 21:00",
+    fecha: "05/07/2026 - 22:00",
     grupo: "Octavos de final",
     local: equipos.mexico,
     visitante: equipos.inglaterra
@@ -390,7 +390,7 @@ const faseFinalBase = [
     visitante: equipos.colombia
   },
 
-    // =========================
+      // =========================
   // CUARTOS DE FINAL
   // =========================
 
@@ -405,15 +405,15 @@ const faseFinalBase = [
     id: 98,
     fecha: "10/07/2026 - 16:00",
     grupo: "Cuartos de final",
-    local: equipoTemporal("Ganador Portugal/España"),
-    visitante: equipoTemporal("Ganador Estados Unidos/Bélgica")
+    local: equipos.espana,
+    visitante: equipoTemporal("Ganador EE.UU./Bélgica")
   },
   {
     id: 99,
     fecha: "11/07/2026 - 18:00",
     grupo: "Cuartos de final",
     local: equipos.noruega,
-    visitante: equipoTemporal("Ganador México/Inglaterra")
+    visitante: equipos.inglaterra
   },
   {
     id: 100,
