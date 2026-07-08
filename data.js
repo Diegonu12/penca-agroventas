@@ -390,7 +390,7 @@ const faseFinalBase = [
     visitante: equipos.colombia
   },
 
-      // =========================
+     // =========================
   // CUARTOS DE FINAL
   // =========================
 
@@ -406,7 +406,7 @@ const faseFinalBase = [
     fecha: "10/07/2026 - 16:00",
     grupo: "Cuartos de final",
     local: equipos.espana,
-    visitante: equipoTemporal("Ganador EE.UU./Bélgica")
+    visitante: equipos.belgica
   },
   {
     id: 99,
@@ -419,8 +419,8 @@ const faseFinalBase = [
     id: 100,
     fecha: "11/07/2026 - 22:00",
     grupo: "Cuartos de final",
-    local: equipoTemporal("Ganador Argentina/Egipto"),
-    visitante: equipoTemporal("Ganador Suiza/Colombia")
+    local: equipos.argentina,
+    visitante: equipos.suiza
   },
 
   // =========================

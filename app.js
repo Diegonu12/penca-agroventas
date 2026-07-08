@@ -7,7 +7,7 @@ import {
   getDoc
 } from "./firebase.js";
 
-import { partidos } from "./data.js?v=46";
+import { partidos } from "./data.js?v=49";
 
 const listaFixture = document.getElementById("listaFixture");
 const guardarPronosticos = document.getElementById("guardarPronosticos");
@@ -51,6 +51,21 @@ function obtenerFiltroInicialDesdeUrl() {
 
   if (filtro.toLowerCase() === "octavos") {
     return "Octavos de final";
+  }
+
+  if (filtro.toLowerCase() === "cuartos") {
+    return "Cuartos de final";
+  }
+
+  if (
+    filtro.toLowerCase() === "semifinal" ||
+    filtro.toLowerCase() === "semifinales"
+  ) {
+    return "Semifinal";
+  }
+
+  if (filtro.toLowerCase() === "final") {
+    return "Final";
   }
 
   return "todos";
