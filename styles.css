@@ -5720,3 +5720,9 @@ footer {
     font-size: 9px !important;
   }
 }
+/* Ocultar botón Pronosticá del header en mobile */
+@media (max-width: 768px) {
+  .navbar .btn-nav {
+    display: none !important;
+  }
+}
