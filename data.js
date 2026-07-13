@@ -424,23 +424,23 @@ const faseFinalBase = [
   },
 
   // =========================
-  // SEMIFINALES
-  // =========================
+// SEMIFINALES
+// =========================
 
-  {
-    id: 101,
-    fecha: "14/07/2026 - 16:00",
-    grupo: "Semifinal",
-    local: equipoTemporal("Ganador P97"),
-    visitante: equipoTemporal("Ganador P98")
-  },
-  {
-    id: 102,
-    fecha: "15/07/2026 - 16:00",
-    grupo: "Semifinal",
-    local: equipoTemporal("Ganador P99"),
-    visitante: equipoTemporal("Ganador P100")
-  },
+{
+  id: 101,
+  fecha: "14/07/2026 - 16:00",
+  grupo: "Semifinal",
+  local: equipos.francia,
+  visitante: equipos.espana
+},
+{
+  id: 102,
+  fecha: "15/07/2026 - 16:00",
+  grupo: "Semifinal",
+  local: equipos.inglaterra,
+  visitante: equipos.argentina
+},
 
   // =========================
   // GRAN FINAL
