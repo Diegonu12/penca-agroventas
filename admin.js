@@ -71,6 +71,32 @@ function mostrarPanelAdmin() {
             placeholder="-"
             value="${resultadoGuardado.visitante ?? ""}"
           >
+${Number(partido.id) === 104 ? `
+  <div class="admin-campeon-final">
+    <label for="campeon-final-${partido.id}">
+      Campeón real
+    </label>
+
+    <select id="campeon-final-${partido.id}">
+      <option value="">Seleccionar campeón si hay empate</option>
+
+      <option
+        value="${partido.local}"
+        ${resultadoGuardado.campeon === partido.local ? "selected" : ""}
+      >
+        ${partido.local}
+      </option>
+
+      <option
+        value="${partido.visitante}"
+        ${resultadoGuardado.campeon === partido.visitante ? "selected" : ""}
+      >
+        ${partido.visitante}
+      </option>
+    </select>
+  </div>
+` : ""}
+
         </div>
 
         <div class="app-equipo">
@@ -128,15 +154,47 @@ async function guardarResultadoOficial(partidoId) {
       return;
     }
 
-    const resultadoReal = {
-      partidoId: String(partidoId),
-      local: Number(localInput.value),
-      visitante: Number(visitanteInput.value),
-      partido: `${partido.local} vs ${partido.visitante}`,
-      fecha: partido.fecha,
-      grupo: partido.grupo,
-      actualizado: new Date().toISOString()
-    };
+let campeonFinal = null;
+
+if (Number(partido.id) === 104) {
+  const golesLocal = Number(localInput.value);
+  const golesVisitante = Number(visitanteInput.value);
+
+  if (golesLocal > golesVisitante) {
+    campeonFinal = partido.local;
+  }
+
+  if (golesVisitante > golesLocal) {
+    campeonFinal = partido.visitante;
+  }
+
+  if (golesLocal === golesVisitante) {
+    const campeonSelect =
+      document.getElementById(`campeon-final-${partidoId}`);
+
+    if (!campeonSelect || !campeonSelect.value) {
+      alert("La final terminó empatada. Seleccioná el campeón real.");
+      return;
+    }
+
+    campeonFinal = campeonSelect.value;
+  }
+}
+
+ const resultadoReal = {
+  partidoId: String(partidoId),
+  local: Number(localInput.value),
+  visitante: Number(visitanteInput.value),
+  partido: `${partido.local} vs ${partido.visitante}`,
+  fecha: partido.fecha,
+  grupo: partido.grupo,
+
+  ...(Number(partido.id) === 104
+    ? { campeon: campeonFinal }
+    : {}),
+
+  actualizado: new Date().toISOString()
+};
 
     await setDoc(
       doc(
@@ -446,17 +504,20 @@ function calcularPuntosCampeon(
     return 0;
   }
 
-  const golesLocal = Number(resultadoFinal.local);
-  const golesVisitante = Number(resultadoFinal.visitante);
+  let campeonReal =
+    resultadoFinal.campeon || "";
 
-  let campeonReal = "";
+  if (!campeonReal) {
+    const golesLocal = Number(resultadoFinal.local);
+    const golesVisitante = Number(resultadoFinal.visitante);
 
-  if (golesLocal > golesVisitante) {
-    campeonReal = partidoFinal.local;
-  }
+    if (golesLocal > golesVisitante) {
+      campeonReal = partidoFinal.local;
+    }
 
-  if (golesVisitante > golesLocal) {
-    campeonReal = partidoFinal.visitante;
+    if (golesVisitante > golesLocal) {
+      campeonReal = partidoFinal.visitante;
+    }
   }
 
   if (!campeonReal) {
@@ -472,7 +533,6 @@ function calcularPuntosCampeon(
 
   return 0;
 }
-
 
 async function auditarClientesSinPronosticos() {
 

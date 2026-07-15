@@ -195,17 +195,20 @@ function calcularPuntosCampeon(
     return 0;
   }
 
-  const golesLocal = Number(resultadoFinal.local);
-  const golesVisitante = Number(resultadoFinal.visitante);
+  let campeonReal =
+    resultadoFinal.campeon || "";
 
-  let campeonReal = "";
+  if (!campeonReal) {
+    const golesLocal = Number(resultadoFinal.local);
+    const golesVisitante = Number(resultadoFinal.visitante);
 
-  if (golesLocal > golesVisitante) {
-    campeonReal = partidoFinal.local;
-  }
+    if (golesLocal > golesVisitante) {
+      campeonReal = partidoFinal.local;
+    }
 
-  if (golesVisitante > golesLocal) {
-    campeonReal = partidoFinal.visitante;
+    if (golesVisitante > golesLocal) {
+      campeonReal = partidoFinal.visitante;
+    }
   }
 
   if (!campeonReal) {
