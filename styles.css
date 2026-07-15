@@ -5832,9 +5832,9 @@ footer {
 
 .campeon-opciones {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-  margin-bottom: 20px;
+  grid-template-columns: repeat(2, minmax(180px, 220px));
+  justify-content: center;
+  gap: 18px;
 }
 
 .campeon-opcion {
@@ -6659,5 +6659,45 @@ footer {
 
   .aviso-final-150-card p strong {
     font-size: 22px;
+  }
+}
+/* Ajuste campeón: solo 2 opciones */
+
+.campeon-opciones {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(180px, 220px)) !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 22px !important;
+  margin: 24px auto 30px !important;
+  width: 100% !important;
+}
+
+.campeon-opcion {
+  width: 100% !important;
+}
+
+.campeon-opcion span {
+  width: 100% !important;
+  min-height: 118px !important;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .campeon-opciones {
+    grid-template-columns: repeat(2, minmax(120px, 1fr)) !important;
+    gap: 10px !important;
+    margin: 20px auto 24px !important;
+  }
+
+  .campeon-opcion span {
+    min-height: 92px !important;
+    padding: 10px 6px !important;
+    font-size: 13px !important;
+  }
+
+  .campeon-opcion img {
+    width: 38px !important;
+    height: 26px !important;
   }
 }

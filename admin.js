@@ -6,7 +6,7 @@ import {
   setDoc
 } from "./firebase.js";
 
-import { partidos } from "./data.js?v=51";
+import { partidos } from "./data.js?v=52";
 
 const listaResultadosAdmin = document.getElementById("listaResultadosAdmin");
 const tablaClientesAdmin = document.getElementById("tablaClientesAdmin");
@@ -233,6 +233,19 @@ async function recalcularPuntos() {
           );
       });
 
+const partidoFinal =
+  partidos.find((partido) => Number(partido.id) === 104);
+
+const resultadoFinal =
+  resultados["104"];
+
+puntosCalculados += calcularPuntosCampeon(
+  data,
+  partidoFinal,
+  resultadoFinal
+);
+
+
     const usuario =
       usuariosPorId[clienteId] || {};
 
@@ -326,7 +339,7 @@ function calcularPuntos(
     return 150;
   }
 
-  if (esFaseFinal(grupo)) {
+ if (esFaseFinalAdmin(grupo)) {
     if (resultadoExacto) {
       return 8;
     }
@@ -399,6 +412,67 @@ async function cargarClientesAdmin() {
       .appendChild(fila);
   });
 }
+
+function normalizarNombreEquipo(nombre) {
+  return String(nombre || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+}
+
+function calcularPuntosCampeon(
+  datosPronostico,
+  partidoFinal,
+  resultadoFinal
+) {
+  if (!datosPronostico || !partidoFinal || !resultadoFinal) {
+    return 0;
+  }
+
+  const campeonElegido =
+    datosPronostico.campeonMundial?.seleccion;
+
+  if (!campeonElegido) {
+    return 0;
+  }
+
+  if (
+    resultadoFinal.local === undefined ||
+    resultadoFinal.visitante === undefined ||
+    resultadoFinal.local === "" ||
+    resultadoFinal.visitante === ""
+  ) {
+    return 0;
+  }
+
+  const golesLocal = Number(resultadoFinal.local);
+  const golesVisitante = Number(resultadoFinal.visitante);
+
+  let campeonReal = "";
+
+  if (golesLocal > golesVisitante) {
+    campeonReal = partidoFinal.local;
+  }
+
+  if (golesVisitante > golesLocal) {
+    campeonReal = partidoFinal.visitante;
+  }
+
+  if (!campeonReal) {
+    return 0;
+  }
+
+  if (
+    normalizarNombreEquipo(campeonElegido) ===
+    normalizarNombreEquipo(campeonReal)
+  ) {
+    return 100;
+  }
+
+  return 0;
+}
+
 
 async function auditarClientesSinPronosticos() {
 

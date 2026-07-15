@@ -446,12 +446,12 @@ const faseFinalBase = [
   // GRAN FINAL 
   // =========================
 
- {
+{
   id: 104,
   fecha: "19/07/2026 - 16:00",
   grupo: "Final",
-  local: equipos.espana,
-  visitante: equipoTemporal("Ganador P102")
+  local: equipos.argentina,
+  visitante: equipos.espana
 }
 ];
 

@@ -6,7 +6,7 @@ import {
   setDoc
 } from "./firebase.js";
 
-import { partidos } from "./data.js?v=51";
+import { partidos } from "./data.js?v=52";
 
 const formIndex = document.getElementById("registro-cliente-index");
 const tablaPosiciones = document.getElementById("tablaPosiciones");
@@ -162,6 +162,65 @@ function calcularPuntosPartido(pronostico, resultadoReal, grupo) {
 
   return 0;
 }
+function normalizarNombreEquipo(nombre) {
+  return String(nombre || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+}
+
+function calcularPuntosCampeon(
+  datosPronostico,
+  partidoFinal,
+  resultadoFinal
+) {
+  if (!datosPronostico || !partidoFinal || !resultadoFinal) {
+    return 0;
+  }
+
+  const campeonElegido =
+    datosPronostico.campeonMundial?.seleccion;
+
+  if (!campeonElegido) {
+    return 0;
+  }
+
+  if (
+    resultadoFinal.local === undefined ||
+    resultadoFinal.visitante === undefined ||
+    resultadoFinal.local === "" ||
+    resultadoFinal.visitante === ""
+  ) {
+    return 0;
+  }
+
+  const golesLocal = Number(resultadoFinal.local);
+  const golesVisitante = Number(resultadoFinal.visitante);
+
+  let campeonReal = "";
+
+  if (golesLocal > golesVisitante) {
+    campeonReal = partidoFinal.local;
+  }
+
+  if (golesVisitante > golesLocal) {
+    campeonReal = partidoFinal.visitante;
+  }
+
+  if (!campeonReal) {
+    return 0;
+  }
+
+  if (
+    normalizarNombreEquipo(campeonElegido) ===
+    normalizarNombreEquipo(campeonReal)
+  ) {
+    return 100;
+  }
+
+  return 0;
+}
 
 async function obtenerResultadosOficiales() {
   const resultadosOficiales = {};
@@ -183,7 +242,10 @@ async function obtenerPronosticosPorCliente() {
   resultado.forEach((docPronostico) => {
     const datos = docPronostico.data();
 
-    pronosticosPorCliente[docPronostico.id] = datos.partidos || {};
+    pronosticosPorCliente[docPronostico.id] = {
+      partidos: datos.partidos || {},
+      campeonMundial: datos.campeonMundial || null
+    };
   });
 
   return pronosticosPorCliente;
@@ -209,12 +271,15 @@ async function cargarClientesRegistrados() {
       const usuario = docUsuario.data();
       const clienteId = docUsuario.id;
 
-      const pronosticosCliente =
-        pronosticosPorCliente[clienteId] || {};
+      const datosPronosticoCliente =
+  pronosticosPorCliente[clienteId] || {};
 
-      let puntosTotales = 0;
+const pronosticosCliente =
+  datosPronosticoCliente.partidos || {};
 
-      Object.entries(pronosticosCliente).forEach(([idPartido, pronostico]) => {
+let puntosTotales = 0;
+
+Object.entries(pronosticosCliente).forEach(([idPartido, pronostico]) => {
         const resultadoReal = resultadosOficiales[idPartido];
 
         if (!resultadoReal) return;
@@ -234,6 +299,20 @@ async function cargarClientesRegistrados() {
           grupo
         );
       });
+
+const partidoFinal =
+  partidos.find((partido) => Number(partido.id) === 104);
+
+const resultadoFinal =
+  resultadosOficiales["104"];
+
+puntosTotales += calcularPuntosCampeon(
+  datosPronosticoCliente,
+  partidoFinal,
+  resultadoFinal
+);
+
+
 
      const puntosGuardados = Number(usuario.puntos || 0);
 const puntosBase = Number(usuario.puntosBase || 0);
