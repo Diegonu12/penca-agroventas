@@ -6579,3 +6579,85 @@ footer {
     text-align: center !important;
   }
 }
+
+/* AVISO FINAL 150 PUNTOS */
+
+.aviso-final-150 {
+  max-width: 1200px;
+  margin: 28px auto;
+  padding: 0 24px;
+}
+
+.aviso-final-150-card {
+  background: linear-gradient(135deg, #002819, #005c35);
+  border: 2px solid #ffcc24;
+  border-radius: 24px;
+  padding: 28px;
+  text-align: center;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+}
+
+.aviso-final-150-card span {
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(255, 204, 36, 0.16);
+  color: #ffcc24;
+  font-weight: 900;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.aviso-final-150-card h2 {
+  margin: 0 0 12px;
+  color: #ffffff;
+  font-size: clamp(30px, 4vw, 52px);
+}
+
+.aviso-final-150-card p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 20px;
+  line-height: 1.4;
+}
+
+.aviso-final-150-card p strong {
+  color: #ffcc24;
+  font-size: 26px;
+}
+
+/* Bloque especial en reglas */
+
+.puntos-grid .punto-final-especial {
+  background: linear-gradient(135deg, #00351f, #005c35);
+  border-left: 6px solid #ffcc24;
+  color: white;
+}
+
+.puntos-grid .punto-final-especial strong {
+  color: #ffcc24;
+}
+
+.puntos-grid .punto-final-especial p {
+  color: white;
+}
+
+@media (max-width: 768px) {
+  .aviso-final-150 {
+    padding: 0 16px;
+    margin: 22px auto;
+  }
+
+  .aviso-final-150-card {
+    padding: 24px 18px;
+  }
+
+  .aviso-final-150-card p {
+    font-size: 16px;
+  }
+
+  .aviso-final-150-card p strong {
+    font-size: 22px;
+  }
+}

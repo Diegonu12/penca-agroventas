@@ -314,6 +314,17 @@ function calcularEstadoPronostico(pronostico, real, partido) {
     pronosticoLocal === realLocal &&
     pronosticoVisitante === realVisitante;
 
+  // Premio especial: resultado exacto en la Final
+  if (
+    Number(partido.id) === 104 &&
+    resultadoExacto
+  ) {
+    return {
+      texto: "🏆 Resultado exacto en la Final +150 puntos",
+      clase: "acierto-exacto"
+    };
+  }
+
   if (esFaseFinal(partido)) {
     if (resultadoExacto) {
       return {
@@ -377,7 +388,6 @@ function calcularEstadoPronostico(pronostico, real, partido) {
     clase: "sin-puntos"
   };
 }
-
 function mostrarFixture() {
   if (!listaFixture) return;
 

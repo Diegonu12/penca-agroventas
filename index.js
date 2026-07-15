@@ -114,6 +114,14 @@ function calcularPuntosPartido(pronostico, resultadoReal, grupo) {
     pronosticoLocal === realLocal &&
     pronosticoVisitante === realVisitante;
 
+  const esFinal =
+    String(grupo || "").toLowerCase() === "final";
+
+  // Premio especial: resultado exacto en la Final
+  if (esFinal && resultadoExacto) {
+    return 150;
+  }
+
   if (esFaseFinal(grupo)) {
     if (resultadoExacto) {
       return 8;

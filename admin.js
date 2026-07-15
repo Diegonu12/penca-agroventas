@@ -286,8 +286,7 @@ function calcularPuntos(
   pronostico,
   real,
   grupo
-) {
-
+){
   if (!pronostico || !real) return 0;
 
   if (
@@ -301,36 +300,33 @@ function calcularPuntos(
     return 0;
   }
 
-  const pronosticoLocal =
-    Number(pronostico.local);
-
-  const pronosticoVisitante =
-    Number(pronostico.visitante);
-
-  const realLocal =
-    Number(real.local);
-
-  const realVisitante =
-    Number(real.visitante);
+  const localPronostico = Number(pronostico.local);
+  const visitantePronostico = Number(pronostico.visitante);
+  const localReal = Number(real.local);
+  const visitanteReal = Number(real.visitante);
 
   const diferenciaPronostico =
-    pronosticoLocal - pronosticoVisitante;
+    localPronostico - visitantePronostico;
 
   const diferenciaReal =
-    realLocal - realVisitante;
+    localReal - visitanteReal;
 
-  const signoPronostico =
-    Math.sign(diferenciaPronostico);
-
-  const signoReal =
-    Math.sign(diferenciaReal);
+  const signoPronostico = Math.sign(diferenciaPronostico);
+  const signoReal = Math.sign(diferenciaReal);
 
   const resultadoExacto =
-    pronosticoLocal === realLocal &&
-    pronosticoVisitante === realVisitante;
+    localPronostico === localReal &&
+    visitantePronostico === visitanteReal;
 
-  if (esFaseFinalAdmin(grupo)) {
+  const esFinal =
+    String(grupo || "").toLowerCase() === "final";
 
+  // Premio especial: resultado exacto en la Final
+  if (esFinal && resultadoExacto) {
+    return 150;
+  }
+
+  if (esFaseFinal(grupo)) {
     if (resultadoExacto) {
       return 8;
     }
@@ -359,6 +355,7 @@ function calcularPuntos(
     return 0;
   }
 
+  // Regla vieja para fase de grupos
   if (resultadoExacto) {
     return 3;
   }
