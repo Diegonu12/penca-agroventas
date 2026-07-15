@@ -7,7 +7,7 @@ import {
   getDoc
 } from "./firebase.js";
 
-import { partidos } from "./data.js?v=50";
+import { partidos } from "./data.js?v=51";
 
 const listaFixture = document.getElementById("listaFixture");
 const guardarPronosticos = document.getElementById("guardarPronosticos");

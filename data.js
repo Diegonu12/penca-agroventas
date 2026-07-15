@@ -443,16 +443,16 @@ const faseFinalBase = [
 },
 
   // =========================
-  // GRAN FINAL
+  // GRAN FINAL 
   // =========================
 
-  {
-    id: 104,
-    fecha: "19/07/2026 - 16:00",
-    grupo: "Final",
-    local: equipoTemporal("Ganador P101"),
-    visitante: equipoTemporal("Ganador P102")
-  }
+ {
+  id: 104,
+  fecha: "19/07/2026 - 16:00",
+  grupo: "Final",
+  local: equipos.espana,
+  visitante: equipoTemporal("Ganador P102")
+}
 ];
 
 function crearPartidosFaseFinal() {

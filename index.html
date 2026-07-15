@@ -6,7 +6,7 @@
 
   <title>Penca Mundial 2026 | Agroventas</title>
 
-<link rel="stylesheet" href="styles.css?v=50" />
+<link rel="stylesheet" href="styles.css?v=53" />
 
   <link
     rel="stylesheet"
@@ -103,6 +103,87 @@
   </header>
 
   <main>
+
+<section class="aviso-campeon-mundial">
+
+  <div class="campeon-card">
+
+    <div class="campeon-info">
+
+      <span class="campeon-tag">Último momento</span>
+
+      <h2>Elegí el campeón del Mundial</h2>
+
+      <p>
+        Nueva oportunidad para sumar puntos extra. Elegí una selección campeona entre las clasificadas actuales.
+        Si acertás, ganás <strong>100 puntos extra</strong> en la penca.
+      </p>
+        <div class="aviso-cierre-campeon">
+         ⚠️ La elección se podrá cambiar hasta antes del inicio de la final.
+        Una vez comenzado el partido, no se podrá modificar el campeón elegido.
+        </div> 
+      <div class="campeon-destacado">
+        <strong>+100 pts</strong>
+        <span>para quien acierte el campeón</span>
+      </div>
+
+    </div>
+
+    <div class="campeon-form-box">
+
+      <h3>Seleccioná tu campeón</h3>
+
+      <label for="campeonTelefono" class="campeon-label">
+        Número de teléfono
+      </label>
+
+      <input
+        type="text"
+        id="campeonTelefono"
+        class="campeon-input"
+        placeholder="Ingresá tu teléfono registrado"
+      >
+
+      <div class="campeon-opciones">
+
+        <label class="campeon-opcion">
+          <input type="radio" name="campeonSeleccion" value="España">
+          <span>
+            <img src="https://flagcdn.com/w40/es.png" alt="España">
+            España
+          </span>
+        </label>
+
+        <label class="campeon-opcion">
+          <input type="radio" name="campeonSeleccion" value="Argentina">
+          <span>
+            <img src="https://flagcdn.com/w40/ar.png" alt="Argentina">
+            Argentina
+          </span>
+        </label>
+
+        <label class="campeon-opcion">
+          <input type="radio" name="campeonSeleccion" value="Inglaterra">
+          <span>
+            <img src="https://flagcdn.com/w40/gb-eng.png" alt="Inglaterra">
+            Inglaterra
+          </span>
+        </label>
+
+      </div>
+
+      <button id="guardarCampeon" class="btn-campeon">
+        Guardar campeón
+      </button>
+
+      <p id="mensajeCampeon" class="mensaje-campeon"></p>
+
+    </div>
+
+  </div>
+
+</section>
+
 <section class="aviso-16avos aviso-eliminatoria-v3">
 
   <div class="aviso-v3-card">
@@ -419,6 +500,8 @@
       });
     }
   </script>
+
+ <script type="module" src="./campeon.js?v=4"></script>
 
   <script type="module" src="./index.js?v=46"></script>
 

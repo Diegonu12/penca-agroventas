@@ -6,7 +6,7 @@ import {
   setDoc
 } from "./firebase.js";
 
-import { partidos } from "./data.js?v=22";
+import { partidos } from "./data.js?v=51";
 
 const listaResultadosAdmin = document.getElementById("listaResultadosAdmin");
 const tablaClientesAdmin = document.getElementById("tablaClientesAdmin");
