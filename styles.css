@@ -5966,3 +5966,616 @@ footer {
     padding: 14px 15px;
   }
 }
+/* ===== SECCION CAMPEON ===== */
+
+.bloque-campeon,
+.campeon-box,
+.campeon-card {
+  text-align: center;
+}
+
+.bloque-campeon h2,
+.bloque-campeon h3,
+.campeon-box h2,
+.campeon-box h3,
+.campeon-card h2,
+.campeon-card h3 {
+  text-align: center;
+}
+
+.bloque-campeon p,
+.campeon-box p,
+.campeon-card p {
+  text-align: center;
+}
+
+.aviso-cierre-campeon {
+  text-align: center;
+}
+
+.bonus-campeon,
+.campeon-bonus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+.bonus-campeon .numero,
+.campeon-bonus .numero {
+  line-height: 0.95;
+}
+
+#campeonTelefono {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto 18px auto;
+  display: block;
+  text-align: center;
+}
+
+#guardarCampeon {
+  display: block;
+  margin: 18px auto 0 auto;
+}
+
+/* contenedor de opciones */
+.opciones-campeon,
+.campeon-opciones,
+.campeon-lista {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-top: 18px;
+}
+
+/* tarjeta/opción */
+.opcion-campeon,
+.campeon-opcion,
+.card-campeon {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 110px;
+  padding: 18px 12px;
+  border-radius: 18px;
+  text-align: center;
+}
+
+.opcion-campeon img,
+.campeon-opcion img,
+.card-campeon img {
+  width: 42px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.opcion-campeon span,
+.campeon-opcion span,
+.card-campeon span {
+  display: block;
+  text-align: center;
+  font-size: 1.05rem;
+  line-height: 1.2;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .bloque-campeon,
+  .campeon-box,
+  .campeon-card {
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+
+  .aviso-cierre-campeon {
+    font-size: 0.95rem;
+    line-height: 1.45;
+    padding: 14px 16px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .bonus-campeon,
+  .campeon-bonus {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 22px;
+  }
+
+  .bonus-campeon .numero,
+  .campeon-bonus .numero {
+    font-size: 2.4rem;
+  }
+
+  .opciones-campeon,
+  .campeon-opciones,
+  .campeon-lista {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .opcion-campeon,
+  .campeon-opcion,
+  .card-campeon {
+    min-height: 95px;
+    padding: 12px 8px;
+    border-radius: 16px;
+  }
+
+  .opcion-campeon img,
+  .campeon-opcion img,
+  .card-campeon img {
+    width: 34px;
+    margin-bottom: 8px;
+  }
+
+  .opcion-campeon span,
+  .campeon-opcion span,
+  .card-campeon span {
+    font-size: 0.95rem;
+    line-height: 1.15;
+  }
+
+  #campeonTelefono {
+    max-width: 100%;
+    font-size: 0.98rem;
+  }
+
+  #guardarCampeon {
+    width: 100%;
+    max-width: 280px;
+  }
+}
+
+/* ===== MOBILE CHICO ===== */
+@media (max-width: 480px) {
+  .bonus-campeon .numero,
+  .campeon-bonus .numero {
+    font-size: 2.1rem;
+  }
+
+  .opcion-campeon,
+  .campeon-opcion,
+  .card-campeon {
+    min-height: 90px;
+    padding: 10px 6px;
+  }
+
+  .opcion-campeon img,
+  .campeon-opcion img,
+  .card-campeon img {
+    width: 30px;
+  }
+
+  .opcion-campeon span,
+  .campeon-opcion span,
+  .card-campeon span {
+    font-size: 0.85rem;
+  }
+}
+/* ===== BONUS +100 PTS ===== */
+.campeon-bonus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: nowrap;
+  text-align: center;
+  margin: 20px auto 28px auto;
+}
+
+.campeon-bonus-numero {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.bonus-valor {
+  font-size: 3.1rem;
+  font-weight: 800;
+  color: #ffcc24;
+}
+
+.bonus-unidad {
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ffcc24;
+}
+
+.campeon-bonus-texto {
+  font-size: 1.2rem;
+  line-height: 1.2;
+  color: #d9e0d9;
+  text-align: left;
+  max-width: 180px;
+}
+
+/* ===== OPCIONES CAMPEON ===== */
+.campeon-opciones {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 18px;
+}
+
+.campeon-opcion {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 120px;
+  padding: 14px 8px;
+  border-radius: 18px;
+  text-align: center;
+  cursor: pointer;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.campeon-opcion input[type="radio"] {
+  display: none;
+}
+
+.campeon-opcion img {
+  width: 44px;
+  height: auto;
+  display: block;
+  margin: 0 auto 10px auto;
+}
+
+.campeon-opcion span {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 1rem;
+  line-height: 1.15;
+  font-weight: 700;
+  color: #fff;
+}
+
+.campeon-opcion:has(input[type="radio"]:checked) {
+  border: 2px solid #ffcc24;
+  box-shadow: 0 0 0 3px rgba(255, 204, 36, 0.15);
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+  .campeon-bonus {
+    gap: 12px;
+    margin: 16px auto 22px auto;
+  }
+
+  .bonus-valor {
+    font-size: 2.8rem;
+  }
+
+  .bonus-unidad {
+    font-size: 1.7rem;
+  }
+
+  .campeon-bonus-texto {
+    font-size: 1rem;
+    max-width: 140px;
+    text-align: left;
+  }
+
+  .campeon-opciones {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .campeon-opcion {
+    min-height: 105px;
+    padding: 12px 6px;
+    border-radius: 16px;
+  }
+
+  .campeon-opcion img {
+    width: 38px;
+    margin-bottom: 8px;
+  }
+
+  .campeon-opcion span {
+    font-size: 0.92rem;
+    line-height: 1.12;
+  }
+}
+
+/* ===== MOBILE CHICO ===== */
+@media (max-width: 480px) {
+  .campeon-bonus {
+    gap: 10px;
+  }
+
+  .bonus-valor {
+    font-size: 2.5rem;
+  }
+
+  .bonus-unidad {
+    font-size: 1.5rem;
+  }
+
+  .campeon-bonus-texto {
+    font-size: 0.95rem;
+    max-width: 130px;
+  }
+
+  .campeon-opcion {
+    min-height: 96px;
+    padding: 10px 5px;
+  }
+
+  .campeon-opcion img {
+    width: 34px;
+  }
+
+  .campeon-opcion span {
+    font-size: 0.84rem;
+  }
+}
+/* ===== CORRECCION SECCION CAMPEON ===== */
+
+/* +100 pts en una sola línea */
+.campeon-destacado {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 22px !important;
+  flex-wrap: nowrap !important;
+  text-align: center !important;
+  margin-top: 28px !important;
+}
+
+.campeon-destacado strong {
+  display: inline-block !important;
+  white-space: nowrap !important;
+  color: #ffcc24 !important;
+  font-size: 58px !important;
+  line-height: 1 !important;
+  font-weight: 1000 !important;
+}
+
+.campeon-destacado span {
+  max-width: 230px !important;
+  color: rgba(255, 255, 255, 0.82) !important;
+  font-size: 20px !important;
+  line-height: 1.15 !important;
+  font-weight: 800 !important;
+  text-align: left !important;
+}
+
+/* Contenedor de opciones */
+.campeon-opciones {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 16px !important;
+  margin: 24px 0 26px !important;
+}
+
+/* El label no debe tener caja visual */
+.campeon-opcion {
+  display: block !important;
+  padding: 0 !important;
+  min-height: auto !important;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  cursor: pointer !important;
+}
+
+/* Ocultar radio */
+.campeon-opcion input {
+  display: none !important;
+}
+
+/* La tarjeta real es el span */
+.campeon-opcion span {
+  min-height: 118px !important;
+  width: 100% !important;
+  padding: 18px 10px !important;
+  border-radius: 18px !important;
+  background: rgba(255, 255, 255, 0.08) !important;
+  border: 2px solid rgba(255, 255, 255, 0.12) !important;
+  color: #ffffff !important;
+  font-size: 18px !important;
+  font-weight: 900 !important;
+  line-height: 1.15 !important;
+  text-align: center !important;
+
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 12px !important;
+}
+
+/* Banderas */
+.campeon-opcion img {
+  width: 52px !important;
+  height: 36px !important;
+  object-fit: cover !important;
+  border-radius: 5px !important;
+  display: block !important;
+  margin: 0 auto !important;
+}
+
+/* Selección activa */
+.campeon-opcion input:checked + span {
+  background: rgba(255, 204, 36, 0.18) !important;
+  border-color: #ffcc24 !important;
+  color: #ffcc24 !important;
+  box-shadow: 0 0 0 3px rgba(255, 204, 36, 0.16) !important;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .campeon-destacado {
+    gap: 14px !important;
+    margin-top: 24px !important;
+  }
+
+  .campeon-destacado strong {
+    font-size: 42px !important;
+  }
+
+  .campeon-destacado span {
+    max-width: 145px !important;
+    font-size: 15px !important;
+    text-align: left !important;
+  }
+
+  .campeon-opciones {
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .campeon-opcion span {
+    min-height: 92px !important;
+    padding: 10px 4px !important;
+    border-radius: 14px !important;
+    font-size: 13px !important;
+    gap: 7px !important;
+  }
+
+  .campeon-opcion img {
+    width: 38px !important;
+    height: 26px !important;
+  }
+}
+/* Centrar bloque +100 pts */
+
+.campeon-destacado {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 18px !important;
+  margin: 32px auto 0 !important;
+  text-align: center !important;
+}
+
+.campeon-destacado strong {
+  text-align: center !important;
+  white-space: nowrap !important;
+}
+
+.campeon-destacado span {
+  text-align: center !important;
+  max-width: 220px !important;
+  font-weight: 500 !important;
+  line-height: 1.2 !important;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .campeon-destacado {
+    justify-content: center !important;
+    align-items: center !important;
+    gap: 12px !important;
+    margin: 28px auto 0 !important;
+  }
+
+  .campeon-destacado strong {
+    font-size: 40px !important;
+  }
+
+  .campeon-destacado span {
+    max-width: 145px !important;
+    font-size: 15px !important;
+    text-align: center !important;
+  }
+}
+/* Que "para quien acierte el campeón" quede en una sola línea */
+.campeon-destacado span {
+  max-width: none !important;
+  width: auto !important;
+  white-space: nowrap !important;
+  text-align: center !important;
+}
+
+/* Ajuste mobile para que no se corte */
+@media (max-width: 768px) {
+  .campeon-destacado {
+    gap: 10px !important;
+  }
+
+  .campeon-destacado span {
+    white-space: nowrap !important;
+    font-size: 13px !important;
+    max-width: none !important;
+  }
+}
+/* Ajuste final bloque +100 pts */
+
+.campeon-bonus {
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 22px !important;
+  flex-wrap: nowrap !important;
+  text-align: center !important;
+  margin: 32px auto 0 !important;
+}
+
+.campeon-bonus-numero {
+  display: flex !important;
+  align-items: baseline !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  white-space: nowrap !important;
+  flex-shrink: 0 !important;
+}
+
+.bonus-valor,
+.bonus-unidad {
+  white-space: nowrap !important;
+}
+
+.campeon-bonus-texto {
+  display: inline-block !important;
+  white-space: nowrap !important;
+  width: auto !important;
+  max-width: none !important;
+  min-width: max-content !important;
+  flex-shrink: 0 !important;
+  text-align: center !important;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .campeon-bonus {
+    flex-direction: column !important;
+    gap: 8px !important;
+    margin-top: 26px !important;
+  }
+
+  .campeon-bonus-numero {
+    justify-content: center !important;
+  }
+
+  .bonus-valor {
+    font-size: 42px !important;
+  }
+
+  .bonus-unidad {
+    font-size: 28px !important;
+  }
+
+  .campeon-bonus-texto {
+    font-size: 15px !important;
+    white-space: nowrap !important;
+    max-width: none !important;
+    min-width: max-content !important;
+    text-align: center !important;
+  }
+}
