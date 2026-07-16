@@ -6795,3 +6795,41 @@ body {
   max-width: 100% !important;
   overflow-x: hidden !important;
 }
+/* Buscador clientes admin */
+
+.buscador-admin-clientes {
+  margin: 20px 0 24px;
+  max-width: 460px;
+}
+
+.buscador-admin-clientes label {
+  display: block;
+  margin-bottom: 8px;
+  color: #003f2a;
+  font-weight: 800;
+}
+
+.buscador-admin-clientes input {
+  width: 100%;
+  padding: 14px 18px;
+  border-radius: 14px;
+  border: 2px solid rgba(0, 63, 42, 0.18);
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.buscador-admin-clientes input:focus {
+  border-color: #ffcc24;
+  box-shadow: 0 0 0 4px rgba(255, 204, 36, 0.18);
+}
+
+@media (max-width: 768px) {
+  .buscador-admin-clientes {
+    max-width: 100%;
+  }
+
+  .buscador-admin-clientes input {
+    font-size: 15px;
+  }
+}

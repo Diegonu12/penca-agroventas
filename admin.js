@@ -10,8 +10,13 @@ import { partidos } from "./data.js?v=52";
 
 const listaResultadosAdmin = document.getElementById("listaResultadosAdmin");
 const tablaClientesAdmin = document.getElementById("tablaClientesAdmin");
+const buscadorClienteAdmin = document.getElementById("buscadorClienteAdmin");
 
 let resultadosOficialesAdmin = {};
+
+if (buscadorClienteAdmin) {
+  buscadorClienteAdmin.addEventListener("input", filtrarClientesAdmin);
+}
 
 iniciarAdmin();
 
@@ -469,7 +474,9 @@ async function cargarClientesAdmin() {
     tablaClientesAdmin
       .appendChild(fila);
   });
+  filtrarClientesAdmin();
 }
+
 
 function normalizarNombreEquipo(nombre) {
   return String(nombre || "")
@@ -589,4 +596,28 @@ async function auditarClientesSinPronosticos() {
   alert(
     `Clientes sin pronósticos encontrados: ${problemas.length}. Revisá la consola con F12.`
   );
+}
+function normalizarTextoAdmin(texto) {
+  return String(texto || "")
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .trim();
+}
+
+function filtrarClientesAdmin() {
+  if (!tablaClientesAdmin || !buscadorClienteAdmin) return;
+
+  const busqueda = normalizarTextoAdmin(buscadorClienteAdmin.value);
+  const filas = tablaClientesAdmin.querySelectorAll("tr");
+
+  filas.forEach((fila) => {
+    const textoFila = normalizarTextoAdmin(fila.textContent);
+
+    if (!busqueda || textoFila.includes(busqueda)) {
+      fila.style.display = "";
+    } else {
+      fila.style.display = "none";
+    }
+  });
 }
