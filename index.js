@@ -6,7 +6,7 @@ import {
   setDoc
 } from "./firebase.js";
 
-import { partidos } from "./data.js?v=52";
+import { partidos } from "./data.js?v=53";
 
 const formIndex = document.getElementById("registro-cliente-index");
 const tablaPosiciones = document.getElementById("tablaPosiciones");
@@ -78,6 +78,7 @@ function esFaseFinal(grupo) {
     grupo === "Octavos de final" ||
     grupo === "Cuartos de final" ||
     grupo === "Semifinal" ||
+    grupo === "Tercer puesto" ||
     grupo === "Final"
   );
 }

@@ -7,7 +7,7 @@ import {
   getDoc
 } from "./firebase.js";
 
-import { partidos } from "./data.js?v=52";
+import { partidos } from "./data.js?v=53";
 
 const listaFixture = document.getElementById("listaFixture");
 const guardarPronosticos = document.getElementById("guardarPronosticos");
@@ -192,11 +192,11 @@ function normalizarTextoFiltro(texto) {
 
 function obtenerPartidosFiltrados() {
 
-  if (filtroActual === "todos") {
-    return partidos.filter((partido) =>
-      partido.id >= 73 && partido.id <= 104
-    );
-  }
+  if (filtroActual === "Final") {
+  return partidos.filter((partido) =>
+    partido.id === 103 || partido.id === 104
+  );
+}
 
   if (filtroActual === "16avos de final") {
     return partidos.filter((partido) =>
@@ -279,6 +279,7 @@ function esFaseFinal(partido) {
     partido.grupo === "Octavos de final" ||
     partido.grupo === "Cuartos de final" ||
     partido.grupo === "Semifinal" ||
+    partido.grupo === "Tercer puesto" ||
     partido.grupo === "Final"
   );
 }

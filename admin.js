@@ -6,7 +6,7 @@ import {
   setDoc
 } from "./firebase.js";
 
-import { partidos } from "./data.js?v=52";
+import { partidos } from "./data.js?v=53";
 
 const listaResultadosAdmin = document.getElementById("listaResultadosAdmin");
 const tablaClientesAdmin = document.getElementById("tablaClientesAdmin");
@@ -354,6 +354,7 @@ function esFaseFinalAdmin(grupo) {
     grupo === "Octavos de final" ||
     grupo === "Cuartos de final" ||
     grupo === "Semifinal" ||
+    grupo === "Tercer puesto" ||
     grupo === "Final"
   );
 }

@@ -447,6 +447,13 @@ const faseFinalBase = [
   // =========================
 
 {
+  id: 103,
+  fecha: "18/07/2026 - 18:00",
+  grupo: "Tercer puesto",
+  local: equipos.francia,
+  visitante: equipos.inglaterra
+},
+{
   id: 104,
   fecha: "19/07/2026 - 16:00",
   grupo: "Final",

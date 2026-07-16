@@ -7,7 +7,7 @@ import {
   getDoc
 } from "./firebase.js";
 
-import { partidos } from "./data.js?v=52";
+import { partidos } from "./data.js?v=53";
 
 const telefonoCampeon = document.getElementById("campeonTelefono");
 const guardarCampeon = document.getElementById("guardarCampeon");
