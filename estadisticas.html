@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Estadísticas | Penca Agroventas</title>
+
+  <link rel="stylesheet" href="styles.css?v=58" />
+</head>
+
+<body>
+
+  <header class="header-admin-simple">
+    <img src="assets/logo.png" alt="Logo Agroventas">
+
+    <div>
+      <h1>Estadísticas de la Penca</h1>
+      <p>Panel privado para consultar datos generales.</p>
+    </div>
+  </header>
+
+  <main class="estadisticas-page">
+
+    <section class="card estadisticas-resumen">
+
+      <div class="estadisticas-header">
+        <div>
+          <h2>Resumen general</h2>
+          <p>Datos actualizados desde Firebase.</p>
+        </div>
+
+        <button id="actualizarEstadisticas" class="btn-secundario">
+          Actualizar datos
+        </button>
+      </div>
+
+      <div class="estadisticas-grid">
+
+        <div class="estadistica-card">
+          <span>Total clientes</span>
+          <strong id="statTotalClientes">0</strong>
+        </div>
+
+        <div class="estadistica-card">
+          <span>Clientes con pronósticos</span>
+          <strong id="statConPronosticos">0</strong>
+        </div>
+
+        <div class="estadistica-card">
+          <span>Clientes sin pronósticos</span>
+          <strong id="statSinPronosticos">0</strong>
+        </div>
+
+        <div class="estadistica-card">
+          <span>Total pronósticos cargados</span>
+          <strong id="statTotalPronosticos">0</strong>
+        </div>
+
+        <div class="estadistica-card">
+          <span>Pronosticaron 3er puesto</span>
+          <strong id="statTercerPuesto">0</strong>
+        </div>
+
+        <div class="estadistica-card">
+          <span>Pronosticaron la Final</span>
+          <strong id="statFinal">0</strong>
+        </div>
+
+        <div class="estadistica-card">
+          <span>Eligieron campeón</span>
+          <strong id="statCampeon">0</strong>
+        </div>
+
+        <div class="estadistica-card">
+          <span>Sin elegir campeón</span>
+          <strong id="statSinCampeon">0</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="card estadisticas-resumen">
+
+      <h2>Elección de campeón</h2>
+
+      <div class="estadisticas-grid estadisticas-grid-2">
+
+        <div class="estadistica-card">
+          <span>Eligieron Argentina</span>
+          <strong id="statArgentina">0</strong>
+        </div>
+
+        <div class="estadistica-card">
+          <span>Eligieron España</span>
+          <strong id="statEspana">0</strong>
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="card estadisticas-resumen">
+
+      <h2>Pronósticos por fase</h2>
+
+      <div class="tabla-scroll tabla-estadisticas">
+        <table>
+          <thead>
+            <tr>
+              <th>Fase</th>
+              <th>Cantidad de pronósticos</th>
+            </tr>
+          </thead>
+
+          <tbody id="tablaPronosticosPorFase">
+            <tr>
+              <td colspan="2">Cargando...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+    <section class="card estadisticas-resumen">
+
+      <h2>Top 10 ranking actual</h2>
+
+      <div class="tabla-scroll tabla-estadisticas">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Cliente</th>
+              <th>Teléfono</th>
+              <th>Puntos</th>
+            </tr>
+          </thead>
+
+          <tbody id="tablaTopRanking">
+            <tr>
+              <td colspan="4">Cargando...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script type="module" src="./estadisticas.js?v=1"></script>
+
+</body>
+</html>
